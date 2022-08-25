@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra tam giac</title>
+</head>
+<body>
+<script>
+    let a=parseFloat(prompt('Nhap vao gia tri thu nhat'));
+    let b=parseFloat(prompt('Nhap vao gia tri thu hai'));
+    let c=parseFloat(prompt('Nhap vao gia tri thu ba'));
+    if ((a>0&&b>0&&c>0)&&(a+b>c)&&(b+c>a)&&(c+a>b)) {
+        alert('Ba gia tri nhap vao co the la 3 canh trong mot tam giac');
+    } else alert('Ba gia tri nhap vao KHONG the la 3 canh trong mot tam giac');
+</script>
+</body>
+</html>

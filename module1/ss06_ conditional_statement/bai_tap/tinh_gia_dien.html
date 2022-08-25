@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuong trinh tinh gia dien</title>
+</head>
+<body>
+<script>
+    let chuDien=prompt('Nhap vao luong dien nang tieu thu (kWh)');
+    let tienDien;
+    if (chuDien<0){
+        alert('Nhap sai roi');
+    } else if (chuDien<=50) {
+        tienDien=chuDien*1678;
+        document.writeln('Ban da tieu thu '+chuDien+' kWh. Tien dien la '+tienDien+'vnd');
+    } else if (chuDien<=100) {
+        tienDien= 50 * 1678 + (chuDien - 50) * 1734;
+        document.writeln('Ban da tieu thu '+chuDien+' kWh. Tien dien la '+tienDien+'vnd');
+    } else if (chuDien<=200) {
+        tienDien = 50 * 1678 + 50 * 1734 + (chuDien - 100) * 2014;
+        document.writeln('Ban da tieu thu ' + chuDien + ' kWh. Tien dien la ' + tienDien + 'vnd');
+    } else if (chuDien<=300) {
+        tienDien = 50 * 1678 + 50 * 1734 + 100 * 2014 + (chuDien - 200) * 2536;
+        document.writeln('Ban da tieu thu ' + chuDien + ' kWh. Tien dien la ' + tienDien + 'vnd');
+    } else if (chuDien<=400) {
+        tienDien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + (chuDien - 300) * 2834;
+        document.writeln('Ban da tieu thu ' + chuDien + ' kWh. Tien dien la ' + tienDien + 'vnd');
+    } else {
+        tienDien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (chuDien - 400) * 2927;
+        document.writeln('Ban da tieu thu ' + chuDien + ' kWh. Tien dien la ' + tienDien + 'vnd');
+    }
+
+</script>
+</body>
+</html>

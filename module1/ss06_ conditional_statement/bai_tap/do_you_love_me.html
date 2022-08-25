@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do you love me</title>
+</head>
+<body>
+<h1>Do you love me ?</h1>
+<button onclick="alert('You\'ve been trapped')">Yes</button>
+<button id="noButton" onmouseover="changePosition ()" style="position:absolute; left:100px; top:80px;">No</button>
+<script>
+    console.log(window.innerHeight);
+    console.log(window.innerWidth);
+    function changePosition () {
+        let x = Math.round(Math.random() * window.innerWidth);
+        let y = Math.round(Math.random() * window.innerHeight);
+        document.getElementById('noButton').style.left = x + 'px';
+        document.getElementById('noButton').style.top = y + 'px';
+    }
+</script>
+</body>
+</html>

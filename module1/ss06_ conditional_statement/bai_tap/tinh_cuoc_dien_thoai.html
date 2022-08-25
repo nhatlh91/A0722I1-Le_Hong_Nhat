@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính cước điện thoại</title>
+</head>
+<body>
+<script>
+    let soPhut= prompt('Nhap vao so phut da goi');
+    let tienCuoc;
+    if (soPhut>=500) {
+        tienCuoc=soPhut*500;
+    } else if (soPhut>=300) {
+        tienCuoc=soPhut*800;
+    } else if (soPhut>=200) {
+        tienCuoc=soPhut*1000
+    } else if (soPhut>=100) {
+        tienCuoc=soPhut*1200
+    } else if (soPhut>=50) {
+        tienCuoc=soPhut*1500
+    } else tienCuoc=soPhut+2000;
+    document.writeln('Ban da su dung '+soPhut+' phut, voi gia cuoc la '+tienCuoc/soPhut+'/phut. Vay tong tien phai thanh toan la '+tienCuoc);
+</script>
+</body>
+</html>

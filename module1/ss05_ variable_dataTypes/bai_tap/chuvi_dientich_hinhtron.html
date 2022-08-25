@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết chương trình tính chu vi và diện tích hình tròn</title>
+</head>
+<body>
+<script>
+    var inputRadius;
+    inputRadius = prompt('Nhap vao ban kinh duong tron');
+    var radius = parseInt(inputRadius);
+    var chuvi = radius*2*3.14;
+    var dientich = radius*radius*3.14;
+    var chuvi2 = chuvi.toFixed(2);
+    var dientich2 = dientich.toFixed(2);
+    document.write('Ban da nhap ban kinh la ' + inputRadius + ' vay duong tron co chu vi la ' + chuvi2 + ' va dien tich la ' + dientich2);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xep hang hoc sinh</title>
+</head>
+<body>
+<script>
+    let kiemtra=prompt('Nhap vao diem kiem tra');
+    let giuaky=prompt('Nhap vao diem thi giua ky');
+    let cuoiky=prompt('Nhap vao diem thi cuoi ky');
+    let diemtb=(kiemtra*0.2+giuaky*0.3+cuoiky*0.5);
+    if (diemtb>=10) {
+        alert('Diem trung binh la '+diemtb+' ban da NHAP SAI');
+    } else if (diemtb>=8) {
+        alert('Diem trung binh la '+diemtb+' xep loai GIOI');
+    } else if (diemtb>=6.5) {
+        alert('Diem trung binh la ' + diemtb + ' xep loai KHA');
+    } else if (diemtb>=5.5) {
+        alert('Diem trung binh la ' + diemtb + ' xep loai TRUNG BINH');
+    } else
+        alert('Diem trung binh la ' + diemtb + ' xep loai YEU');
+</script>
+</body>
+</html>

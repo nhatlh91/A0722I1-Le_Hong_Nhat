@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>ccc</title>
+</head>
+<body>
+<script>
+    let limit=parseInt(prompt('Nhap vao so luong so nguyen to can tim'));
+    let i, j, count=1, checkNum=2;
+    while (count<=limit) {
+    for (i=1, j=0;i<=checkNum;i++) {
+        if (checkNum%i===0) {
+            j+=1;
+            if (j===3){break}
+        }
+    }
+    if (j===2) {
+        document.write('So nguyen to thu '+count+' la '+checkNum+'<br>');
+        count+=1;
+    }
+    // console.log(checkNum);
+    checkNum+=1;
+    }
+    // document.write('So luong So nguyen to tim duoc la '+count);
+</script>
+</body>
+</html>

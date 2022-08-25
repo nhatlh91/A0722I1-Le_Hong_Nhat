@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính tổng 30 số chia hết cho 7</title>
+</head>
+<input type="button" onclick="act()" value="Click me to act">
+<script>
+    function act(){
+    let i = 0, number = 6, total=0;
+    let numbers = 'Day so can tim la:'
+    while (i<30) {
+        number+= 1;
+        if(number%7===0){
+            total+=number;
+            numbers=numbers+' '+number;
+            i+=1;
+        }
+    }
+    document.write(numbers+'<br>');
+    document.write('Tong can tim la: '+total);
+    }
+</script>
+</body>
+</html>

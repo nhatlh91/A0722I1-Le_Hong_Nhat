@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thuc hanh tao form don gian</title>
+</head>
+<body>
+<style>
+    .wufoo {
+        font-family: "Tahoma","Lucida Sans Unicode", sans-serif;
+    }
+</style>
+<form method="get" action="taoformdongian.html" class ="wufoo">
+    <h2><span style="color:white; background:orangered"> SỞ THÍCH CỦA BẠN </span></h2>
+    <p><span style="color:blue"> Họ và tên:</span></p>
+    <input type="text" size="15px" name="yourname" placeholder="Your name" <br/>
+    <p><span style="color:blue">Email:</span></p>
+    <input type="text" size="15px" name="email" placeholder="Email" <br/>
+    <p><span style="color:blue">Sở thích</span></p>
+    <input type="checkbox" name="hobby"/> Thể thao <br/>
+    <input type="checkbox" name="hobby"/> Âm nhạc <br/>
+    <input type="checkbox" name="hobby"/> Đọc sách <br/>
+    <input type="checkbox" name="hobby"/> Lướt web <br/>
+    <input type="checkbox" name="hobby"/> Điện ảnh <br/>
+    <input type="checkbox" name="hobby"/> Chơi game <br/>
+    <input type="checkbox" name="hobby"/> Du lịch <br/>
+    <input type = "button" name="btSubmit" value="Submit"/>
+    <input type = "reset" name="btReset" value="Reset"/>
+</form>
+
+<form method="get" action="taoformdongian.html" class ="wufoo">
+    <h2><span style="color:blue"> ĐĂNG KÝ HỌC VIÊN </span></h2>
+    <p><span style="color:darkblue"> Họ và tên:</span>
+        <input type="text" size="25px" name="yourname" placeholder="Your name"</p>
+    <p><span style="color:darkblue">Ngày sinh:</span>
+        <input type="text" size="15px" name="birthday" placeholder="Birthday"</p>
+    <p><span style="color:darkblue">Giới tính:</span>
+        <input type="radio" name="gender"/>Nam
+        <input type="radio" name="gender">Nữ</p>
+    <p><span style="color:darkblue">Địa chỉ:</span>
+        <textarea cols="25" rows="2"> </textarea>
+    <p><span style="color:darkblue">Lớp:</span>
+    <select>
+        <option> - Chọn lớp -</option>
+        <option>Lớp Full-time</option>
+        <option>Lớp Part-time</option>
+    </select></p>
+    <p><span style="color:darkblue"> Email:</span>
+        <input type="text" size="25px" name="email" placeholder="Email"</p>
+    <p><span style="color:darkblue"> Điện thoại:</span>
+        <input type="text" size="25px" name="phone" placeholder="Phone number"</p>
+    <br>
+    <input type = "button" name="btSubmit" value="Đăng ký"/>
+    <input type = "reset" name="btReset" value="Nhập lại"/>
+</form>
+</body>
+</html>

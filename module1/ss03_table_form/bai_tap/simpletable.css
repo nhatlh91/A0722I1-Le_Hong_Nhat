@@ -1,0 +1,55 @@
+body {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid black;
+}
+th{
+    font-size:16px;
+    font-weight:700;
+    text-align:center;
+    padding:10px;
+    background-color: yellow;
+}
+.th2{
+    font-size:16px;
+    font-weight:700;
+    text-align:center;
+    padding:10px;
+    background-color: orange;
+}
+td{
+    font-weight:400;
+    color black;
+    font-size:16px;
+    padding:10px 10px 10px 10px;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Open Sans', sans-serif;
+    color: darkblue;
+    text-align: center;
+}
+.info {
+    border: white;
+    text-align: left;
+    color: blue;
+    padding: 10px;
+}
+.info2 {
+    border: white;
+    text-align: right;
+    color: blue;
+    padding: 10px;
+}
+.p1 {
+    text-align: left;
+}

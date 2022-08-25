@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinh lai ngan hang</title>
+</head>
+<body>
+<script>
+    let tienGoc = parseInt(prompt('Nhap vao so tien vay von, don vi "trieu dong"')*1000000);
+    let thoiHan = prompt('Nhap vao thoi han vay von, don vi "thang"');
+    let laiSuat = prompt('Nhap vao lai suat theo thang, don vi %')/100;
+    let gocBanDau = tienGoc;
+    for (var i = 1; i <= thoiHan; i++){
+        tienGoc = tienGoc + tienGoc*laiSuat;
+        document.writeln('Tien lai thang thu '+i+ ' la '+ (tienGoc*laiSuat).toFixed(0));
+    }
+    console.log(tienGoc);
+    let tienLai = tienGoc-gocBanDau;
+    document.writeln('Tong tien lai phai tra la '+tienLai.toFixed(0));
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ung dung may tinh don gian</title>
+</head>
+<body>
+<h1>Calculator</h1>
+    <table>
+        <tr>
+            <td colspan="2">
+                <input type="number" id="input1" placeholder="First number">
+            </td>
+            <td colspan="2">
+                <input type="number" id="input2" placeholder="Second number">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="add()">Addition (+)</button>
+            </td>
+            <td>
+                <button onclick="sub()">Subtraction (-)</button>
+            </td>
+            <td>
+                <button onclick="mul()">Multiplication (*)</button>
+            </td>
+            <td>
+                <button onclick="div()">Division (/)</button>
+            </td>
+        </tr>
+    </table>
+<p>The operating result is: <span id="result"></span></p>
+<script>
+   function add(){
+        let in1 = parseFloat(document.getElementById('input1').value);
+        let in2 = parseFloat(document.getElementById('input2').value);
+        let kq=in1+in2;
+        document.getElementById('result').innerHTML = (kq);
+        // alert ('Ket qua cua phep tinh la '+kq);
+    }
+   function sub(){
+       let in1 = (document.getElementById('input1').value);
+       let in2 = (document.getElementById('input2').value);
+       let kq=in1-in2;
+       document.getElementById('result').innerHTML = (kq);
+   }
+   function mul(){
+       let in1 = (document.getElementById('input1').value);
+       let in2 = (document.getElementById('input2').value);
+       let kq=in1*in2;
+       document.getElementById('result').innerHTML = (kq);
+   }
+   function div(){
+       let in1 = (document.getElementById('input1').value);
+       let in2 = (document.getElementById('input2').value);
+       let kq=in1/in2;
+       document.getElementById('result').innerHTML = (kq);
+   }
+</script>
+</body>
+</html>

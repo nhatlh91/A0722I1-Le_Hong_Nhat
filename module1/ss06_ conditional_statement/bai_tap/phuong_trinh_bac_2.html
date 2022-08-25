@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phuong trinh bac 2</title>
+</head>
+<body>
+<script>
+    let a=prompt('Nhap vao tham so a cua phuong trinh ax2+bx+c=0');
+    let b=prompt('Nhap vao tham so b cua phuong trinh ax2+bx+c=0');
+    let c=prompt('Nhap vao tham so c cua phuong trinh ax2+bx+c=0');
+    let delta=b*b-4*a*c;
+    console.log(delta);
+    if (delta<0) {
+        alert('Phuong trinh vo nghiem');
+    } else if (delta==0) {
+        let x=-b/(2*a);
+        document.writeln('Phuong trinh co nghiem kep x='+x);
+    } else {
+        let x1=(-b+Math.sqrt(delta))/(2*a);
+        let x2=(-b-Math.sqrt(delta))/(2*a);
+        document.writeln('Phuong trinh co 2 nghiem x1= '+x1+' va x2= '+x2);
+    }
+</script>
+</body>
+</html>

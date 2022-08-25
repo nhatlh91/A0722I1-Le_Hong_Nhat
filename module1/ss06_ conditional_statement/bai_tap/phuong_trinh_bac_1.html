@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giai phuong trinh bac nhat</title>
+</head>
+<body>
+<script>
+    let a=prompt('Nhap vao tham so a cua phuong trinh ax+b=0');
+    let b=prompt('Nhap vao tham so b cua phuong trinh ax+b=0');
+    if (a==0&&b==0) {
+        alert('Phuong trinh co vo so nghiem');
+    } else if (a==0&&b!==0) {
+        alert('Phuong trinh vo nghiem');
+    } else {
+        let x=-b/a;
+        document.writeln('Phuong trinh co nghiem la '+x);
+    }
+</script>
+</body>
+</html>

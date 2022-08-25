@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day fibonacci</title>
+</head>
+<body>
+<script>
+    let a=1,b=1,c, i=2;
+    let total=2;
+    let number=prompt('So luong so fibonacci muon tinh tong la: ');
+    let fibonacci='1+1';
+    while (i<number) {
+    c=a+b;
+    total+=c;
+    fibonacci=fibonacci+'+'+c;
+    a=b;
+    b=c;
+    i+=1;
+    }
+    document.write('Ket qua la: '+fibonacci+'='+total);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính hoa hồng theo doanh số</title>
+</head>
+<body>
+<script>
+    let doanhSo=prompt('Nhap vao doanh so ban hang ');
+    let hoaHong=doanhSo*0.05;
+    if (doanhSo>=500000000) {
+        hoaHong=doanhSo*0.06;
+    } else if (doanhSo>=600000000) {
+        hoaHong = doanhSo * 0.07;
+    } else if (doanhSo>=700000000) {
+        hoaHong = doanhSo * 0.08;
+    } else if (doanhSo>=800000000) {
+        hoaHong = doanhSo * 0.09;
+    } else if (doanhSo>=900000000) {
+        hoaHong = doanhSo*0.1;
+    }
+    document.write('Doanh so cua ban la '+doanhSo+' hoa hong nhan duoc tuong ung la '+hoaHong);
+</script>
+</body>
+</html>

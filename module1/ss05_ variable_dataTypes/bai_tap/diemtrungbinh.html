@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết chương trình tính điểm trung bình</title>
+</head>
+<body>
+<script>
+    var inputLy, inputHoa, inputSinh;
+    inputLy = prompt('Nhap diem Ly');
+    inputHoa = prompt('Nhap diem Hoa');
+    inputSinh = prompt('Nhap diem Sinh');
+    var ly = parseInt(inputLy);
+    var hoa = parseInt(inputHoa);
+    var sinh = parseInt(inputSinh);
+    var tb = (ly+hoa+sinh)/3;
+    var tb2 = tb.toFixed(1);
+    document.write('Diem trung binh la: ' + tb2);
+</script>
+</body>
+</html>
