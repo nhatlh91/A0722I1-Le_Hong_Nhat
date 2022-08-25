@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game đoán số</title>
+</head>
+<body>
+<input type="button" onclick="main()" value="Click to play">
+
+<script>
+    function main() {
+        let max = parseInt(prompt('Nhập vào giới hạn trên của dãy số'));
+        let min = parseInt(prompt('Nhập vào giới hạn dưới của dãy số'));
+        let genNum = Math.floor(Math.random() * (max - min)) + min;
+        console.log(genNum);
+        let num = parseInt(prompt('Xin mời đoán số'));
+        let count=0;
+        while (count<3){
+            count+=1;
+            if (num===genNum) {
+                alert('Chúc mừng bạn đã đoán trúng');
+                break;
+            } else if (num<=genNum) {
+                num= parseInt(prompt('Số bạn đoán nhỏ hơn kết quả, mời đoán lại, còn '+(3-count)+' lần đoán'));
+            } else num= parseInt(prompt('Số bạn đoán lớn hơn kết quả, mời đoán lại, còn '+(3-count)+' lần đoán'));
+        }
+
+    }
+</script>
+</body>
+</html>

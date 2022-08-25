@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính giai thừa của số nguyên dương</title>
+</head>
+<body>
+<script>
+    let num= prompt('Nhap vao so muon tinh giai thua');
+    while (num>0) {
+    let result=1;
+    for (let i=1;i<=num;i++){
+        result*=i;
+    }
+    alert('Ket qua la: '+num+'!='+result);
+    num= prompt('Nhap vao so muon tinh giai thua');
+    }
+</script>
+</body>
+</html>

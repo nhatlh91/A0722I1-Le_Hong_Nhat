@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hinh trai tim ve bang vong lap</title>
+</head>
+<body>
+<input type="button" onclick="draw()" value="Click to draw!!">
+<script>
+    function draw() {
+        for (let i=1;i<=6;i++) {
+            for (let j=1;j<=7;j++) {
+                if ((j === 1 && i===2)||(j === 1 && i===3)||(j === 2 && i===1)||(j === 2 && i===4)||(j === 3 && i===1)||(j === 3 && i===5)
+                    ||(j === 4 && i===2)||(j === 4 && i===6)||(j === 5 && i===1)||(j === 5 && i===5)||(j === 6 && i===1)||(j === 6 && i===4)||(j === 7 && i===2)||(j === 7 && i===3)) {
+                    document.writeln('*');
+                } else document.writeln('&nbsp&nbsp');
+            }
+            document.write('<br>');
+        }
+
+    }
+</script>
+</body>
+</html>

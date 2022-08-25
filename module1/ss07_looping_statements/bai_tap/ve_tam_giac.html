@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vẽ tam giác bằng vòng lặp</title>
+</head>
+<body>
+<input type="button" onclick="hinh1()" value="Nhấn vào đây để hiện hình 1">
+<input type="button" onclick="hinh2()" value="Nhấn vào đây để hiện hình 2">
+<input type="button" onclick="hinh3()" value="Nhấn vào đây để hiện hình 3">
+<input type="button" onclick="hinh4()" value="Nhấn vào đây để hiện hình 4">
+</body>
+<script>
+    function hinh1() {
+        for (let i=1;i<=5;i++) {
+            for (let j=1;j<=5;j++) {
+                if (i >= j) {
+                    document.writeln('*');
+                } else document.writeln('&nbsp');
+            }
+            document.write('<br>');
+        }
+
+    }
+    function hinh2() {
+        for (let i=0;i<5;i++) {
+            for (let j=0;j<5;j++) {
+                if (j<(5-i)) {
+                    document.writeln('*');
+                } else document.writeln('&nbsp');
+            }
+            document.write('<br>');
+        }
+
+    }
+    function hinh3() {
+        for (let i=0;i<5;i++) {
+            for (let j=0;j<5;j++) {
+                if (j<(5-i)) {
+                    document.writeln('&nbsp&nbsp');
+                } else document.writeln('*');
+            }
+            document.write('<br>');
+        }
+
+    }
+    function hinh4() {
+        for (let i = 1; i <= 5; i++) {
+            for (let j = 1; j <= 5; j++) {
+                if (i >= j) {
+                    document.writeln('&nbsp&nbsp');
+                } else document.writeln('*');
+            }
+            document.write('<br>');
+        }
+    }
+</script>
+</html>
