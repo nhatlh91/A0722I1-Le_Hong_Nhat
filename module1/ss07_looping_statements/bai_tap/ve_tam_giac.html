@@ -11,7 +11,7 @@
 <input type="button" onclick="hinh4()" value="Nhấn vào đây để hiện hình 4">
 </body>
 <script>
-    function hinh1() {
+   function hinh1() {
         for (let i=1;i<=5;i++) {
             for (let j=1;j<=5;j++) {
                 if (i >= j) {
@@ -36,7 +36,7 @@
     function hinh3() {
         for (let i=0;i<5;i++) {
             for (let j=0;j<5;j++) {
-                if (j<(5-i)) {
+                if (j<(4-i)) {
                     document.writeln('&nbsp&nbsp');
                 } else document.writeln('*');
             }
@@ -45,9 +45,9 @@
 
     }
     function hinh4() {
-        for (let i = 1; i <= 5; i++) {
-            for (let j = 1; j <= 5; j++) {
-                if (i >= j) {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (i>j) {
                     document.writeln('&nbsp&nbsp');
                 } else document.writeln('*');
             }
