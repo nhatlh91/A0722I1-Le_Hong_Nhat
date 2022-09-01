@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+<script>
+    /**
+     * Bai so 1
+     */
+    // let myColor = ["Red", "Green", "White", "Black"];
+    // console.log (myColor.join());
+
+    /**
+     * Bai so 2
+     */
+    // let nhap=prompt('Nhap day so vao');
+    // let ketQua=[nhap[0]];
+    // for (let i=0; i<(nhap.length-1);i++) {
+    //     if (nhap[i]%2===0&&nhap[i+1]%2===0) {
+    //         ketQua.push('-', nhap[i+1]);
+    //     } else {
+    //         ketQua.push(nhap[i+1]);
+    //     }
+    // }
+    // document.writeln(nhap);
+    // document.writeln('<br>');
+    // document.writeln(ketQua.join(''));
+
+    /**
+     * Bai so 3
+     */
+
+    let input = prompt('Nhap chuoi ky tu');
+    let result='';
+    for (let i of input) {
+        if (i == i.toLowerCase()){
+            result += i.toUpperCase()
+        } else {
+            result += i.toLowerCase()
+        }
+    }
+
+    document.writeln('You have input: '+input);
+    document.writeln('<br>');
+    document.writeln('And the result is: '+result);
+
+</script>
+</body>
+</html>

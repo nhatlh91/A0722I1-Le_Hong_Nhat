@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo từ điển bằng mảng</title>
+</head>
+<body>
+
+<input type="text" id='input' placeholder="Input your word here">
+<button onclick='search()'>Search</button>
+<div id="output"></div>
+
+<script>
+    const eng = ['head', 'eyes', 'nose', 'hair', 'finger', 'back'];
+    const vi = ['đầu', 'mắt', 'mũi', 'lông tóc', 'ngón tay', 'lưng'];
+    function search() {
+        let a= document.getElementById('input').value;
+        // console.log(a);
+        for (let i in eng) {
+            // console.log(eng[i]);
+            if (a==eng[i]) {
+                document.getElementById('output').innerHTML = 'The result is: ' + vi[i];
+                break;
+            } else
+                document.getElementById('output').innerHTML = 'This word is not available';
+        }
+    }
+</script>
+</body>
+</html>
