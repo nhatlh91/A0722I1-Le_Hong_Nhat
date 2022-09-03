@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nối 2 mảng</title>
+</head>
+<body style="color: darkblue; size: 30px">
+
+<script>
+    let a = Array(10);
+    let b = Array(10);
+    let c = Array(20);
+    for (let i=0; i<10; i++) {
+        a[i] = Math.floor(Math.random() * 100);
+        b[i] = Math.floor(Math.random() * 100);
+        }
+    document.writeln('Mảng A là: '+a.join('&nbsp&nbsp')+'<br>');
+    document.writeln('Mảng B là: '+b.join('&nbsp&nbsp')+'<br>');
+    for (let i=0,j=0;i<10;i++) {
+        c[j]=a[i];
+        j+=2;
+            }
+    for (let i=0,j=1;i<10;i++) {
+        c[j]=b[i];
+        j+=2;
+    }
+    document.writeln('Mảng C là: '+c.join('&nbsp&nbsp'));
+</script>
+</body>
+</html>

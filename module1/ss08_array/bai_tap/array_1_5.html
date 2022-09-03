@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài luyện tập Mảng 1-5</title>
+</head>
+<body style="text-align: center; color: darkblue; size: 30px">
+
+<script>
+    let x = prompt('Nhập số lượng phần tử của mảng');
+    let arr = [];
+    let count = 0;
+    for (let i=0; i<x; i++) {
+        arr[i] = Math.floor(Math.random() * (2000) ) -1000;
+        if (parseInt(arr[i])<0) {
+            count++;
+        }
+    }
+    // console.log(count);
+    document.writeln('Mảng được khởi tạo là: ' + arr.join('&nbsp'));
+    document.writeln('<br>');
+    if (count!==0) {
+        document.writeln('Có ' + count+ ' số nguyên âm trong dãy');
+    } else {
+        document.writeln('Không có số nguyên âm trong dãy');
+    }
+</script>
+</body>
+</html>

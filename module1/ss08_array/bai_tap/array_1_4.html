@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đảo ngược mảng</title>
+</head>
+<body style="text-align: center; color: darkblue">
+
+<script>
+    let x = prompt('Nhập số lượng phần tử của mảng');
+    let arr1 = [];
+    let arr2 = [];
+    for (let i=0; i<x; i++) {
+        arr1[i] = Math.floor(Math.random() * 1000);
+    }
+    document.writeln('Mảng được khởi tạo là: ' + arr1.join('-'));
+    for (let i=x-1,j=0; i>=0; i--,j++) {
+        arr2[j] = arr1[i];
+    }
+    console.log(arr2);
+    document.writeln('<br>');
+    document.writeln('Mảng được đảo ngược thành: ' + arr2.join('-'));
+</script>
+</body>
+</html>

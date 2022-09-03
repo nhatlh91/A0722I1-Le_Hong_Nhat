@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ ca-ro</title>
+</head>
+<body style="text-align: center">
+<h3>Caro Game</h3>
+<p id="carogame"></p>
+<input type="button" value="Mark X" onclick="markX()">
+<input type="button" value="Mark O" onclick="markO()">
+
+<script>
+    let b = document.getElementById("carogame");
+    let board = [];
+    let data = "";
+    for (let i = 0; i < 5; i++) {
+        board[i] = ['..', '..', '..', '..', '..'];
+    }
+    // console.log(board);
+    for (let i = 0; i < 5; i++) {
+        data += "<br/>";
+        for (let j = 0; j < 5; j++) {
+            data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
+    }
+    data += "<br/><br/>"
+    b.innerHTML = data;
+    // console.log(data);
+    function markX() {
+        let positionX = prompt("X: ");
+        let positionY = prompt("Y: ");
+        data = "";
+        board[positionX][positionY] = "X";
+        for (let i = 0; i < 5; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        data += "<br/><br/>"
+        b.innerHTML = data;
+        check();
+        // console.log(board);
+        // console.log(data);
+    }
+    function markO() {
+        let positionX = prompt("X: ");
+        let positionY = prompt("Y: ");
+        data = "";
+        board[positionX][positionY] = "O";
+        for (let i = 0; i < 5; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+        }
+        data += "<br/><br/>"
+        b.innerHTML = data;
+        // console.log(board);
+        // console.log(data);
+        check();
+    }
+
+    function check() {
+        for (let i=0;i<5;i++) {
+            if ((board[i][i]==='X'&&board[i+1][i+1]==='X'&&board[i+2][i+2]==='X')||(board[i][i]==='O'&&board[i+1][i+1]==='O'&&board[i+2][i+2]==='O')) {
+                alert('Congrats! You win!');
+                break;
+            } else {
+            for (let j=0;j<5;j++) {
+                if ((board[i][j]==='X'&&board[i+1][j]==='X'&&board[i+2][j]==='X')||(board[i][j]==='O'&&board[i+1][j]==='O'&&board[i+2][j]==='O')||
+                    (board[i][j]==='X'&&board[i][j+1]==='X'&&board[i][j+2]==='X')||(board[i][j]==='O'&&board[i][j+1]==='O'&&board[i][j+2]==='O')||
+                    (board[i][j]==='X'&&board[i+1][j-1]==='X'&&board[i+2][j-2]==='X')||(board[i][j]==='O'&&board[i+1][j-1]==='O'&&board[i+2][j-2]==='O')) {
+                    alert('Congrats! You win!');
+                    break;
+                }
+            }
+        }
+        }
+    }
+</script>
+</body>
+</html>

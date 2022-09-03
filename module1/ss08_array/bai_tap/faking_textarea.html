@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking text area</title>
+</head>
+<body>
+<h2>Type anything you like:</h2>
+<form name="f">
+<textarea name="textarea" cols="40" rows="10" onkeyup="act();"></textarea>
+</form>
+<script>
+    let arr=['J','a','v','a',' ','S','c','r','i','p','t',' ','c','a','n',' ','m','a','k','e',' ','w','e','b','s','i','t','e','s',' ','m','o','r','e',' ','i','n','t','e','r','a','c','t','i','v','e','.',' '];
+    let result='';
+    let i=0;
+    function act() {
+        // document.f.textarea.value = "";
+        // console.log(document.f.textarea.value);
+        if (i=== arr.length) {
+            i=0;
+        }
+        result += arr[i]
+        i++;
+        // console.log(result);
+        document.f.textarea.value = result;
+    }
+
+</script>
+</body>
+</html>

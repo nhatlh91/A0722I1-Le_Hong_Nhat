@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài luyện tập Mảng 1-6</title>
+</head>
+<body style="text-align: center; color: darkblue; size: 30px">
+
+<script>
+    let x = prompt('How many elements do you want ?');
+    let num = prompt('Input your number between 0-100');
+    let arr = [];
+    let count = 0;
+    for (let i=0; i<x; i++) {
+        arr[i] = Math.floor(Math.random() * 100) ;
+        if (arr[i]==num) {
+            count++;
+        }
+        }
+    console.log(arr);
+    if (count!==0) {
+            document.writeln('V is in the array');
+        } else {
+            document.writeln('V is NOT in the array');
+    }
+</script>
+</body>
+</html>
