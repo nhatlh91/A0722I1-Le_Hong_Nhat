@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array 2_2</title>
+</head>
+<body>
+<script>
+    let arr=[];
+    let i=0;
+    let temp, letter;
+    do {
+        letter=prompt('Nhập ký tự vào mảng, để kết thúc nhập dấu ##');
+        arr[i]=letter;
+        i++
+    }
+    while (letter!=='##');
+    arr.pop();
+    document.writeln('Dãy ký tự đã nhập là: '+arr.join('&nbsp&nbsp'));
+    document.writeln('<br>');
+    for (let i=0, j=(arr.length-1) ; i<j; i++, j--) {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    document.writeln('Dãy ký tự sau khi hoán đổi vị trí là: '+arr.join('&nbsp&nbsp'));
+</script>
+</body>
+</html>

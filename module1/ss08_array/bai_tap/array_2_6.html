@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array 2_6</title>
+</head>
+<body>
+<script>
+    let arr=[];
+    let input;
+    let i=0;
+    do {
+       input = prompt('Nhập vào ký tự thứ '+i);
+       arr[i] = input;
+       console.log(arr);
+       i++;
+    } while (input!=='');
+    arr.pop();
+    for (i in arr) {
+        if (arr[i]==='-') {
+            arr[i]='_';
+        }
+    }
+    document.writeln(arr.join('&nbsp&nbsp&nbsp'));
+</script>
+</body>
+</html>

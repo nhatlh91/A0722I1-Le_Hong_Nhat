@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array 2_5</title>
+</head>
+<body>
+
+<script>
+let str1 = prompt('Nhập vào chuỗi thứ nhất');
+let str2 = prompt('Nhập vào chuỗi thứ hai');
+let arr1 = [];
+let arr2 = [];
+count=0;
+for (let i=0; i<str1.length; i++) {
+    arr1[i]=str1.charAt(i);
+}
+console.log(arr1);
+for (let i=0; i<str2.length; i++) {
+    arr2[i]=str2.charAt(i);
+}
+console.log(arr2);
+if (arr1.length !== arr2.length) {
+    document.writeln('Hai chuỗi đã nhập không giống nhau');
+} else {
+    for (let i=0; i<arr1.length;i++) {
+        if (arr1[i] !== arr2[i]) {
+            document.writeln('Hai chuỗi đã nhập không giống nhau');
+            count++;
+            break;
+        }
+    }
+    if (count===0) {
+        document.writeln('Hai chuỗi đã nhập giống nhau');
+    }
+}
+
+</script>
+</body>
+</html>
