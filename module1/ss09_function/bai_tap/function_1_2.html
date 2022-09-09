@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function 1-2</title>
+</head>
+<body>
+<p><input id="input" placeholder="Nhập số dô đây"></p>
+<p><button onclick="main()">Click để thực thi</button></p>
+<p>Kết quả trả về là: <span id="output"></span></p>
+
+<script>
+    function main(){
+       let num = document.getElementById('input').value;
+        document.getElementById('output').innerHTML = increment(num);
+        document.getElementById('input').value = '';
+    }
+    function increment(a) {
+        return ++a
+    }
+</script>
+</body>
+</html>

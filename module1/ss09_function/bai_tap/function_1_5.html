@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function 1-5</title>
+</head>
+<body>
+
+<script>
+    let arr1 = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
+    let arr2 = ['Ursa Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+    console.log (arr1);
+    console.log (arr2);
+    let name = prompt('Nhap ten ngoi sao');
+    alert(find(name));
+
+    function find(name) {
+        let count = 0;
+        for (i in arr1) {
+            if (arr1[i]===name){
+                count++;
+                return arr1[i] + ' thuoc ve chom sao ' + arr2[i];
+            }
+        }
+        if (count===0) {
+            return 'Ngoi sao '+ name +' khong ton tai';
+        }
+    }
+
+</script>
+</body>
+</html>

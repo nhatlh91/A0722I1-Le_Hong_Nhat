@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập Function_2</title>
+</head>
+<body>
+<script>
+    // Bài 1: Hàm bình phương
+    // function sqr(x) {
+    //     let result = x*x;
+    //     return result;
+    // }
+    // alert(sqr(7));
+
+    // Bài 2: Hàm tính diện tích hình tròn với tham số nhập vào là bán kính
+    // function area(x) {
+    //     let result = x*x*3.14;
+    //     return result;
+    // }
+    // alert(area(7));
+
+    // Bài 2: Hàm tính chu vi hình tròn với tham số nhập vào là bán kính
+    // function perimeter(x) {
+    //     let result = x*2*3.14;
+    //     return result;
+    // }
+    // alert(perimeter(7));
+
+
+    // Bài 3: Hàm tính giai thừa của một số nguyên bất kỳ
+    // function factorial(x) {
+    //     let result = 1;
+    //     if (x<0) {
+    //         return 'Số nguyên âm không có giai thừa'
+    //     } else if (x===0) {
+    //         return '0!=1'
+    //     } else {
+    //         for (let i=1; i<=x; i++) {
+    //             result *=i;
+    //         }
+    //     return x+'!='+result;
+    //     }
+    // }
+    // alert(factorial(-4));
+    // alert(factorial(0));
+    // alert(factorial(7));
+
+    //Bài 4: Hàm kiểm tra ký tự nhập vào phải số hay không
+    // function check(x) {
+    // let y = isNaN(+x);
+    // if (y) {
+    //     return 'Đây không phải là số'
+    // } else
+    //     return 'Đây là số'
+    // }
+    // let input=prompt('Nhập vào ký tự cần kiểm tra');
+    // alert(check(input));
+
+    //Bài 5: Hàm nhận vào 3 số nguyên bất kỳ, trả về số có giá trị nhỏ nhất
+    // function check(a,b,c) {
+    //     let min = a;
+    //     if (min > b) {
+    //         min = b
+    //     }
+    //     if (min > c) {
+    //         min = c
+    //     }
+    //     return min;
+    // }
+    // alert(check(25,13,9));
+
+    // Bài 6: Hàm nhận vào 1 số và kiểm tra có phải số nguyên dương hay không
+    // function check(a) {
+    //     if (+a===0) {
+    //         return a + ' không phải là số âm cũng không phải là số dương'
+    //     } else if (+a>0) {
+    //         return a + ' là số nguyên dương'
+    //     } else if (+a<0) {
+    //         return a + ' là số nguyên âm'
+    //     } else {
+    //         return a + ' không phải là số'
+    //     }
+    // }
+    // let input=prompt('Nhập vào ký tự cần kiểm tra');
+    // alert(check(input));
+
+    // Bài 7: Hàm truyền vào 2 số nguyên bất kỳ, thực hiện đổi chỗ 2 số đó
+    // let num1= prompt ('Nhập vào số nguyên thứ nhất');
+    // let num2= prompt ('Nhập vào số nguyên thứ hai');
+    // function swap(a,b) {
+    // let temp=a;
+    //     a=b;
+    //     b=temp;
+    //     return a+'-'+b
+    //     }
+    //     confirm(swap(num1,num2));
+
+
+    // Bài 8: Hàm truyền vào mảng số nguyên bất kỳ và đảo ngược nó
+    // let array=[4,6,3,9,-5,34,0,23,54,86,-43,2,-32];
+    // console.log(array);
+    // function rev(arr) {
+    //     let temp;
+    // for (let i=0, j=arr.length-1; i<j; i++,j--) {
+    //     temp = arr[i];
+    //     arr[i] = arr[j];
+    //     arr[j] =temp;
+    // }
+    // return arr;
+    // }
+    // alert(rev(array));
+
+    // Bài 9: Viết hàm truyền vào một mảng ký tự, và một ký tự bất kỳ,
+    // kiểm tra xem ký tự bất kỳ đó có nằm trong mảng không.
+    // Nếu có trả về số lần xuất hiện của ký tự đó, nếu không trả về -1.
+    let arr=[];
+    let input;
+    let i=0;
+    do {
+        input = prompt('Nhập vào ký tự thứ '+i);
+        arr[i] = input;
+        console.log(arr);
+        i++;
+    } while (input!=='');
+    arr.pop();
+    console.log(arr);
+    let keyword = prompt('Nhập vào ký tự cần tìm');
+    function search(a,k) {
+       let count=0;
+    for (let i=0; i< a.length; i++) {
+        if (a[i]===k) {
+            count++;
+        }
+    } if (count!==0) {
+        return ' Ký tự '+k+' xuất hiện '+count+' lần trong dãy'
+        } else
+            return -1
+    }
+    alert(search(arr,keyword));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra số nguyên tố</title>
+</head>
+<body>
+<p><input type="number" id="input" oninput="isPrime(this.value)"></p>
+<p> <span id="output"></span> </p>
+
+<script>
+function isPrime(value) {
+ if (value==2){
+     document.getElementById("output").innerHTML = value+ ' là số nguyên tố';
+ } else if (value<2||value%2===0) {
+     document.getElementById("output").innerHTML = value+ ' KHÔNG phải là số nguyên tố';
+ } else {
+     let count = 0;
+     for (let i=2; i<value; i++) {
+         if (value%i===0) {
+             count++;
+             document.getElementById("output").innerHTML = value+ ' KHÔNG phải là số nguyên tố';
+             break;
+         }
+     }
+     if (count===0) {
+         document.getElementById("output").innerHTML = value+ ' là số nguyên tố';
+     }
+ }
+}
+</script>
+</body>
+</html>

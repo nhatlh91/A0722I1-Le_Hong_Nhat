@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feet-met</title>
+</head>
+<body>
+<p><input type="number" id="input"></p>
+<p>
+    <button onclick="f2m()">feet to meters</button>
+    <button onclick="m2f()">meters to feet</button>
+</p>
+<p>Result: ~<span id="output"></span></p>
+
+<script>
+    function f2m(){
+       let f = document.getElementById('input').value;
+        document.getElementById('output').innerHTML = (0.3048*f).toFixed(2) + 'metters'
+    }
+    function m2f(){
+        let m = document.getElementById('input').value;
+        document.getElementById('output').innerHTML = (3.28084*m).toFixed(2) + 'feet'
+    }
+</script>
+</body>
+</html>
