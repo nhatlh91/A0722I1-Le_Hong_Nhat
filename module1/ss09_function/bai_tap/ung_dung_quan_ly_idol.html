@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng quản lý sản phẩm</title>
+</head>
+<body>
+<h3>Add new Idol</h3>
+    <input type="text" id="input" placeholder="Input idol's name">
+    <button onclick="add()"> Submit </button>
+<h3>Idol list:</h3>
+<p id="idolList"></p>
+<script>
+    function show(){
+        let output = '<table border="1"> <tr> <th>No.</th><th>Name</th> <th> Edit </th> <th> Delete </th> </tr>';
+        for (let i=0; i<idols.length; i++) {
+            output = output + '<tr> <td>'+(i+1)+'</td> <td>'+idols[i]+'</td>' +
+                '<td><button onclick="edit('+ i +')">Edit</button></td>' +
+                '<td><button onclick="del('+ i +')">Delete</button></td>'
+        }
+        output = output + '</table>'
+        document.getElementById('idolList').innerHTML = output;
+    }
+
+    function add() {
+    idols.push(document.getElementById('input').value);
+    document.getElementById('input').value = '';
+    show();
+    }
+    function del(index) {
+        for (let i= index; i<(idols.length-1); i++) {
+            idols[i]=idols[i+1];
+        }
+        idols.pop();
+        show();
+    }
+
+    function edit(index) {
+        idols[index] = prompt('Input new name');
+        show();
+    }
+    let idols=['Maria Ozawa','Yua Mikami', 'Yui Hatano', 'Naomi Hiroshino'];
+    show();
+</script>
+</body>
+</html>

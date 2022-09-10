@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra chuỗi đối xứng</title>
+</head>
+<body>
+<p>Chuỗi đã nhập là: <span id="input"></span></p>
+<p id="output"></p>
+<script>
+
+    let str = prompt('Mời nhập chuỗi');
+    let count=0;
+    document.getElementById('input').innerHTML = str;
+    function check(a,b) {
+        if (a<b) {
+            console.log(str.charAt(a),str.charAt(b));
+        if (str.charAt(a)===str.charAt(b)) {
+            check(a+1,b-1);
+          } else count++
+        }
+        return count === 0;
+        }
+   document.getElementById('output').innerHTML = check(0,str.length-1);
+</script>
+
+</body>
+</html>
