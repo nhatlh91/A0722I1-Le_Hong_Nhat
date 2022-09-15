@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rectangular class</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1300px" height="650px" style="border:1px solid #d3d3d3;">
+    <script>
+        function Rect(a, b) {
+            this.a = a;
+            this.b = b;
+
+            this.perimeter = function () {
+                return 2 * (this.a + this.b);
+            }
+
+            this.area = function () {
+                return this.a * this.b;
+            }
+        }
+
+        function getRandomHex() {
+            return Math.floor(Math.random() * 255);
+        }
+
+        function getRandomColor() {
+            var red = getRandomHex();
+            var green = getRandomHex();
+            var blue = getRandomHex();
+            return "rgb(" + red + "," + blue + "," + green + ")";
+        }
+
+        function createRect(paraRect) {
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+            var color = getRandomColor();
+            var x = 100
+            var y = 100
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + paraRect.b);
+            ctx.lineTo(x + paraRect.a, y + paraRect.b);
+            ctx.lineTo(x + paraRect.a, y);
+            // ctx.stroke();
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+
+        let myRect = new Rect(100, 700);
+        let myRect2 = new Rect(400, 300);
+        let myRect3 = new Rect(250, 450);
+        createRect(myRect);
+    </script>
+</body>
+</html>

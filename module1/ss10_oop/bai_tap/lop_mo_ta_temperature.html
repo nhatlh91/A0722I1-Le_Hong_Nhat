@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lớp mô tả Temperature</title>
+</head>
+<body>
+<p>Nhiệt độ F tương ứng là: <span id="f"></span>F</p>
+<p>Nhiệt độ K tương ứng là: <span id="k"></span>K</p>
+<script>
+    let Temp = function (c) {
+        this.celsius = function () {
+            return c;
+        }
+        this.kelvin = function () {
+            return (273.15 + c).toFixed(1);
+        }
+        this.fahrenheit = function () {
+            return (18*c + 32).toFixed(1);
+        }
+    }
+    let temp1 = new Temp(25);
+    document.getElementById('f').innerHTML = temp1.fahrenheit();
+    document.getElementById('k').innerHTML = temp1.kelvin();
+</script>
+</body>
+</html>
