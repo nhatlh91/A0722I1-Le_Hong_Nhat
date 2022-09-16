@@ -5,11 +5,105 @@
     <title>Lớp mô tả điện thoại</title>
 </head>
 <body>
-<script>
-    let Mobile = function (battery,) {
-this.battery = battery;
+<h2>Nokia</h2>
+<p>Battery percentage: <span id="nokiaBatteryStatus"></span>
+    <button onclick="nokia.charge()">Charge this phone !</button>
+</p>
+<p>Phone status: <span id="nokiaPowerStatus"></span>
+    <button onclick="nokia.power()">Power switch</button>
+</p>
+<button onclick="nokia.compose()">Compose</button>
+<button onclick="nokia.inboxOpen()">Inbox (<span id="nokiaInboxCount"></span>)</button>
+<button onclick="nokia.sentOpen()">Sent (<span id="nokiaSentCount"></span>)</button>
+<hr>
+<h2>iPhone</h2>
+<p>Battery percentage: <span id="iphoneBatteryStatus"></span>
+    <button onclick="iphone.charge()">Charge this phone !</button>
+</p>
+<p>Phone status: <span id="iphonePowerStatus"></span>
+    <button onclick="iphone.power()">Power switch</button>
+</p>
+<button onclick="iphone.compose()">Compose</button>
+<button onclick="iphone.inboxOpen()">Inbox (<span id="iphoneInboxCount"></span>)</button>
+<button onclick="iphone.sentOpen()">Sent (<span id="iphoneSentCount"></span>)</button>
 
+
+<script>
+    let mess;
+    let Mobile = function (name) {
+        this.name = name;
+        this.battery = 50;
+        this.inbox = [];
+        this.sent = [];
+        this.on = true;
+        this.power = function () {
+            this.on = !this.on;
+            refreshUI();
+        }
+        this.inboxOpen = function () {
+            if (this.on) {
+                alert(this.inbox.join(' - '));
+                this.battery--;
+                refreshUI();
+            }
+        }
+        this.sentOpen = function () {
+            if (this.on) {
+                alert(this.sent.join(' - '));
+                this.battery--;
+                refreshUI();
+            }
+        }
+        this.charge = function () {
+            this.battery++;
+            refreshUI();
+        }
+        this.compose = function () {
+            if (this.on) {
+                mess = prompt('Your text here:');
+                this.sent.push(mess);
+                deliveryMess();
+                this.battery--;
+                refreshUI();
+            }
+        }
     }
+
+    function deliveryMess() {
+        iphone.inbox.push(mess);
+        mess = '';
+        iphone.battery--;
+        refreshUI();
+    }
+
+    function refreshUI() {
+        if (nokia.on) {
+            document.getElementById('nokiaPowerStatus').innerText = 'On';
+        } else document.getElementById('nokiaPowerStatus').innerText = 'Off';
+        document.getElementById('nokiaBatteryStatus').innerText = nokia.battery;
+        document.getElementById('nokiaInboxCount').innerText = nokia.inbox.length;
+        document.getElementById('nokiaSentCount').innerText = nokia.sent.length;
+
+        if (iphone.on) {
+            document.getElementById('iphonePowerStatus').innerText = 'On';
+        } else document.getElementById('iphonePowerStatus').innerText = 'Off';
+        document.getElementById('iphoneBatteryStatus').innerText = iphone.battery;
+        document.getElementById('iphoneInboxCount').innerText = iphone.inbox.length;
+        document.getElementById('iphoneSentCount').innerText = iphone.sent.length;
+    }
+
+    let nokia = new Mobile('nokia');
+    console.log(nokia);
+    let iphone = new Mobile('iphone');
+    console.log(iphone);
+    refreshUI();
+    // nokia.compose();
+    // nokia.sendMess(iphone);
+    // // nokia.power('off');
+    // console.log(nokia);
+    // console.log(mess);
+    // alert(iphone.inbox);
+    // console.log(iphone);
 
 
 </script>
