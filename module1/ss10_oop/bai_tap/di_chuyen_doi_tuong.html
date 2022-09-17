@@ -43,7 +43,7 @@
 
     }
 
-    let mayu = new Idol('mayu.jpg',200, 10);
+    let mayu = new Idol('img/mayu.jpg',200, 10);
     console.log(mayu.top);
     console.log(innerHeight);
     console.log(mayu.size);
@@ -64,7 +64,7 @@
             mayu.moveUp();
         }
         document.getElementById('game').innerHTML = mayu.getIdolElement();
-        setTimeout(start,200)
+        setTimeout(start,200);
     }
 
     start();
