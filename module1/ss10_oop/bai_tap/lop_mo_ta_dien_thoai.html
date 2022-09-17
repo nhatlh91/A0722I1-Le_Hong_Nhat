@@ -29,45 +29,62 @@
 
 
 <script>
-    let mess;
-    let Mobile = function (name) {
-        this.name = name;
-        this.battery = 50;
-        this.inbox = [];
-        this.sent = [];
-        this.on = true;
-        this.power = function () {
+    class Mobile {
+        constructor(id,name) {
+            this.id = id;
+            this.name = name;
+            this.inbox = [];
+            this.sent = [];
+            this.battery = 75;
+            this.on = true;
+        }
+        compose() {
+            let address = prompt('Input the address');
+            let mess = prompt('Input your message');
+            return[address , mess];
+        }
+        charge () {
             this.on = !this.on;
-            refreshUI();
-        }
-        this.inboxOpen = function () {
-            if (this.on) {
-                alert(this.inbox.join(' - '));
-                this.battery--;
-                refreshUI();
-            }
-        }
-        this.sentOpen = function () {
-            if (this.on) {
-                alert(this.sent.join(' - '));
-                this.battery--;
-                refreshUI();
-            }
-        }
-        this.charge = function () {
-            this.battery++;
-            refreshUI();
-        }
-        this.compose = function () {
-            if (this.on) {
-                mess = prompt('Your text here:');
-                this.sent.push(mess);
-                deliveryMess();
-                this.battery--;
-                refreshUI();
-            }
         }
     }
+    // let Mobile = function (name) {
+    //     this.name = name;
+    //     this.battery = 50;
+    //     this.inbox = [];
+    //     this.sent = [];
+    //     this.on = true;
+    //     this.power = function () {
+    //         this.on = !this.on;
+    //         refreshUI();
+    //     }
+    //     this.inboxOpen = function () {
+    //         if (this.on) {
+    //             alert(this.inbox.join(' - '));
+    //             this.battery--;
+    //             refreshUI();
+    //         }
+    //     }
+    //     this.sentOpen = function () {
+    //         if (this.on) {
+    //             alert(this.sent.join(' - '));
+    //             this.battery--;
+    //             refreshUI();
+    //         }
+    //     }
+    //     this.charge = function () {
+    //         this.battery++;
+    //         refreshUI();
+    //     }
+    //     this.compose = function () {
+    //         if (this.on) {
+    //             mess = prompt('Your text here:');
+    //             this.sent.push(mess);
+    //             deliveryMess();
+    //             this.battery--;
+    //             refreshUI();
+    //         }
+    //     }
+    // }
 
     function deliveryMess() {
         iphone.inbox.push(mess);
@@ -97,6 +114,7 @@
     let iphone = new Mobile('iphone');
     console.log(iphone);
     refreshUI();
+    console.log(nokia.compose());
     // nokia.compose();
     // nokia.sendMess(iphone);
     // // nokia.power('off');

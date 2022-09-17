@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam Eva</title>
+</head>
+<body>
+<script>
+    class Apple {
+        constructor() {
+            this.weight = 10;
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+
+        isEmpty() {
+
+            if (this.weight === 0) {
+                return true;
+            } else {
+            }
+            return false;
+        }
+    }
+
+    class Human {
+        constructor(name, sex, weight,) {
+            this.name = name;
+            this.sex = sex;
+            this.weight = weight;
+        }
+
+        speak(story) {
+            console.log(story);
+        }
+
+        eat() {
+            let a = apple.getWeight();
+            if (!apple.isEmpty()) {
+                apple.weight--;
+                this.weight++;
+            } else
+                console.log('Out of stock');
+        }
+
+        checkAppleWeight() {
+            return (apple.getWeight());
+        }
+    }
+
+    let apple = new Apple();
+    let adam = new Human('Adam', 'Male', 60);
+    let eva = new Human('Eva', 'Female', 55);
+    console.log(adam);
+    console.log(eva);
+    console.log(apple);
+    adam.speak('Hello love');
+    eva.speak('Have you done cooking yet ?')
+    console.log(adam.checkAppleWeight());
+    for (let i = 0; i < 5; i++) {
+        adam.eat();
+        eva.eat();
+    }
+    console.log(adam.checkAppleWeight());
+    adam.eat();
+    console.log(adam);
+    console.log(eva);
+    console.log(apple);
+</script>
+</body>
+</html>
