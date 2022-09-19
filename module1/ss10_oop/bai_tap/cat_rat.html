@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat and rat simulation</title>
+</head>
+<body>
+<h2>Ứng dụng mô phỏng quá trình mèo "thịt" chuột</h2>
+</body>
+<script>
+    /**Viết một lớp mô tả đối tượng chuột lấy tên là Rat, với những đặc điểm được mô tả như sau:
+     Có thuộc tính tên.
+     Có thuộc tính khối lượng.
+     Có thuộc tính tốc độ.
+     Có thuộc tính mô tả trạng thái: sống, chết.
+     Có khả năng thực hiện hành vi kêu (ví dụ “chít, chít”)
+     Viết một lớp mô tả đối tượng mèo lấy tên là Cat với những đặc điểm được mô tả như sau:
+     Có thuộc tính tên.
+     Có thuộc tính khối lượng.
+     Có thuộc tính tốc độ di chuyển tối đa.
+     Có khả năng thực hiện hành vi kêu (ví dụ: “meo meo”).
+     Có khả năng bắt chuột, mỗi lần chỉ bắt được một con. Chỉ bắt được chuột khi tốc độ của mèo lớn hơn tốc độ của chuột.
+     Có khả năng ăn thịt chuột. Chỉ ăn chuột còn sống. Khi ăn, khối lượng của mèo tăng lên tương ứng.
+     Viết một đoạn chương trình mô phỏng lại quá trình mèo bắt chuột và ăn chuột dựa trên các lớp vừa mô tả trên.
+    **/
+    class Rat {
+        constructor(name,weight, speed, isAlive) {
+            this.name = name || 'Jerry';
+            this.weight = weight || 0.2;
+            this.speed = speed || 5;
+            this._isAlive = isAlive;
+        }
+        getStatus(){
+            return this._isAlive;
+        }
+        killed (){
+            this._isAlive = false;
+        }
+        speak (sentence = 'Chit chit') {
+            console.log(sentence);
+        }
+
+    }
+    class Cat {
+        constructor(name, weight, speed) {
+            this.name = name || 'Méo';
+            this.weight = weight || 1;
+            this.speed = speed || 7;
+
+        }
+        speak (sentence = 'Miao') {
+            console.log(sentence);
+        }
+        eat(rat) {
+            if ((rat.speed < this.speed) && rat.getStatus()) {
+                this.weight += rat.weight;
+                rat.killed();
+                this.speak('Mlem Mlem');
+            } else this.speak('Meow');
+        }
+    }
+    let mickey = new Rat('Mickey',0.2,5,true);
+    let rat2 = new Rat('Jerry',0.1,6,true);
+    let rat3 = new Rat('Rat3',0.3,8,true);
+    let rat4 = new Rat('Saint',0.1,1,false);
+    let tom = new Cat('Tom',0.8,7);
+    console.log(mickey);
+    console.log(rat2);
+    console.log(rat3);
+    console.log(rat4);
+    console.log(tom);
+    mickey.speak();
+    tom.speak();
+    tom.eat(mickey);
+    tom.eat(rat2);
+    tom.eat(rat3);
+    tom.eat(rat4);
+    console.log(mickey);
+    console.log(rat2);
+    console.log(rat3);
+    console.log(rat4);
+    console.log(tom);
+</script>
+</html>

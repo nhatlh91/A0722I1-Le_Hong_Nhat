@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trò chơi cờ ca-rô</title>
+</head>
+<body>
+<div id="game-board"> </div>
+<button onclick="board1.newGame()">Reset</button>
+
+<script>
+class GameBoard {
+    constructor() {
+        this.rows = 20;
+        this.cols = 20;
+        this.cells = [];
+
+    }
+    newGame(){
+        for (let i = 0; i < this.rows ; i++) {
+            for( let j = 0 ; j < this.cols ; j++) {
+                this.cells[i,j] = '&nbsp;&nbsp;&nbsp;&nbsp'
+            }
+        }
+        this.draw();
+    }
+    draw() {
+        let board = '<table border="1">';
+        for (let i = 0; i < this.rows ; i++) {
+           board += '<tr>'
+            for( let j = 0 ; j < this.cols ; j++) {
+                board+= '<td>' + this.cells[i,j]; + '</td>'
+            }
+            board += '</tr>'
+        }
+        board += '</table>'
+        document.getElementById('game-board').innerHTML = board;
+    }
+}
+let board1 = new GameBoard();
+board1.newGame();
+
+</script>
+</body>
+</html>

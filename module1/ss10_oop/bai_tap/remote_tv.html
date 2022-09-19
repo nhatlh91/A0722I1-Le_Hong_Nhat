@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote - TV</title>
+</head>
+<body>
+<h2>Remote simulation</h2>
+</body>
+<script>
+    class Remote {
+        constructor(tvId) {
+            this.tvId = tvId;
+        }
+
+        switchStatus(tvID) {
+            tvID.switchStatus();
+        }
+
+        increaseVolume(tvId) {
+            tvId.increaseVolume();
+        }
+
+        decreaseVolume(tvId) {
+            tvId.decreaseVolume();
+        }
+
+        changeChannel(tvId, newChannel) {
+            tvId.changeChannel(newChannel);
+        }
+    }
+
+    class Tv {
+        constructor(channel, volume, status) {
+            this.channel = channel;
+            this.volume = volume;
+            this.on = status || false;
+        }
+
+        getStatus() {
+            if (this.on) {
+                return 'Tivi is on'
+            } else {
+                return 'Tivi is off';
+            }
+        }
+
+        switchStatus() {
+            this.on = !this.on;
+            console.log(this.getStatus());
+        }
+
+        changeChannel(newChannel) {
+            this.channel = newChannel;
+            console.log(`Current channel is: ${this.channel}`);
+        }
+
+        increaseVolume() {
+            this.volume++;
+            console.log(`Current volume is: ${this.volume}`);
+        }
+
+        decreaseVolume() {
+            this.volume--;
+            console.log(`Current volume is: ${this.volume}`);
+        }
+
+    }
+
+    let tv1 = new Tv(15, 75);
+    let remote1 = new Remote(tv1);
+    console.log(remote1);
+    console.log(tv1);
+    tv1.switchStatus();
+    tv1.changeChannel(7);
+    console.log(tv1);
+    remote1.changeChannel(tv1, 3);
+    console.log(tv1);
+    remote1.increaseVolume(tv1);
+    remote1.increaseVolume(tv1);
+    console.log(tv1);
+    remote1.switchStatus(tv1);
+    console.log(tv1);
+</script>
+</html>
