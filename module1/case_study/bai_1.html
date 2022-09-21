@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case study Module 1 - Task 1</title>
+</head>
+<body>
+<h2>Bài tập vẽ hình</h2>
+<button onclick="bai1(4,5)">Bai 1</button>
+<button onclick="bai2(5)">Bai 2</button>
+<button onclick="bai3(5)">Bai 3</button>
+<button onclick="bai4(9)">Bai 4</button>
+<div id='output'></div>
+</body>
+<script>
+    /** Bài 1: Vẽ hình chữ nhật rỗng chiều dài n và chiều rộng m theo hình dưới đây.
+     Ví dụ: x = 4, y = 5
+     Bài 2: Vẽ tam giác vuông cân rỗng có chiều cao h. Ví dụ: h = 5
+     Bài 3: Vẽ tam giác cân đặc có chiều cao h. Ví dụ: h = 5
+     Bài 4: Vẽ tam giác cân rỗng có chiều cao h. Ví dụ: h = 5
+     * **/
+    function bai1(n, m) {
+        let outPut = '';
+        for (let i = 1; i <= n; i++) {
+            for (let j = 1; j <= m; j++) {
+                if (i == 1 || i == n || j == 1 || j == m) {
+                    outPut += '*'
+                } else outPut += '&nbsp;&nbsp';
+            }
+            outPut += '<br>';
+        }
+        document.getElementById('output').innerHTML = outPut;
+    }
+
+    function bai2(h) {
+        let outPut = '';
+        for (let i = 1; i <= h; i++) {
+            for (let j = 1; j <= h; j++) {
+                if (j == 1 || i == h || i == j) {
+                    outPut += '*'
+                } else outPut += '&nbsp;&nbsp';
+            }
+            outPut += '<br>';
+        }
+        document.getElementById('output').innerHTML = outPut;
+    }
+
+    function bai3(h) {
+        let outPut = '';
+        for (let i = 1; i <= h; i++) {
+            for (let j = 1; j <= h * 2 - 1; j++) {
+                if ((j > h - i) && (j <= i + h - 1)) {
+                    outPut += '*'
+                } else outPut += '&nbsp;&nbsp';
+            }
+            outPut += '<br>';
+        }
+        document.getElementById('output').innerHTML = outPut;
+    }
+
+    function bai4(h) {
+        let outPut = '';
+        for (let i = 1; i <= h; i++) {
+            for (let j = 1; j <= h * 2 - 1; j++) {
+                if ((j == h - i + 1) || (i == h) || (j == h + i - 1)) {
+                    outPut += '*'
+                } else outPut += '&nbsp;&nbsp';
+            }
+            outPut += '<br>';
+        }
+        document.getElementById('output').innerHTML = outPut;
+    }
+</script>
+</html>

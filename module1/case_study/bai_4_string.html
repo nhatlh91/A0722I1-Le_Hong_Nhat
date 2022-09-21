@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case study - Module 1 - Task 4</title>
+</head>
+<body>
+<h2>Case study - Module 1</h2>
+<h3>String</h3>
+<button onclick="main()">Bai 1</button>
+<button onclick="bai2()">Bai 2</button>
+<div id="output"></div>
+
+<script>
+    /**
+     * Bài 1: Viết một hàm chuẩn hóa xâu ký tự: biến đổi xâu ký tự thành xâu sao cho trong xâu không có 2 dấu cách liền nhau và bắt đầu mỗi từ phải in hoa.
+     * Ví dụ tRuong    TaN   HAI => Truong Tan Hai.
+     Và một hàm tìm từ dài nhất trong 1 xâu ký tự.
+     Hàm main sử dụng các hàm này để nhập xâu ký tự từ bàn phím, in ra xâu trước và sau khi chuẩn hóa, 1 từ dài nhất trong xâu đó.
+     */
+    function main() {
+        let string = prompt('Input your string');
+        document.writeln(`Original string is: ${string} <br>`);
+        document.writeln(`Standardlized string is: ${standardlize(string)} <br>`);
+        document.writeln(`The longest word in you string is: ${findTheLongestWord(standardlize(string))}`);
+    }
+
+    function standardlize(string) {
+        let temp = '';
+        let output = '';
+        let input = string;
+        for (let i = 0; i < string.length; i++) {
+            if ((input.charAt(i) !== ' ') || ((input.charAt(i) == ' ') && (input.charAt(i - 1) !== ' ')))
+                temp += input.charAt(i);
+        }
+        for (let j = 0; j < temp.length; j++) {
+            if ((j === 0) || (temp.charAt(j - 1) === ' ')) {
+                output += temp.charAt(j).toUpperCase();
+            } else {
+                output += temp.charAt(j).toLowerCase();
+            }
+        }
+        return output;
+    }
+
+    function findTheLongestWord(string) {
+        let max = 0;
+        let longest = '';
+        let count = 0;
+        let input = string;
+        for (let i = 0; i < input.length; i++) {
+            if (input.charAt(i) !== ' ') {
+                count++
+            } else {
+                if (max < count) {
+                    max = count;
+                    count = 0;
+                    for (let j = 0; j < i; j++) {
+                        if (input[j] !== ' ') {
+                            longest += input[j]
+                        } else longest = '';
+                    }
+                }
+            }
+        }
+        return longest;
+    }
+
+    /**
+     Bài 2: Cho xâu kí tự. Hãy đếm số lượng kí tự khác nhau trong xâu đó
+     Ví dụ: s = "cabca", thì kết quả differentSymbolsNaive(s) = 3.
+     ⇨    Có 3 kí tự khác nhau là a, b và c.
+     */
+    function differentSymbolsNaive(s) {
+        let output = '';
+        for (let i = 0; i < s.length; i++) {
+            let count = 0;
+            for (let j = 0; j < output.length; j++) {
+                if (output.charAt(j) == s.charAt(i)) {
+                    count++;
+                    break;
+                }
+            }
+            if (count == 0) {
+                output += s[i];
+            }
+        }
+        return output.length;
+    }
+
+    function bai2() {
+        let a = prompt('Input your string');
+        alert(`You have input: ${a}\nWhich have ${differentSymbolsNaive(a)} different letters`);
+    }
+
+    /**
+     Cho hai xâu kí tự, tìm số lượng kí tự chung giữa chúng.
+     Ví dụ: s1 = "aabcc" và s2 = "adcaa", thì kết quả commonCharacterCount(s1, s2) = 3.
+     ⇨    2 xâu s1 và s2 có 3 kí tự chung: 2 kí tự 'a' và 1 kí tự 'c'.
+     */
+
+    function commonCharacterCount(s1, s2) {
+        let a1 = s1.split('');
+        let a2 = s2.split('');
+        let output = '';
+        for (let i = 0; i < a1.length; i++) {
+            for (let j = 0; j < a2.length; j++) {
+                if (a2[j] === a1[i]) {
+                    output += a1[i];
+                    a2[j] = null;
+                    break;
+                }
+
+            }
+        }
+        console.log(a1);
+        console.log(a2);
+        return `Your 2 strings have ${output.length} similar characters, there are: ${output}`;
+    }
+    let s1 = "aabcc", s2 = "adcaa";
+    console.log(commonCharacterCount(s1, s2));
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case study - Module 1 - Task 2</title>
+</head>
+<body>
+<h2>Case study Module1</h2>
+<h3>(If và switch case)</h3>
+<button onclick="checkLetter()">Bai 2</button>
+<script>
+    /**
+     * Bài 1: Viết một chương trình để nhập lương nhân viên, tính thuế thu nhập và lương ròng
+     (số tiền lương thực sự mà nhân viên đó nhận được).
+     Với các thông số giả sử như sau (không theo luật lương, chỉ là con số giả sử để dễ tính toán):
+     20% thuế thu nhập nếu lương là 15 triệu.
+     10% thuế thu nhập nếu lương từ 7 đến 15 triệu.
+     5% thuế thu nhập nếu lương dưới 7 triệu
+     */
+    function taxDeducted(sal) {
+        let salary = sal;
+        let tax = 0;
+        if (salary >= 15) {
+            return salary * 0.85;
+        }
+        if (salary >= 7) {
+            return salary * 0.9;
+        } else return salary * 0.95;
+    }
+
+    console.log(taxDeducted(20));
+    console.log(taxDeducted(14));
+    console.log(taxDeducted(10));
+    console.log(taxDeducted(5));
+
+    /**
+     Viết chương trình kiểm tra một ký tự trong bảng chữ cái tiếng anh là nguyên âm hay phụ âm.
+     Ký tự là bất kỳ được nhập từ bàn phím.
+     Các ký tự nguyên âm bao gồm: 'o', 'u', 'i', 'a', 'e' hoặc 'O', 'U', 'I', 'A', 'E'
+     */
+    function checkLetter() {
+        input = prompt('Input your letter');
+        switch (input.toLowerCase()) {
+            case 'o':
+                alert(`${input} is vowel`);
+                break;
+            case 'u':
+                alert(`${input} is vowel`);
+                break;
+            case 'a':
+                alert(`${input} is vowel`);
+                break;
+            case 'e':
+                alert(`${input} is vowel`);
+                break;
+            case 'i':
+                alert(`${input} is vowel`);
+                break;
+            default:
+                alert(`${input} is NOT vowel`);
+                break;
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case study - Module 1 - Task 5</title>
+</head>
+<body>
+<h2>Case study - Module 1</h2>
+<h3>2 dimensions array</h3>
+<button onclick="bai1()">Bai 1</button>
+<button onclick="bai2()">Bai 2</button>
+<button onclick="bai3()">Bai 3</button>
+<div id="output"></div>
+<script>
+    /**
+     * Bài 1: Viết hàm tính tổng các số chẵn trong ma trận có kích thước m*n.
+     * Với m, n là các số nhập từ bàn phím.
+     */
+    function sumTheEvens(a) {
+        let sum = 0;
+        for (let i = 0; i < a.length; i++) {
+            for (let j = 0; j < a[i].length; j++) {
+                if (a[i][j] % 2 === 0) {
+                    sum += parseInt(a[i][j]);
+                }
+            }
+        }
+        return sum;
+    }
+
+    function bai1() {
+        let m = parseInt(prompt('Input m')), n = prompt('Input n'), a = [];
+        for (let i = 0; i < m; i++) {
+            let temp = [];
+            for (let j = 0; j < n; j++) {
+                let num = prompt(`Input the value at index ${i}${j}`);
+                temp.push(num);
+            }
+            a.push(temp);
+        }
+        console.log(a);
+        document.getElementById('output').innerHTML = `The summary of even numbers is: ${sumTheEvens(a)}`;
+    }
+
+    /**
+     * Viết hàm liệt kê các số nguyên tố trong mảng 2 chiều, đếm các số nguyên tố có trong mảng đó.
+     */
+    function isPrime(num) {
+        let result = false;
+        if (num === 2) {
+            result = true;
+        } else {
+            let count = 0;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) {
+                    count++;
+                    break;
+                }
+            }
+            if (count === 0) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    function primeNum(a) {
+        let primeArr = [];
+        for (let i = 0; i < a.length; i++) {
+            for (let j = 0; j < a[i].length; j++) {
+                   if (isPrime(a[i][j])) {
+                    console.log(a[i][j]);
+                    primeArr.push(a[i][j]);
+                }
+            }
+        }
+        return primeArr;
+    }
+
+    function bai2() {
+        let m = parseInt(prompt('Input m')), n = prompt('Input n'), a = [];
+        for (let i = 0; i < m; i++) {
+            let temp = [];
+            for (let j = 0; j < n; j++) {
+                let num = prompt(`Input the value at index ${i}.${j}`);
+                temp.push(num);
+            }
+            a.push(temp);
+        }
+        console.log(a);
+        console.log(primeNum(a));
+        document.getElementById('output').innerHTML = `The prime numbers in your array are: ${primeNum(a).join('&nbsp;&nbsp')}`;
+    }
+
+    /**
+     * Bài 3: Viết hàm tìm giá trị lớn nhất, nhỏ nhất trong mảng 2 chiều
+     */
+
+    function minMax(a) {
+    let min = a[0][0];
+    let max = a[0][0];
+        for (let i = 0; i < a.length; i++) {
+            for (let j = 0; j < a[i].length; j++) {
+                if (a[i][j]<min) {
+                    min = a[i][j]
+                }
+                if (a[i][j]>max) {
+                    max = a[i][j]
+                }
+            }
+        }
+        document.getElementById('output').innerHTML = `The biggest number in your array is: ${max},and the smallest is: ${min}`;
+    }
+    function bai3() {
+        let m = parseInt(prompt('Input m')), n = prompt('Input n'), a = [];
+        for (let i = 0; i < m; i++) {
+            let temp = [];
+            for (let j = 0; j < n; j++) {
+                let num = prompt(`Input the value at index ${i}.${j}`);
+                temp.push(num);
+            }
+            a.push(temp);
+        }
+        console.log(a);
+        minMax(a);
+    }
+</script>
+</body>
+</html>
