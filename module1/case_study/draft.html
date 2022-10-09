@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ol type="A" start="3"></ol>
+<script>
+    for (let i = 1; i<=3;i++) {
+    document.getElementsByTagName(i).value = 10;
+    }
+    function diagonalDifference(arr) {
+        let length = arr[0];
+        let primaryDiagonal = 0;
+        let secondaryDiagonal = 0;
+        for (let i=0;i<length; i++) {
+            for (let j=0; j<length ; j++) {
+            if (j===i) {
+                primaryDiagonal += arr[1][i][j];
+            }
+                if (j== (length - 1 - i)) {
+                    secondaryDiagonal += arr[1][i][j];
+                }
+        }
+        }
+        console.log(primaryDiagonal);
+        console.log(secondaryDiagonal);
+        return Math.abs(primaryDiagonal-secondaryDiagonal);
+    }
+    function staircase(n) {
+        for (let i = 0; i<n; i++) {
+            for (let j=0; j<n; j++) {
+                if (j<n-1-i) {
+                    document.write('&nbsp;&nbsp');
+                } else {
+                    document.write('#');
+                }
+            }
+            document.write('<br\>');
+        }
+
+    }
+    function miniMaxSum(arr) {
+    let length = arr.length;
+    let sumArr = [];
+    for (let i = 0; i < length; i++) {
+            let temp1 = [], temp2 = [] , temp = [];
+            let sum=0;
+            temp1 = arr.slice(0,i);
+            temp2 = arr.slice(i+1,length);
+            temp = temp1.concat(temp2);
+             console.log(temp);
+            for (let j =0; j<temp.length; j++){
+                sum += parseInt(temp[j]);
+            }
+            console.log(`Sum is ${sum}`);
+            sumArr.push(sum);
+        }
+    let max =  sumArr[0];
+    let min =  sumArr[0];
+    for (let k of sumArr) {
+        if (k>max) {max = k}
+        if (k<min) {min = k}
+    }
+    console.log(min);
+    console.log(max);
+    }
+    function timeConversion(s) {
+        let [hour,minute,second] = s.split(':')
+        let [,formatedSecond,ampm] = new RegExp(/(\d.)(.*)/g).exec(second)
+        let calculatedTime = hour
+        if(hour == 12) calculatedTime = ampm == 'PM'?'12':'00'
+        else calculatedTime = ampm === 'AM'? hour : 12+Number(hour%12);
+
+        return `${calculatedTime}:${minute}:${formatedSecond}`
+    }
+    let s='07:05:45PM';
+    console.log(s);
+    console.log(timeConversion(s));
+    let s2='07:05:45AM';
+    console.log(s2);
+    console.log(timeConversion(s2));
+    let s3='12:01:00PM';
+    console.log(s3);
+    console.log(timeConversion(s3));
+    let s4='12:01:00AM';
+    console.log(s4);
+    console.log(timeConversion(s4));
+    let s5='12:05:45AM';
+    console.log(s5);
+    console.log(timeConversion(s5));
+    let s6='04:08:55PM';
+    console.log(s6);
+    console.log(timeConversion(s6));
+
+</script>
+</body>
+</html>

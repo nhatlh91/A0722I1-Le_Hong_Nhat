@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case study - Module 1</title>
+    <link rel="stylesheet" type="text/css" href="mycss.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th><img src="logo.jpg" alt="logo codegym"></th>
+        <th><h1>Hệ thống quản lý bài tập Case study Module 1</h1></th>
+    </tr>
+    <tr>
+        <td>
+            <select name="bai1" id="bai1">
+                <optgroup label="Bai 1">
+                    <option value="bai11">Bai 1.1</option>
+                    <option value="bai12">Bai 1.2</option>
+                    <option value="bai12">Bai 1.3</option>
+                    <option value="bai12">Bai 1.4</option>
+                </optgroup>
+            </select>
+        </td>
+        <td rowspan="6" style="text-align: left">Output</td>
+    </tr>
+    <tr>
+        <td>
+            <select name="bai2" id="bai2">
+                <optgroup  label="Bai 2">
+                    <option value="bai21">Bai 2.1</option>
+                    <option value="bai22">Bai 2.2</option>
+                    <option value="bai22">Bai 2.3</option>
+                    <option value="bai22">Bai 2.4</option>
+                </optgroup>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select name="bai3" id="bai3">
+                <optgroup label="Bai 3">
+                    <option value="bai31">Bai 3.1</option>
+                    <option value="bai32">Bai 3.2</option>
+                    <option value="bai32">Bai 3.3</option>
+                    <option value="bai32">Bai 3.4</option>
+                </optgroup>
+            </select>
+        </td>
+        <tr>
+        <td>
+            <select name="bai4" id="bai4">
+                <optgroup label="Bai 1">
+                    <option value="bai41">Bai 4.1</option>
+                    <option value="bai42">Bai 4.2</option>
+                    <option value="bai42">Bai 4.3</option>
+                    <option value="bai42">Bai 4.4</option>
+                </optgroup>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <<td>
+        <select name="bai5" id="bai5">
+            <optgroup label="Bai 1">
+                <option value="bai51">Bai 5.1</option>
+                <option value="bai52">Bai 5.2</option>
+                <option value="bai52">Bai 5.3</option>
+                <option value="bai52">Bai 5.4</option>
+            </optgroup>
+        </select>
+    </td>
+    </tr>
+    <tr>
+        <td>
+            <select name="bai6" id="bai6">
+                <optgroup label="Bai 6">
+                    <option value="bai6">Bai 6</option>
+                </optgroup>
+            </select>
+        </td>
+    </tr>
+</table>
+<!--    <div id="header">-->
+<!--        <img src="logo.jpg" alt="logo codegym">-->
+<!--        <h1>Hệ thống quản lý bài tập Case study Module 1</h1>-->
+<!--    </div>-->
+<!--    <div id="main">-->
+<!--        <div id="leftPanel">-->
+<!--            <select onchange="print11()">-->
+<!--                <option>Bai 1</option>-->
+<!--                <option>Bai 1.1</option>-->
+<!--                <option>Bai 1.2</option>-->
+<!--                <option>Bai 1.3</option>-->
+<!--                <option>Bai 1.4</option>-->
+<!--            </select>-->
+<!--            <br>-->
+<!--            <select>-->
+<!--                <option>Bai 2</option>-->
+<!--                <option>Bai 2.1</option>-->
+<!--                <option>Bai 2.2</option>-->
+<!--                <option>Bai 2.3</option>-->
+<!--                <option>Bai 2.4</option>-->
+<!--            </select>-->
+<!--            <br>-->
+<!--            <select>-->
+<!--                <option>Bai 3</option>-->
+<!--                <option>Bai 1.1</option>-->
+<!--                <option>Bai 1.2</option>-->
+<!--                <option>Bai 1.3</option>-->
+<!--                <option>Bai 1.4</option>-->
+<!--            </select>-->
+<!--            <br>-->
+<!--            <select>-->
+<!--                <option>Bai 4</option>-->
+<!--                <option>Bai 1.1</option>-->
+<!--                <option>Bai 1.2</option>-->
+<!--                <option>Bai 1.3</option>-->
+<!--                <option>Bai 1.4</option>-->
+<!--            </select>-->
+<!--            <br>-->
+<!--            <select>-->
+<!--                <option>Bai 5</option>-->
+<!--                <option>Bai 1.1</option>-->
+<!--                <option>Bai 1.2</option>-->
+<!--                <option>Bai 1.3</option>-->
+<!--                <option>Bai 1.4</option>-->
+<!--            </select>-->
+<!--            <br>-->
+<!--            <select>-->
+<!--                <option>Bai 6</option>-->
+<!--                <option>Bai 1.1</option>-->
+<!--                <option>Bai 1.2</option>-->
+<!--                <option>Bai 1.3</option>-->
+<!--                <option>Bai 1.4</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div id="output">Quần què chi đây</div>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--        function print11() {-->
+<!--            let a = "<pre>"+"function bai1(n, m) {-->
+<!--        let outPut = '';-->
+<!--        for (let i = 1; i <= n; i++) {-->
+<!--            for (let j = 1; j <= m; j++) {-->
+<!--                if (i == 1 || i == n || j == 1 || j == m) {-->
+<!--                    outPut += '*'-->
+<!--                } else outPut += '&nbsp;&nbsp';-->
+<!--            }-->
+<!--            outPut += '<br>';-->
+<!--        }-->
+<!--        document.getElementById('output').innerHTML = outPut;-->
+<!--    }"+"</pre>";-->
+<!--            console.log(a);-->
+<!--            document.getElementById('output').innerHTML = a;-->
+<!--        }-->
+</body>
+</html>

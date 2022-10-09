@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đề thi thực hành Module 1</title>
+</head>
+<body onload="display()">
+<h1>Thực hành module 1</h1>
+<h1>Bài 3</h1>
+<button onclick="themSo()">Thêm sổ mới</button>
+<button onclick="xoaSo()">Xóa</button>
+<div id="display"></div>
+<script>
+    let str = '';
+    let arr = [];
+    function display() {
+        str = '<table border="1px">\n' +
+            '<tr>\n' +
+            '<th>Mã sổ</th>\n' +
+            '<th>Kiểu</th>\n' +
+            '<th>Tên khách hàng</th>\n' +
+            '<th>ID</th>\n' +
+            '<th>Ngày phát hành</th>\n' +
+            '<th>Số tiền</th>\n' +
+            '</tr>\n';
+        for (let i = 0; i < arr.length; i++) {
+            str +=
+                '<tr>\n' +
+                '<td>' + arr[i].layMaSo() + '</td>\n' +
+                '<td>' + arr[i].layKieu() + '</td>\n' +
+                '<td>' + arr[i].layTenKH() + '</td>\n' +
+                '<td>' + arr[i].layCmnd() + '</td>\n' +
+                '<td>' + arr[i].layNgayPH() + '</td>\n' +
+                '<td>' + arr[i].laysoTien() + '</td>\n' +
+                '<td>' +
+                '</td>\n' +
+                '</tr>\n'
+        }
+        str += '</table>'
+        document.getElementById('display').innerHTML = str;
+    }
+
+    class SoTietKiem {
+        constructor(maSo, kieu, tenKH, cmnd, ngayPH, soTien) {
+            this.maSo = maSo;
+            this.kieu = kieu;
+            this.tenKH = tenKH;
+            this.cmnd = cmnd;
+            this.ngayPH = ngayPH;
+            this.soTien = soTien;
+        }
+
+        layMaSo() {
+            return this.maSo;
+        }
+
+        layKieu() {
+            return this.kieu;
+        }
+
+        layTenKH() {
+            return this.tenKH;
+        }
+
+        layCmnd() {
+            return this.cmnd;
+        }
+
+        layNgayPH() {
+            return this.ngayPH;
+        }
+
+        laysoTien() {
+            return this.soTien;
+        }
+    }
+
+    function themSo() {
+        let maSo = prompt('Nhập vào mã sổ');
+        while (!validateMaSo(maSo)) {
+            maSo = prompt('Mã sổ không phù hợp, vui lòng nhập lại');
+        }
+        let loai = prompt('Nhập vào loại tiết kiệm');
+        while (!validateLoaiTK(loai)) {
+            loai = prompt('Loại tài khoản không hợp lệ, vui lòng nhập lại');
+        }
+        let tenKH = prompt('Nhập vào tên khách hàng');
+        while (!validateTen(tenKH)) {
+            tenKH = prompt('Tên đã nhập không hợp lệ, vui lòng nhập lại');
+        }
+        let cmnd = prompt('Nhập vào CMND');
+        let ngayPH = prompt('Nhập vào ngày phát hành');
+        let soTien = prompt('Nhập vào số tiền');
+        let soMoi = new SoTietKiem(maSo, loai, tenKH, cmnd, ngayPH, soTien);
+        console.log(soMoi);
+        arr.push(soMoi);
+        alert('Sổ được thêm thành công');
+        display();
+        console.log(arr);
+    }
+    function xoaSo() {
+        let maSo2 = prompt('Nhập mã sổ cần xóa');
+        let count=0;
+        for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i]["maSo"]);
+            if (arr[i]["maSo"]==maSo2) {
+                if (confirm('Bạn chắc chắn muốn xóa')) {
+                    arr.splice(i,1);
+                    count++;
+                    display();
+                    break;
+                }
+            }
+        }
+        if (count==0) {
+            alert('Mã sổ bạn nhập không tồn tại, vui lòng nhập lại');
+            xoaSo();
+        }
+    }
+    function validateMaSo(maSoMoi) {
+        if (maSoMoi.length>5){
+            return false
+        } else {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i]['maSo']==maSoMoi) {
+                count ++;
+            }
+        }
+        return (count==0);
+    }
+    }
+    function validateLoaiTK(loaiTKMoi) {
+        return (loaiTKMoi.length<=10);
+    }
+    function validateTen(tenMoi) {
+        return (tenMoi.length<=30);
+    }
+</script>
+</body>
+</html>
