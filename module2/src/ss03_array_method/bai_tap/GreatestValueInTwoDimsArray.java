@@ -1,6 +1,6 @@
 package ss03_array_method.bai_tap;
 import java.util.Scanner;
-public class GreatestValueIn2DimsArray {
+public class GreatestValueInTwoDimsArray {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         float[][] arr;
