@@ -2,14 +2,9 @@ package ss05_access_modifier_static.thuc_hanh;
 
 public class Car {
 
-    private String name;
-
-    private String engine;
-
-
-
     public static int numberOfCars;
-
+    private String name;
+    private String engine;
 
 
     public Car(String name, String engine) {

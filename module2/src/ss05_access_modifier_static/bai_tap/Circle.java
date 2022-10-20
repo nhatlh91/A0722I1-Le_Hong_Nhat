@@ -5,11 +5,24 @@ public class Circle {
     private String color = "red";
 
     Circle () {
-
     }
 
     Circle(double radius) {
         this.radius = radius;
     }
 
+    double getRadius() {
+        return radius;
+    }
+    double getArea() {
+        return Math.pow(radius,2)*Math.PI;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "radius=" + radius +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
