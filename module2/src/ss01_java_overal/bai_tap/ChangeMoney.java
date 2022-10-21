@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class ChangeMoney {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        final double rate = 23300;
+        final double RATE = 23300;
         System.out.print("Nhap so tien muon quy doi: ");
         double usd = sc.nextDouble();
-        System.out.print("So tien quy doi duoc la: "+usd*rate+" VND");
+        System.out.print("So tien quy doi duoc la: "+usd*RATE+" VND");
     }
 }

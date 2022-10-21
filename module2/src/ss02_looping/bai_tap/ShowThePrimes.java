@@ -5,17 +5,17 @@ public class ShowThePrimes {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so luong so nguyen to muon nhan duoc: ");
         int quantity = sc.nextInt();
-        int count1 = 0, number = 2;
-        while (count1 != quantity) {
-            int count2 = 0;
+        int countA = 0, number = 2;
+        while (countA != quantity) {
+            int countB = 0;
             for (int i = 2; i < Math.sqrt(number); i++) {
                 if (number % i == 0) {
-                    count2++;
+                    countB++;
                 }
             }
-            if (count2 == 0) {
+            if (countB == 0) {
                 System.out.print(number + " ");
-                count1++;
+                countA++;
             }
             number++;
         }

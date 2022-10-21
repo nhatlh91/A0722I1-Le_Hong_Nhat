@@ -18,9 +18,9 @@ public class SumOfCol {
             }
         }
         System.out.println("Your array: ");
-        for (float[] floats : arr) {
-            for (float aFloat : floats) {
-                System.out.print(aFloat + "\t");
+        for (float[] items : arr) {
+            for (float item : items) {
+                System.out.print(item + "\t");
             }
             System.out.println();
         }

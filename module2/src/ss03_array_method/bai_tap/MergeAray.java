@@ -8,26 +8,26 @@ public class MergeAray {
         int[] arr1,arr2,arr3;
         int i = 0, j=0;
         System.out.print("Nhap so phan tu cua mang thu 1: ");
-        int qty1 = input.nextInt();
-        arr1 = new int[qty1];
+        int qtyA = input.nextInt();
+        arr1 = new int[qtyA];
         do {
             System.out.print("Nhap vao phan tu thu "+i+" cua mang thu nhat: ");
             arr1[i] = input.nextInt();
             i++;
         }
-        while (i<qty1);
+        while (i<qtyA);
 
         System.out.print("Nhap so phan tu cua mang thu 2: ");
-        int qty2 = input.nextInt();
-        arr2 = new int[qty2];
+        int qtyB = input.nextInt();
+        arr2 = new int[qtyB];
         do {
             System.out.print("Nhap vao phan tu thu "+j+" cua mang thu nhat: ");
             arr2[j] = input.nextInt();
             j++;
         }
-        while (j<qty2);
+        while (j<qtyB);
 
-        arr3 = new int[qty1+qty2];
+        arr3 = new int[qtyA+qtyB];
 
         for (int k = 0; k < arr1.length; k++) {
             arr3[k] = arr1[k];
