@@ -2,7 +2,7 @@ package ss07_abstract.bai_tap;
 
 import ss06_inherritane.thuc_hanh.Rectangle;
 
-public class Square extends Shape implements Resizeable{
+public class Square extends Shape implements Resizeable,Colorable{
     private double side = 1.0;
     public Square() {
     }
@@ -37,5 +37,10 @@ public class Square extends Shape implements Resizeable{
         System.out.println("Area before resizing: "+getArea());
         double newSize = percent*getSide()/100;
         System.out.println("Area after resizing: "+Math.pow(newSize,2));
+    }
+
+    @Override
+    public void howToColor() {
+        System.out.println("Color all four sides.");
     }
 }
