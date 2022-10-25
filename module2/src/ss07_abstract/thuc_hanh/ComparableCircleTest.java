@@ -19,5 +19,6 @@ public class ComparableCircleTest {
         for (ComparableCircle circle : circles) {
             System.out.println(circle);
         }
+
     }
 }

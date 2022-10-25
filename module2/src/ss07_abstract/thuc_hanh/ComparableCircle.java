@@ -1,7 +1,7 @@
 package ss07_abstract.thuc_hanh;
 import ss06_inherritane.thuc_hanh.Circle;
 
-public class ComparableCircle extends Circle implements Comparable {
+public class ComparableCircle extends Circle implements Comparable<ComparableCircle> {
 
     public ComparableCircle() {
     }
@@ -12,11 +12,6 @@ public class ComparableCircle extends Circle implements Comparable {
 
     public ComparableCircle(double radius, String color, boolean filled) {
         super(radius, color, filled);
-    }
-
-    @Override
-    public int compareTo() {
-        return 0;
     }
 
     @Override
