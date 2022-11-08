@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 
 public class Booking {
+    private int id;
     private String bookingID;
     private Date checkinDate;
     private Date checkoutDate;

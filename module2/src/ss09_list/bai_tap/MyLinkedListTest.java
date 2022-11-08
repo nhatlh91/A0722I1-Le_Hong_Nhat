@@ -26,7 +26,7 @@ public class MyLinkedListTest {
         listB.printList();
         listB.add(2, 13);
         listB.printList();
-        listB.remove(new Integer(13));
+        listB.remove(Integer.valueOf(13));
         listB.printList();
         MyLinkedList<Integer> listC = (MyLinkedList<Integer>) listB.clone();
         listC.printList();

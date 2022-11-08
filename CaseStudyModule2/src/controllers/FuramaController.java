@@ -1,4 +1,5 @@
 package controllers;
+import services.impl.EmployeeServiceImpl;
 
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ public class FuramaController {
     static Scanner input = new Scanner(System.in);
     private static int choose = -1;
 
-    private static void displayMainMenu() {
+    public static void displayMainMenu() {
         System.out.println("Furama Resort Controller System");
         System.out.println("1.\tEmployee Management\n" +
                 "2.\tCustomer Management\n" +
@@ -17,7 +18,7 @@ public class FuramaController {
         choose = input.nextInt();
         switch (choose) {
             case 1:
-                displayEmployeeManagement();
+                EmployeeServiceImpl.displayMenu();
                 break;
             case 2:
                 displayCustomerManagement();
@@ -57,7 +58,7 @@ public class FuramaController {
         }
     }
 
-    private static void displayCustomerManagement() {
+    public static void displayCustomerManagement() {
         System.out.println("Furama Resort Controller System");
         System.out.println("Customer Management System");
         System.out.println("1.\tDisplay list customers\n" +

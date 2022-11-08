@@ -1,19 +1,21 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Employee extends Person{
     private String staffID;
-    private String academicLevel;
+    private int academicLevel;
     private String position;
     private int salary;
+    public static int employeeCount=0;
 
-    public Employee(String name, Date birthday, String gender, String id, String tel, String email, String staffID, String academicLevel, String position, int salary) {
+    public Employee(String name, LocalDate birthday, String gender, String id, String tel, String email, String staffID, int academicLevel, String position, int salary) {
         super(name, birthday, gender, id, tel, email);
         this.staffID = staffID;
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
+        employeeCount++;
     }
 
     public String getStaffID() {
@@ -24,11 +26,11 @@ public class Employee extends Person{
         this.staffID = staffID;
     }
 
-    public String getAcademicLevel() {
+    public int getAcademicLevel() {
         return academicLevel;
     }
 
-    public void setAcademicLevel(String academicLevel) {
+    public void setAcademicLevel(int academicLevel) {
         this.academicLevel = academicLevel;
     }
 

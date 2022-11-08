@@ -1,6 +1,6 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Customer extends Person{
     private final int DIAMOND = 1;
@@ -8,11 +8,12 @@ public class Customer extends Person{
     private final int GOLD = 3;
     private final int SILVER = 4;
     private final int MEMBER = 5;
+    private int id;
     private String customerID;
     private int typeOfCustomer;
     private String address;
 
-    public Customer(String name, Date birthday, String gender, String id, String tel, String email, String customerID, int typeOfCustomer, String address) {
+    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String customerID, int typeOfCustomer, String address) {
         super(name, birthday, gender, id, tel, email);
         this.customerID = customerID;
         this.typeOfCustomer = typeOfCustomer;

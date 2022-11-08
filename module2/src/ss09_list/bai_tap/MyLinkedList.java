@@ -54,8 +54,8 @@ public class MyLinkedList<E> {
         Node temp = head;
         Node tempB = head;
         for (int i = 0; i < numNodes; i++) {
-            if (temp.equals(element)) {
-                for (int j = 0; j < i; j++) {
+            if (temp.getData().equals(element)) {
+                for (int j = 0; j < i - 1; j++) {
                     tempB = tempB.next;
                 }
                 tempB.next = tempB.next.next;
