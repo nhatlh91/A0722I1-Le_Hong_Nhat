@@ -49,4 +49,14 @@ public class Employee extends Person{
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+
+        return super.toString() +
+                "staffID='" + staffID + '\'' +
+                ", academicLevel=" + academicLevel +
+                ", position='" + position + '\'' +
+                ", salary=" + salary ;
+    }
 }

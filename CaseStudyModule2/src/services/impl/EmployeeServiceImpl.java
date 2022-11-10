@@ -16,9 +16,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static final int UNIVERSITY = 3;
     public static final int POSTGRADUATE = 4;
 
-    public static ArrayList<Employee> employeeList = new ArrayList();
+    static ArrayList<Employee> employeeList = new ArrayList();
+    static {
+        LocalDate birthday = dateInput("16/08/1991");
+        employeeList.add(new Employee("Lê Hồng Nhật", birthday, "Male", "205599593",
+                "0905598909", "nhatlg@gmail.com", "Staff01", UNIVERSITY, "Director", 5000));
+    }
 
-    public static void displayMenu() {
+
+    public static void displayEmployeeMenu() {
         Scanner input = new Scanner(System.in);
         int choose = -1;
         System.out.println("Furama Resort Controller System");
@@ -43,17 +49,22 @@ public class EmployeeServiceImpl implements EmployeeService {
                 break;
             default:
                 System.out.println("Wrong input, please re-choose");
-                displayMenu();
+                displayEmployeeMenu();
         }
     }
 
     private static void displayEmployeeList() {
-        System.out.println("The Employee list as below:");
-    }
-
-    private static void addEmployee() {
         Scanner input = new Scanner(System.in);
-        System.out.println("=== Adding Employee Terminal ===");
+        System.out.println("The Employee list as below:");
+        for (Employee item : employeeList) {
+            System.out.println(item);
+        }
+        System.out.println("Press any key to go back to continue");
+        String press = input.nextLine();
+        displayEmployeeMenu();
+    }
+    public static Employee createEmployeeInfo(){
+        Scanner input = new Scanner(System.in);
         System.out.println("Enter the name of employee:");
         String name = input.nextLine();
         System.out.println("Enter the date of birth:");
@@ -76,23 +87,37 @@ public class EmployeeServiceImpl implements EmployeeService {
         String position = input.nextLine();
         System.out.println("Salary:");
         int salary = input.nextInt();
-
         Employee employee = new Employee(name, birthday,gender,id,tel,email,staffID,academicLevel,position, salary);
+        return employee;
+    }
+    private static void addEmployee() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("=== Adding Employee Terminal ===");
+        Employee employee = createEmployeeInfo();
         employeeList.add(employee);
+        System.out.println("New employee added. Press any key to go back to menu");
+        String press = input.nextLine();
+        displayEmployeeMenu();
+
     }
 
     private static void editEmployee() {
         Scanner input = new Scanner(System.in);
         System.out.println("Edit Employee Terminal");
-        System.out.println("Please in put StaffID:");
+        System.out.println("Please input StaffID:");
         String search = input.nextLine();
         for (int i = 0; i<employeeList.size(); i++) {
-            if (search == employeeList.get(i).getStaffID()) {
-
+            if (employeeList.get(i).getStaffID().equals(search)) {
+                System.out.println("Employee found, pls input the updated information");
+                Employee tempEmployee = createEmployeeInfo();
+                employeeList.set(i,tempEmployee);
+                System.out.println("Employee infor. updated. Press any key to go back.");
+                String press = input.nextLine();
+                displayEmployeeMenu();
             }
         }
-
-
+            System.out.println("Employee not found !!");
+            editEmployee();
     }
 
     public static LocalDate dateInput(String userInput) {
