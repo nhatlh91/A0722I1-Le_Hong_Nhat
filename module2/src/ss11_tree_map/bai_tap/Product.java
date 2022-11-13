@@ -1,6 +1,6 @@
 package ss11_tree_map.bai_tap;
 
-public class Product {
+public class Product implements Comparable<Product> {
     static int qty = 0;
     private String name;
     private int price;
@@ -36,6 +36,7 @@ public class Product {
         this.price = price;
     }
 
+
     @Override
     public String toString() {
         return "Product{" +
@@ -43,5 +44,10 @@ public class Product {
                 "name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return Integer.compare(this.getPrice(), o.getPrice());
     }
 }
