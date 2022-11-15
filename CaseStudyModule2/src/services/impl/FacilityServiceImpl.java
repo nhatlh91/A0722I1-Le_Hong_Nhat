@@ -4,7 +4,22 @@ import services.FacilityService;
 
 public class FacilityServiceImpl implements FacilityService {
     @Override
-    public void doSth() {
-        System.out.println("FacilityService has been implemented");
+    public void display() {
+
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void edit() {
+
+    }
+
+    @Override
+    public void remove() {
+
     }
 }

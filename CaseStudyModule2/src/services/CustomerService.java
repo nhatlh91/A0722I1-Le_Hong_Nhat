@@ -1,5 +1,5 @@
 package services;
 
-public interface CustomerService {
-    void doSth();
+public interface CustomerService extends Service{
+
 }

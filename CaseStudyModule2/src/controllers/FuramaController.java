@@ -1,4 +1,6 @@
 package controllers;
+
+import services.impl.CustomerServiceImpl;
 import services.impl.EmployeeServiceImpl;
 
 import java.util.Scanner;
@@ -6,6 +8,7 @@ import java.util.Scanner;
 public class FuramaController {
     static Scanner input = new Scanner(System.in);
     private static int choose = -1;
+
     public static void displayMainMenu() {
         System.out.println("Furama Resort Controller System");
         System.out.println("1.\tEmployee Management\n" +
@@ -16,44 +19,22 @@ public class FuramaController {
                 "6.\tExit\n");
         choose = input.nextInt();
         switch (choose) {
-            case 1:
-                EmployeeServiceImpl.displayEmployeeMenu();
-                break;
-            case 2:
-                displayCustomerManagement();
-                break;
-            case 3:
-                displayFacilityManagement();
-                break;
-            case 4:
-                displayBookingManagement();
-                break;
-            case 5:
-                displayPromotionManagement();
-                break;
-            case 6: System.exit(6);
-                break;
-            default:
+            case 1 -> {
+                EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+                employeeService.displayEmployeeMenu();
+            }
+            case 2 -> {
+                CustomerServiceImpl customerService = new CustomerServiceImpl();
+                customerService.displayCustomerMenu();
+            }
+            case 3 -> displayFacilityManagement();
+            case 4 -> displayBookingManagement();
+            case 5 -> displayPromotionManagement();
+            case 6 -> System.exit(6);
+            default -> {
                 System.out.println("Wrong input. Please re-choose");
                 displayMainMenu();
-        }
-    }
-
-    private static void displayEmployeeManagement() {
-        System.out.println("Furama Resort Controller System");
-        System.out.println("Employee Management System");
-        System.out.println("1\tDisplay list of employees\n" +
-                "2\tAdd new employee\n" +
-                "3\tEdit employee\n" +
-                "4\tReturn to main menu\n");
-        choose = input.nextInt();
-        switch (choose) {
-            case 4:
-                displayMainMenu();
-                break;
-            default:
-                System.out.println("Wrong input, please re-choose");
-                displayEmployeeManagement();
+            }
         }
     }
 

@@ -3,19 +3,14 @@ package models;
 import java.time.LocalDate;
 
 public class Customer extends Person{
-    private final int DIAMOND = 1;
-    private final int PLATINUM = 2;
-    private final int GOLD = 3;
-    private final int SILVER = 4;
-    private final int MEMBER = 5;
-    private int id;
+    private static int count = 0;
     private String customerID;
-    private int typeOfCustomer;
+    private String typeOfCustomer;
     private String address;
 
-    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String customerID, int typeOfCustomer, String address) {
+    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address) {
         super(name, birthday, gender, id, tel, email);
-        this.customerID = customerID;
+        this.customerID = "Customer"+ ++count;
         this.typeOfCustomer = typeOfCustomer;
         this.address = address;
     }
@@ -28,11 +23,11 @@ public class Customer extends Person{
         this.customerID = customerID;
     }
 
-    public int getTypeOfCustomer() {
+    public String getTypeOfCustomer() {
         return typeOfCustomer;
     }
 
-    public void setTypeOfCustomer(int typeOfCustomer) {
+    public void setTypeOfCustomer(String typeOfCustomer) {
         this.typeOfCustomer = typeOfCustomer;
     }
 
@@ -42,5 +37,14 @@ public class Customer extends Person{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "customerID='" + customerID + '\'' +
+                ", typeOfCustomer='" + typeOfCustomer + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
