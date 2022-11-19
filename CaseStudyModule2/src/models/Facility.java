@@ -1,17 +1,23 @@
 package models;
 
 public abstract class Facility {
-    private final char BY_YEAR = 'y';
-    private final char BY_MONTH = 'm';
-    private final char BY_DAY = 'd';
-    private final char BY_HOUR = 'h';
     private String serviceName;
     private double usingArea;
     private double rentExpense;
     private int maxPeople;
-    private char typeOfRent;
+    private String typeOfRent;
 
-public Facility(String serviceName, double usingArea, double rentExpense, int maxPeople, char typeOfRent) {
+    private int timesOfusing = 0;
+
+    public int getTimesOfusing() {
+        return timesOfusing;
+    }
+
+    public void setTimesOfusing(int timesOfusing) {
+        this.timesOfusing = timesOfusing;
+    }
+
+    public Facility(String serviceName, double usingArea, double rentExpense, int maxPeople, String typeOfRent) {
     this.serviceName = serviceName;
     this.usingArea = usingArea;
     this.rentExpense = rentExpense;
@@ -51,11 +57,22 @@ public Facility(String serviceName, double usingArea, double rentExpense, int ma
         this.maxPeople = maxPeople;
     }
 
-    public int getTypeOfRent() {
+    public String getTypeOfRent() {
         return typeOfRent;
     }
 
-    public void setTypeOfRent(char typeOfRent) {
+    public void setTypeOfRent(String typeOfRent) {
         this.typeOfRent = typeOfRent;
+    }
+
+    @Override
+    public String toString() {
+        return "Facility: {" +
+                "Name = " + serviceName + '\'' +
+                ", Area = " + usingArea +
+                ", Price = " + rentExpense +
+                ", Capacity = " + maxPeople +
+                ", Type of rent = " + typeOfRent + '\'' +
+                ", Times Of Using = " + timesOfusing;
     }
 }

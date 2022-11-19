@@ -14,7 +14,7 @@ public class TestBST {
         //traverse tree
         System.out.println("Inorder (sorted): ");
         tree.inorder();
-        System.out.println("The number of nodes is: " + tree.getSize());
+        System.out.println("\nThe number of nodes is: " + tree.getSize());
         System.out.println("Postorder: ");
         tree.postorder();
     }

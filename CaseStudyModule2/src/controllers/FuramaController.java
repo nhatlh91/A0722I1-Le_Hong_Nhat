@@ -2,6 +2,7 @@ package controllers;
 
 import services.impl.CustomerServiceImpl;
 import services.impl.EmployeeServiceImpl;
+import services.impl.FacilityServiceImpl;
 
 import java.util.Scanner;
 
@@ -27,7 +28,10 @@ public class FuramaController {
                 CustomerServiceImpl customerService = new CustomerServiceImpl();
                 customerService.displayCustomerMenu();
             }
-            case 3 -> displayFacilityManagement();
+            case 3 -> {
+                FacilityServiceImpl facilityService = new FacilityServiceImpl();
+                facilityService.displayFacilityMenu();
+            }
             case 4 -> displayBookingManagement();
             case 5 -> displayPromotionManagement();
             case 6 -> System.exit(6);
@@ -35,42 +39,6 @@ public class FuramaController {
                 System.out.println("Wrong input. Please re-choose");
                 displayMainMenu();
             }
-        }
-    }
-
-    public static void displayCustomerManagement() {
-        System.out.println("Furama Resort Controller System");
-        System.out.println("Customer Management System");
-        System.out.println("1.\tDisplay list customers\n" +
-                "2.\tAdd new customer\n" +
-                "3.\tEdit customer\n" +
-                "4.\tReturn main menu\n");
-        choose = input.nextInt();
-        switch (choose) {
-            case 4:
-                displayMainMenu();
-                break;
-            default:
-                System.out.println("Wrong input, please re-choose");
-                displayCustomerManagement();
-        }
-    }
-
-    private static void displayFacilityManagement() {
-        System.out.println("Furama Resort Controller System");
-        System.out.println("Facility Management System");
-        System.out.println("1\tDisplay list facility\n" +
-                "2\tAdd new facility\n" +
-                "3\tDisplay list facility maintenance\n" +
-                "4\tReturn main menu\n");
-        choose = input.nextInt();
-        switch (choose) {
-            case 4:
-                displayMainMenu();
-                break;
-            default:
-                System.out.println("Wrong input, please re-choose");
-                displayFacilityManagement();
         }
     }
 

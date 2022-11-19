@@ -87,7 +87,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         for (Employee item : employeeList) {
             System.out.println(item);
         }
-        System.out.println("Press any key to go back to continue");
+        System.out.println("Press any key to go back");
         String press = input.nextLine();
         this.displayEmployeeMenu();
     }
