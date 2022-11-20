@@ -5,13 +5,18 @@ import models.Customer;
 import models.Employee;
 import services.CustomerService;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import static services.impl.EmployeeServiceImpl.dateInput;
 
 public class CustomerServiceImpl implements CustomerService {
+
+    private Scanner input = new Scanner(System.in);
     static LinkedList<Customer> customerList = new LinkedList<>();
     static {
         LocalDate birthday = dateInput("16/08/1991");
@@ -23,8 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
                 "0911863283", "vincent@gmail.com", "Silver","Vinh Dien, Dien Ban"));
     }
     public void displayCustomerMenu() {
-        Scanner input = new Scanner(System.in);
-        int choose = -1;
         System.out.println("Furama Resort Controller System");
         System.out.println("Customer Management System");
         System.out.println("1\tDisplay list of customers\n" +
@@ -32,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
                 "3\tEdit customer\n" +
                 "4\tRemove customer\n" +
                 "5\tReturn to main menu\n");
-        choose = input.nextInt();
+        int choose = Integer.parseInt(input.nextLine());
         switch (choose) {
             case 1 -> this.display();
             case 2 -> this.add();
@@ -47,7 +50,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
     @Override
     public void display() {
-        Scanner input = new Scanner(System.in);
         System.out.println("The Employee list as below:");
         for (Customer item : customerList) {
             System.out.println(item);
@@ -59,7 +61,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add() {
-        Scanner input = new Scanner(System.in);
         System.out.println("=== Adding Customer Terminal ===");
         customerList.add(createCustomerInforSet());
         System.out.println("New employee added. Press any key to go back to menu");
@@ -69,7 +70,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void edit() {
-        Scanner input = new Scanner(System.in);
         System.out.println("Edit Customer Terminal");
         System.out.println("Please input Customer ID:");
         String search = input.nextLine();
@@ -88,7 +88,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove() {
-        Scanner input = new Scanner(System.in);
         System.out.println("Please input CustomerID:");
         String search = input.nextLine();
         for (int i = 0; i < customerList.size(); i++) {
@@ -108,14 +107,11 @@ public class CustomerServiceImpl implements CustomerService {
         this.remove();
     }
 
-    public static Customer createCustomerInforSet() {
-        Scanner input = new Scanner(System.in);
+    public Customer createCustomerInforSet() {
         System.out.println("Name:");
         String name = input.nextLine();
         System.out.println("Date of birth:");
-        String userInput = input.nextLine();
-        LocalDate birthday = dateInput(userInput);
-        System.out.println(birthday);
+        LocalDate birthday = inputBirthday();
         System.out.println("Gender:");
         String gender = input.nextLine();
         System.out.println("ID:");
@@ -131,13 +127,11 @@ public class CustomerServiceImpl implements CustomerService {
         return new Customer(name, birthday, gender, id, tel, email, typeOfCustomer, address);
     }
 
-    public static void editCustomerInforSet(int index, LinkedList<Customer> list) {
-        Scanner input = new Scanner(System.in);
+    public void editCustomerInforSet(int index, LinkedList<Customer> list) {
         System.out.println("Current name is: "+list.get(index).getName());
         list.get(index).setName(input.nextLine());
         System.out.println("Current DOB is: "+list.get(index).getBirthday());
-        String userInput = input.nextLine();
-        list.get(index).setBirthday(dateInput(userInput));
+        list.get(index).setBirthday(inputBirthday());
         System.out.println("Current gender is: "+list.get(index).getGender());
         list.get(index).setGender(input.nextLine());
         System.out.println("Current ID is: "+list.get(index).getId());
@@ -150,5 +144,27 @@ public class CustomerServiceImpl implements CustomerService {
         list.get(index).setTypeOfCustomer(input.nextLine());
         System.out.println("Current address is: "+list.get(index).getAddress());
         list.get(index).setAddress(input.nextLine());
+    }
+    public LocalDate inputBirthday() {
+        LocalDate birthday = null;
+        String userInput;
+        try {
+            userInput = input.nextLine();
+            birthday = dateInput(userInput);
+        }
+        catch(DateTimeParseException e) {
+            System.err.println("The correct format is dd/MM/yyyy, please re input: ");
+            this.inputBirthday();
+        }
+        if(!ageValidator(birthday)){
+            System.err.println("The customer has not meet age requirement!");
+            this.displayCustomerMenu();
+        }
+        return birthday;
+    }
+    public static boolean ageValidator(LocalDate DoB){
+//        int age = LocalDate.now().getYear()-date.getYear();
+        int age = Period.between(DoB, LocalDate.now()).getYears();
+        return (age >= 18 && age <= 100);
     }
 }
