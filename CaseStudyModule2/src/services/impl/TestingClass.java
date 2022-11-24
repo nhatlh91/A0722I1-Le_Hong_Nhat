@@ -1,16 +1,20 @@
 package services.impl;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
-import static services.impl.EmployeeServiceImpl.dateInput;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class TestingClass {
-    public static void main(String[] args) {
-        CustomerServiceImpl testingObj = new CustomerServiceImpl();
-        testingObj.add();
-
-//        LocalDate birthday = dateInput("19/11/2005");
-//        System.out.println(CustomerServiceImpl.ageValidator(birthday));
+    public static void main(String[] args) throws IOException {
+        InputStream is = System.in;
+        while (true) {
+            System.out.print("Nhập 1 ký tự: ");
+            int ch = is.read();
+            if (ch == 'q') {
+                System.out.println("Finished!");
+                break;
+            }
+            is.skip(2); // Loại bỏ 2 ký tự \r và \n
+            System.out.println("Ký tự nhận được: " + (char) ch);
+        }
     }
 }

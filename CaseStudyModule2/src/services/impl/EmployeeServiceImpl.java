@@ -2,8 +2,12 @@ package services.impl;
 
 import controllers.FuramaController;
 import models.Employee;
+import models.Person;
 import services.EmployeeService;
+import utils.FileUtils;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,19 +15,16 @@ import java.util.Scanner;
 
 
 public class EmployeeServiceImpl implements EmployeeService {
-    public static final int INTERMEDIATE = 1;
-    public static final int COLLEGE = 2;
-    public static final int UNIVERSITY = 3;
-    public static final int POSTGRADUATE = 4;
+    private static final String PATH_FILE = "D:\\CODEGYM\\Git\\CaseStudyModule2\\src\\data\\employee.csv";
+    private static final String COMMA = ",";
 
     static ArrayList<Employee> employeeList = new ArrayList();
-
-    static {
-        LocalDate birthday = dateInput("16/08/1991");
-        employeeList.add(new Employee("Lê Hồng Nhật", birthday, "Male", "205599593",
-                "0905598909", "nhatlg@gmail.com", "Staff01", UNIVERSITY, "Director", 5000));
-    }
-
+    static Scanner input = new Scanner(System.in);
+//    static {
+//        LocalDate birthday = dateInput("16/08/1991");
+//        employeeList.add(new Employee("Lê Hồng Nhật", birthday, "Male", "205599593",
+//                "0905598909", "nhatlg@gmail.com", "Staff01", "UNIVERSITY", "Director", 5000));
+//    }
     public static Employee createEmployeeInfo() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the name of employee:");
@@ -43,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Staff ID:");
         String staffID = input.nextLine();
         System.out.println("Academic Level:");
-        int academicLevel = Integer.parseInt(input.nextLine());
+        String academicLevel = input.nextLine();
         System.out.println("Position:");
         String position = input.nextLine();
         System.out.println("Salary:");
@@ -52,12 +53,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public static LocalDate dateInput(String userInput) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(userInput, dateFormat);
-        return date;
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(userInput, dateFormat);
     }
     public void displayEmployeeMenu() {
-        Scanner input = new Scanner(System.in);
         int choose = -1;
         System.out.println("Furama Resort Controller System");
         System.out.println("Employee Management System");
@@ -82,7 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void display() {
-        Scanner input = new Scanner(System.in);
+        this.importFromFile();
         System.out.println("The Employee list as below:");
         for (Employee item : employeeList) {
             System.out.println(item);
@@ -94,9 +93,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void add() {
-        Scanner input = new Scanner(System.in);
         System.out.println("=== Adding Employee Terminal ===");
         Employee employee = createEmployeeInfo();
+        String writeToFile = employee.getName()+COMMA+employee.getBirthday()+COMMA+employee.getGender()+COMMA+employee.getId()+COMMA+
+                employee.getTel()+COMMA+employee.getEmail()+COMMA+employee.getStaffID()+COMMA+employee.getAcademicLevel()+COMMA+employee.getPosition()+COMMA+employee.getSalary();
+        FileUtils.writetoFile(PATH_FILE,writeToFile);
         employeeList.add(employee);
         System.out.println("New employee added. Press any key to go back to menu");
         String press = input.nextLine();
@@ -105,15 +106,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void edit() {
-        Scanner input = new Scanner(System.in);
         System.out.println("Edit Employee Terminal");
         System.out.println("Please input StaffID:");
-        String search = input.nextLine();
+        String search = input.nextLine();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getStaffID().equals(search)) {
                 System.out.println("Employee found, pls input the updated information");
                 Employee tempEmployee = createEmployeeInfo();
                 employeeList.set(i, tempEmployee);
+                this.extractToFile(); //Cần phải kiểm tra lại
                 System.out.println("Employee infor. updated. Press any key to go back.");
                 String press = input.nextLine();
                 this.displayEmployeeMenu();
@@ -125,7 +126,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void remove() {
-        Scanner input = new Scanner(System.in);
         System.out.println("Please input StaffID:");
         String search = input.nextLine();
         for (int i = 0; i < employeeList.size(); i++) {
@@ -144,4 +144,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Employee not found !!");
         this.remove();
     }
+
+    @Override
+    public void extractToFile() {
+        for (Employee employee: employeeList){
+            String content = employee.getName()+COMMA+employee.getBirthday()+COMMA+employee.getGender()+COMMA+employee.getId()+COMMA+
+                    employee.getTel()+COMMA+employee.getEmail()+COMMA+employee.getStaffID()+COMMA+employee.getAcademicLevel()+COMMA+employee.getPosition()+COMMA+employee.getSalary();
+            FileUtils.writetoFile(PATH_FILE,content);
+        }
+    }
+
+    public void importFromFile(){
+    ArrayList<String> tempArrList = FileUtils.readFromFile(PATH_FILE);
+    for (int i = 0; i<tempArrList.size(); i++) {
+        String[] tempArr = tempArrList.get(i).split(",");
+        employeeList.add(new Employee(tempArr[0], dateInput(tempArr[1]), tempArr[2], tempArr[3], tempArr[4], tempArr[5], tempArr[6], tempArr[7], tempArr[8], Integer.parseInt(tempArr[9])));
+    }
+    }
+
+
 }

@@ -5,4 +5,6 @@ public interface Service {
     void add();
     void edit();
     void remove();
+    void extractToFile();
+    void importFromFile();
 }

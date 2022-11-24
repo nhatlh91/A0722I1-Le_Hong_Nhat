@@ -4,11 +4,13 @@ import controllers.FuramaController;
 import models.Customer;
 import models.Employee;
 import services.CustomerService;
+import utils.FileUtils;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -16,17 +18,19 @@ import static services.impl.EmployeeServiceImpl.dateInput;
 
 public class CustomerServiceImpl implements CustomerService {
 
+    private final String PATH_FILE = "D:\\CODEGYM\\Git\\CaseStudyModule2\\src\\data\\customer.csv";
+    private final String COMMA = ",";
     private Scanner input = new Scanner(System.in);
     static LinkedList<Customer> customerList = new LinkedList<>();
-    static {
-        LocalDate birthday = dateInput("16/08/1991");
-        customerList.add(new Customer("Lê Hồng Nhật", birthday, "Male", "205599593",
-                "0905598909", "nhatlg@gmail.com", "Diamond","Hoa Minh, Lien Chieu"));
-        customerList.add(new Customer("Bevis", birthday, "Male", "205599594",
-                "0914638782", "bevis@gmail.com", "Gold","Hoi An"));
-        customerList.add(new Customer("Vincent", birthday, "Male", "205599595",
-                "0911863283", "vincent@gmail.com", "Silver","Vinh Dien, Dien Ban"));
-    }
+//    static {
+//        LocalDate birthday = dateInput("16/08/1991");
+//        customerList.add(new Customer("Lê Hồng Nhật", birthday, "Male", "205599593",
+//                "0905598909", "nhatlg@gmail.com", "Diamond","Hoa Minh, Lien Chieu"));
+//        customerList.add(new Customer("Bevis", birthday, "Male", "205599594",
+//                "0914638782", "bevis@gmail.com", "Gold","Hoi An"));
+//        customerList.add(new Customer("Vincent", birthday, "Male", "205599595",
+//                "0911863283", "vincent@gmail.com", "Silver","Vinh Dien, Dien Ban"));
+//    }
     public void displayCustomerMenu() {
         System.out.println("Furama Resort Controller System");
         System.out.println("Customer Management System");
@@ -50,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
     @Override
     public void display() {
-        System.out.println("The Employee list as below:");
+        System.out.println("The Customer list as below:");
         for (Customer item : customerList) {
             System.out.println(item);
         }
@@ -63,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void add() {
         System.out.println("=== Adding Customer Terminal ===");
         customerList.add(createCustomerInforSet());
-        System.out.println("New employee added. Press any key to go back to menu");
+        System.out.println("New Customer added. Press any key to go back to menu");
         String press = input.nextLine();
         this.displayCustomerMenu();
     }
@@ -75,14 +79,14 @@ public class CustomerServiceImpl implements CustomerService {
         String search = input.nextLine();
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getCustomerID().equals(search)) {
-                System.out.println("Employee found, pls input the updated information");
+                System.out.println("Customer found, pls input the updated information");
                 editCustomerInforSet(i, customerList);
-                System.out.println("Employee infor. updated. Press any key to go back.");
+                System.out.println("Customer infor. updated. Press any key to go back.");
                 String press = input.nextLine();
                 this.displayCustomerMenu();
             }
         }
-        System.out.println("Employee not found !!");
+        System.out.println("Customer not found !!");
         this.edit();
     }
 
@@ -92,20 +96,21 @@ public class CustomerServiceImpl implements CustomerService {
         String search = input.nextLine();
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getCustomerID().equals(search)) {
-                System.out.println("Employee found, press 1 to confirm removing");
+                System.out.println("Customer found, press 1 to confirm removing");
                 int choose = input.nextInt();
                 if (choose == 1) {
                     customerList.remove(i);
-                    System.out.println("Employee removed, back to Employee menu");
+                    System.out.println("Customer removed, back to Employee menu");
                     this.displayCustomerMenu();
                 } else {
                     this.displayCustomerMenu();
                 }
             }
         }
-        System.out.println("Employee not found !!");
+        System.out.println("Customer not found !!");
         this.remove();
     }
+
 
     public Customer createCustomerInforSet() {
         System.out.println("Name:");
@@ -153,7 +158,7 @@ public class CustomerServiceImpl implements CustomerService {
             birthday = dateInput(userInput);
         }
         catch(DateTimeParseException e) {
-            System.err.println("The correct format is dd/MM/yyyy, please re input: ");
+            System.err.println("The correct format is \"yyyy-MM-dd\", please re input: ");
             this.inputBirthday();
         }
         if(!ageValidator(birthday)){
@@ -162,9 +167,33 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return birthday;
     }
-    public static boolean ageValidator(LocalDate DoB){
+    public static boolean ageValidator(LocalDate birthday){
 //        int age = LocalDate.now().getYear()-date.getYear();
-        int age = Period.between(DoB, LocalDate.now()).getYears();
+        int age = Period.between(birthday, LocalDate.now()).getYears();
         return (age >= 18 && age <= 100);
     }
+
+    @Override
+    public void extractToFile() {
+        for (Customer customer: customerList){
+            String content = customer.getName()+COMMA+customer.getBirthday()+COMMA+customer.getGender()+COMMA+customer.getId()+COMMA+
+                    customer.getTel()+COMMA+customer.getEmail()+COMMA+customer.getTypeOfCustomer()+COMMA+customer.getAddress();
+            FileUtils.writetoFile(PATH_FILE,content);
+        }
+        System.out.println("Data has been saved successfully!!");
+        this.displayCustomerMenu();
+    }
+
+    @Override
+    public void importFromFile() {
+        ArrayList<String> tempArrList = FileUtils.readFromFile(PATH_FILE);
+        customerList.clear();
+        for (int i = 0; i<tempArrList.size(); i++) {
+            String[] tempArr = tempArrList.get(i).split(",");
+            customerList.add(new Customer(tempArr[0],dateInput(tempArr[1]),tempArr[2],tempArr[3],tempArr[4],tempArr[5],tempArr[6], tempArr[7]));
+        }
+        System.out.println("Data has been extracted successfully!!");
+        this.displayCustomerMenu();
+    }
+
 }
