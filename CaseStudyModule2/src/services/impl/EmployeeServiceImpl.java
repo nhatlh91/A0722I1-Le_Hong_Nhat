@@ -2,20 +2,16 @@ package services.impl;
 
 import controllers.FuramaController;
 import models.Employee;
-import models.Person;
 import services.EmployeeService;
-import utils.FileUtils;
+import utils.DateUtils;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final String PATH_FILE = "D:\\CODEGYM\\Git\\CaseStudyModule2\\src\\data\\employee.csv";
+    private static final String PATH_FILE = "D:\\CODEGYM\\Git\\CaseStudyModule2\\src\\data\\customer.csv";
     private static final String COMMA = ",";
 
     static ArrayList<Employee> employeeList = new ArrayList();
@@ -31,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String name = input.nextLine();
         System.out.println("Enter the date of birth:");
         String userInput = input.nextLine();
-        LocalDate birthday = dateInput(userInput);
+        LocalDate birthday = DateUtils.dateInput(userInput);
         System.out.println(birthday);
         System.out.println("Gender:");
         String gender = input.nextLine();
@@ -52,10 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new Employee(name, birthday, gender, id, tel, email, staffID, academicLevel, position, salary);
     }
 
-    public static LocalDate dateInput(String userInput) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(userInput, dateFormat);
-    }
+//    public static LocalDate dateInput(String userInput) {
+//        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        return LocalDate.parse(userInput, dateFormat);
+//    }
     public void displayEmployeeMenu() {
         int choose = -1;
         System.out.println("Furama Resort Controller System");
@@ -81,7 +77,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void display() {
-        this.importFromFile();
         System.out.println("The Employee list as below:");
         for (Employee item : employeeList) {
             System.out.println(item);
@@ -97,7 +92,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = createEmployeeInfo();
         String writeToFile = employee.getName()+COMMA+employee.getBirthday()+COMMA+employee.getGender()+COMMA+employee.getId()+COMMA+
                 employee.getTel()+COMMA+employee.getEmail()+COMMA+employee.getStaffID()+COMMA+employee.getAcademicLevel()+COMMA+employee.getPosition()+COMMA+employee.getSalary();
-        FileUtils.writetoFile(PATH_FILE,writeToFile);
         employeeList.add(employee);
         System.out.println("New employee added. Press any key to go back to menu");
         String press = input.nextLine();
@@ -114,7 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 System.out.println("Employee found, pls input the updated information");
                 Employee tempEmployee = createEmployeeInfo();
                 employeeList.set(i, tempEmployee);
-                this.extractToFile(); //Cần phải kiểm tra lại
+//                this.extractToFile(); //Cần phải kiểm tra lại
                 System.out.println("Employee infor. updated. Press any key to go back.");
                 String press = input.nextLine();
                 this.displayEmployeeMenu();
@@ -144,23 +138,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Employee not found !!");
         this.remove();
     }
-
-    @Override
-    public void extractToFile() {
-        for (Employee employee: employeeList){
-            String content = employee.getName()+COMMA+employee.getBirthday()+COMMA+employee.getGender()+COMMA+employee.getId()+COMMA+
-                    employee.getTel()+COMMA+employee.getEmail()+COMMA+employee.getStaffID()+COMMA+employee.getAcademicLevel()+COMMA+employee.getPosition()+COMMA+employee.getSalary();
-            FileUtils.writetoFile(PATH_FILE,content);
-        }
-    }
-
-    public void importFromFile(){
-    ArrayList<String> tempArrList = FileUtils.readFromFile(PATH_FILE);
-    for (int i = 0; i<tempArrList.size(); i++) {
-        String[] tempArr = tempArrList.get(i).split(",");
-        employeeList.add(new Employee(tempArr[0], dateInput(tempArr[1]), tempArr[2], tempArr[3], tempArr[4], tempArr[5], tempArr[6], tempArr[7], tempArr[8], Integer.parseInt(tempArr[9])));
-    }
-    }
-
-
 }

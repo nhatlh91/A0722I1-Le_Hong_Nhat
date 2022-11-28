@@ -3,16 +3,16 @@ package models;
 import java.time.LocalDate;
 
 public class Customer extends Person{
-    private static int count = 0;
+    final String COMMA = ",";
     private String customerID;
     private String typeOfCustomer;
     private String address;
 
-    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address) {
+    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address, String customerID) {
         super(name, birthday, gender, id, tel, email);
-        this.customerID = "Customer"+ ++count;
         this.typeOfCustomer = typeOfCustomer;
         this.address = address;
+        this.customerID = customerID;
     }
 
     public String getCustomerID() {
@@ -46,5 +46,10 @@ public class Customer extends Person{
                 ", typeOfCustomer='" + typeOfCustomer + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public String toFile(){
+        return this.getName()+COMMA+this.getBirthday()+COMMA+this.getGender()+COMMA+this.getId()+COMMA
+                +this.getTel()+COMMA+this.getEmail()+COMMA+this.getTypeOfCustomer()+COMMA+this.getAddress()+COMMA+this.getCustomerID();
     }
 }

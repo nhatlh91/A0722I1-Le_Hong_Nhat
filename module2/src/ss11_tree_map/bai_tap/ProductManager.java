@@ -87,17 +87,17 @@ public class ProductManager {
         System.out.println("2\t Gia giam dan");
         int choose = input.nextInt();
         switch (choose) {
-            case 1 -> {
-                Collections.sort(list);
-                display(list);
-            }
-            case 2 -> {
-                Collections.reverse(list);
-                display(list);
-            }
-            default -> {
-                display(list);
-            }
+//            case 1 -> {
+//                Collections.sort(list);
+//                display(list);
+//            }
+//            case 2 -> {
+//                Collections.reverse(list);
+//                display(list);
+//            }
+//            default -> {
+//                display(list);
+//            }
         }
     }
 

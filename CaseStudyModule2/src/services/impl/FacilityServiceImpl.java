@@ -133,16 +133,6 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public void extractToFile() {
-        //not code yet
-    }
-
-    @Override
-    public void importFromFile() {
-
-    }
-
-    @Override
     public void needMaintain() {
         System.out.println("The facility list as below need to be maintained:");
         for (Facility item : facilityList.keySet()) {

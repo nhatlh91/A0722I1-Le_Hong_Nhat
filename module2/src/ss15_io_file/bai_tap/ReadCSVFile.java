@@ -1,42 +1,31 @@
 package ss15_io_file.bai_tap;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.LinkedList;
 
 public class ReadCSVFile {
-    private static final String SOURCE = "D:\\CODEGYM\\Git\\module2\\src\\ss15_io_file\\bai_tap\\data.csv";
-    public static ArrayList<String> readFile(String filePath){
-        ArrayList<String> content = new ArrayList<>();
+    private static final String SOURCE ="D:\\CODEGYM\\Git\\module2\\src\\ss15_io_file\\bai_tap\\data.csv";
+    public static LinkedList<Country> readFile(String filePath){
+        LinkedList<Country> content = new LinkedList<>();
         try {
             File file = new File(filePath);
-
-            if (!file.exists()) {
-                throw new FileNotFoundException();
-            }
-
             BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = "";
+            String line;
             while ((line = br.readLine()) != null) {
-                content.add(line);
+                String[] props = line.split(",");
+                content.add(new Country(Integer.parseInt(props[0]),props[1].replaceAll("\"",""),props[2].replaceAll("\"","")));
             }
             br.close();
-        } catch (Exception e) {
-            System.err.println("Fie không tồn tại or nội dung có lỗi!");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return content;
     }
 
     public static void main(String[] args) {
-        ArrayList<String> dataList = readFile(SOURCE);
-        for (String item : dataList) {
-            String[] temp = item.split(",");
-            for (String string: temp){
-                System.out.print(string + "\t");
-            }
-            System.out.println();
+        LinkedList<Country> dataList = readFile(SOURCE);
+        for (Country country : dataList) {
+            System.out.println(country.toString());
         }
     }
 }

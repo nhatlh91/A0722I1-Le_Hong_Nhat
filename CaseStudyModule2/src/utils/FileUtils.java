@@ -4,16 +4,21 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileUtils {
-    public static void writetoFile(String path, String content) {
+    public static void writetoFile(String path, ArrayList<String> content) {
         try {
             File file = new File(path);
             if (!file.exists()) {
                 throw new FileNotFoundException();
             }
-            FileWriter writer = new FileWriter(path, true);
+            if (content.isEmpty()){
+                return;
+            }
+            FileWriter writer = new FileWriter(path, false);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(content);
-            bufferedWriter.newLine();
+            for (int i = 0; i<content.size(); i++) {
+                bufferedWriter.write(content.get(i));
+                bufferedWriter.newLine();
+            }
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -21,7 +26,7 @@ public class FileUtils {
     }
 
     public static ArrayList<String> readFromFile(String path) {
-        ArrayList<String> dataFromFile = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         try {
             File file = new File(path);
             if (!file.exists()) {
@@ -30,12 +35,12 @@ public class FileUtils {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = "";
             while ((line = br.readLine()) != null) {
-                dataFromFile.add(line);
+                list.add(line);
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return dataFromFile;
+        return list;
     }
 }
