@@ -3,12 +3,13 @@ package models;
 import java.time.LocalDate;
 
 public abstract class Person {
-    private String name;
-    private LocalDate birthday;
-    private String gender;
-    private String id;
-    private String tel;
-    private String email;
+    protected String name;
+    protected LocalDate birthday;
+    protected String gender;
+    protected String id;
+    protected String tel;
+    protected String email;
+    protected final String TAB = "\t";
 
     public Person(String name, LocalDate birthday, String gender, String id, String tel, String email) {
         this.name = name;
@@ -69,11 +70,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", gender='" + gender + '\'' +
-                ", id='" + id + '\'' +
-                ", tel='" + tel + '\'' +
-                ", email='" + email + '\'';
+        return  "Name= " + name + TAB + "Birthday= " + birthday + TAB +"Gender= " + gender + TAB + "Id= " + id + TAB + "Tel= " + tel + TAB + "Email= " + email;
     }
 }

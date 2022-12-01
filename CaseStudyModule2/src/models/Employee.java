@@ -7,15 +7,13 @@ public class Employee extends Person{
     private String academicLevel;
     private String position;
     private int salary;
-    public static int employeeCount=0;
 
-    public Employee(String name, LocalDate birthday, String gender, String id, String tel, String email, String staffID, String academicLevel, String position, int salary) {
+    public Employee(String staffID, String name, LocalDate birthday, String gender, String id, String tel, String email, String academicLevel, String position, int salary) {
         super(name, birthday, gender, id, tel, email);
         this.staffID = staffID;
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
-        employeeCount++;
     }
 
     public String getStaffID() {
@@ -50,13 +48,14 @@ public class Employee extends Person{
         this.salary = salary;
     }
 
+
+
     @Override
     public String toString() {
+        return "StaffID= " + staffID + TAB + super.toString() + TAB + "AcademicLevel= " + academicLevel + TAB + "Position= " + position + TAB + "Salary= " + salary;
+    }
 
-        return super.toString() +
-                "staffID='" + staffID + '\'' +
-                ", academicLevel=" + academicLevel +
-                ", position='" + position + '\'' +
-                ", salary=" + salary ;
+    public String toFile(){
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",staffID,name,birthday,gender,id,tel,email,academicLevel,position,salary);
     }
 }

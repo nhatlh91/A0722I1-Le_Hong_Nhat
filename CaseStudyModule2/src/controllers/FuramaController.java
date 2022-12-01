@@ -20,24 +20,31 @@ public class FuramaController {
                 "6.\tExit\n");
         choose = input.nextInt();
         switch (choose) {
-            case 1 -> {
+            case 1:
                 EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
                 employeeService.displayEmployeeMenu();
-            }
-            case 2 -> {
+                break;
+            case 2:
                 CustomerServiceImpl customerService = new CustomerServiceImpl();
                 customerService.displayCustomerMenu();
-            }
-            case 3 -> {
+                break;
+            case 3:
                 FacilityServiceImpl facilityService = new FacilityServiceImpl();
                 facilityService.displayFacilityMenu();
-            }
-            case 4 -> displayBookingManagement();
-            case 5 -> displayPromotionManagement();
-            case 6 -> System.exit(6);
-            default -> {
+                break;
+            case 4:
+                displayBookingManagement();
+                break;
+            case 5:
+                displayPromotionManagement();
+                break;
+            case 6:
+                System.exit(6);
+                break;
+            default: {
                 System.out.println("Wrong input. Please re-choose");
                 displayMainMenu();
+                break;
             }
         }
     }

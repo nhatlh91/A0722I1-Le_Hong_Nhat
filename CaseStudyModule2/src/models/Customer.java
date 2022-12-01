@@ -2,17 +2,17 @@ package models;
 
 import java.time.LocalDate;
 
-public class Customer extends Person{
+public class Customer extends Person {
     final String COMMA = ",";
     private String customerID;
     private String typeOfCustomer;
     private String address;
 
-    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address, String customerID) {
+    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address, String CustomerID) {
         super(name, birthday, gender, id, tel, email);
         this.typeOfCustomer = typeOfCustomer;
         this.address = address;
-        this.customerID = customerID;
+        this.customerID = CustomerID;
     }
 
     public String getCustomerID() {
@@ -48,8 +48,8 @@ public class Customer extends Person{
                 '}';
     }
 
-    public String toFile(){
-        return this.getName()+COMMA+this.getBirthday()+COMMA+this.getGender()+COMMA+this.getId()+COMMA
-                +this.getTel()+COMMA+this.getEmail()+COMMA+this.getTypeOfCustomer()+COMMA+this.getAddress()+COMMA+this.getCustomerID();
+    public String toFile() {
+        return this.getName() + COMMA + this.getBirthday() + COMMA + this.getGender() + COMMA + this.getId() + COMMA
+                + this.getTel() + COMMA + this.getEmail() + COMMA + this.getTypeOfCustomer() + COMMA + this.getAddress() + COMMA + this.getCustomerID();
     }
 }

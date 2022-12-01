@@ -115,20 +115,20 @@ public class FacilityServiceImpl implements FacilityService {
         System.out.println("3\tGo back to facility management console");
         int press = Integer.parseInt(input.nextLine());
         switch (press) {
-            case 1 -> this.add();
-            case 2 -> this.display();
-            default -> this.displayFacilityMenu();
+            case 1:
+                this.add();
+                break;
+            case 2:
+                this.display();
+                break;
+            default:
+                this.displayFacilityMenu();
         }
 
     }
 
     @Override
     public void edit() {
-//this function has not been opened yet.
-    }
-
-    @Override
-    public void remove() {
 //this function has not been opened yet.
     }
 
@@ -154,14 +154,21 @@ public class FacilityServiceImpl implements FacilityService {
                 "4\tReturn to main menu\n");
         choose = Integer.parseInt(input.nextLine());
         switch (choose) {
-            case 1 -> this.display();
-            case 2 -> this.add();
-            case 3 -> this.needMaintain();
-            case 4 -> FuramaController.displayMainMenu();
-            default -> {
+            case 1:
+                this.display();
+                break;
+            case 2:
+                this.add();
+                break;
+            case 3:
+                this.needMaintain();
+                break;
+            case 4:
+                FuramaController.displayMainMenu();
+                break;
+            default:
                 System.out.println("Wrong input, please re-choose");
                 this.displayFacilityMenu();
-            }
         }
     }
 
