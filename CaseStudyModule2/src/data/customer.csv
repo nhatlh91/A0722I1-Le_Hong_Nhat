@@ -1,8 +1,8 @@
-Brian,1991-08-16,Male,205599593,0905598909,nhatlg@gmail.com,Diamond,Hoa Minh,Customer0
-Bevis Nguyen,1991-08-16,Male,2056843021,091195832,bevis@vis.be,Diamond,Hoi An,Customer1
-Vincent,1991-08-16,Male,205599595,0911863283,vincent@gmail.com,Silver,Vinh Dien,Customer2
-Nicky,1995-12-05,Male,588304824,834885993,nicky@nic.ky,Platinum,Hoa Khanh,Customer3
-Nam,1997-02-12,Female,206694391,960093482,nasd@ldsfjs.ofr,Gold,Ho Chi Minh,Customer4
-Jackson,1981-11-02,Male,4990492095,110249345,jackson@jack.son,Platinum,China,Customer5
-Benson,1990-10-25,Male,4035,656453424,benson@son.ben,Gold,Malaysia,Customer6
-Nhan,2002-12-04,Male,2058482935,0904483282,nhan@nhan.nhan,Silver,Hoa An,Customer7
+Customer01,Brian,1991-08-16,Male,205599593,0905598909,nhatlg@gmail.com,Diamond,Hoa Minh
+Customer02,Bevis Nguyen,1991-08-16,Male,2056843021,091195832,bevis@vis.be,Diamond,Hoi An
+Customer03,Vincent,1991-08-16,Male,205599595,0911863283,vincent@gmail.com,Silver,Vinh Dien
+Customer04,Nicky,1995-12-05,Male,588304824,834885993,nicky@nic.ky,Platinum,Hoa Khanh
+Customer05,Nam,1997-02-12,Female,206694391,960093482,nasd@ldsfjs.ofr,Gold,Ho Chi Minh
+Customer06,Jackson,1981-11-02,Male,4990492095,110249345,jackson@jack.son,Platinum,China
+Customer07,Benson,1990-10-25,Male,4035,656453424,benson@son.ben,Gold,Malaysia
+Customer08,Nhan,2002-12-04,Male,2058482935,0904483282,nhan@nhan.nhan,Silver,Hoa An

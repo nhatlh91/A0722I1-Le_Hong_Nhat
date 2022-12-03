@@ -1,36 +1,36 @@
 package models;
 
 public abstract class Facility {
-    private String serviceName;
-    private double usingArea;
-    private double rentExpense;
-    private int maxPeople;
-    private String typeOfRent;
+    protected String name;
+    protected double usingArea;
+    protected double rentExpense;
+    protected int maxPeople;
+    protected String typeOfRent;
 
-    private int timesOfusing = 0;
-
-    public int getTimesOfusing() {
-        return timesOfusing;
-    }
-
-    public void setTimesOfusing(int timesOfusing) {
-        this.timesOfusing = timesOfusing;
-    }
+//    private int timesOfusing = 0;
+//
+//    public int getTimesOfusing() {
+//        return timesOfusing;
+//    }
+//
+//    public void setTimesOfusing(int timesOfusing) {
+//        this.timesOfusing = timesOfusing;
+//    }
 
     public Facility(String serviceName, double usingArea, double rentExpense, int maxPeople, String typeOfRent) {
-    this.serviceName = serviceName;
+    this.name = serviceName;
     this.usingArea = usingArea;
     this.rentExpense = rentExpense;
     this.maxPeople = maxPeople;
     this.typeOfRent = typeOfRent;
 }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getName() {
+        return name;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setName(String serviceName) {
+        this.name = serviceName;
     }
 
     public double getUsingArea() {
@@ -67,12 +67,12 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return "Facility: {" +
-                "Name = " + serviceName + '\'' +
-                ", Area = " + usingArea +
-                ", Price = " + rentExpense +
-                ", Capacity = " + maxPeople +
-                ", Type of rent = " + typeOfRent + '\'' +
-                ", Times Of Using = " + timesOfusing;
+        return  name +
+                ", Area: " + usingArea +
+                ", Price: " + rentExpense +
+                ", Capacity: " + maxPeople +
+                ", Type of rent: " + typeOfRent;
     }
+
+    public abstract String toFile();
 }

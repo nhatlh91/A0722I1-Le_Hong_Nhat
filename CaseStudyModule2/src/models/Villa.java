@@ -39,9 +39,12 @@ public class Villa extends Facility {
     @Override
     public String toString() {
         return super.toString() +
-                ", Room standard = " + roomStandard + '\'' +
-                ", Pool area = " + poolArea +
-                ", Floor = " + floor +
-                '}';
+                ", Room standard: " + roomStandard + '\'' +
+                ", Pool area: " + poolArea +
+                ", Floor: " + floor;
+    }
+
+    public String toFile() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", name, usingArea, rentExpense, maxPeople, typeOfRent, roomStandard, poolArea, floor);
     }
 }

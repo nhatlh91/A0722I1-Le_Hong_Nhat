@@ -16,29 +16,32 @@ public class DateUtils {
         return (age >= 18 && age <= 100);
     }
 
-    public static LocalDate parseLocalDate(String input) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static LocalDate inputBirthday() {
         LocalDate birthday = null;
-        while (birthday == null) {
+        boolean flag = true;
+        while (flag) {
             try {
+                System.out.println("Input birthday:");
+                String input = sc.nextLine();
+                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 birthday = LocalDate.parse(input, dateFormat);
                 if (!ageValidate(birthday)) {
                     throw new AgeValidateException();
                 }
-                return birthday;
-            } catch (AgeValidateException e) {
-                e.message();
+                flag = false;
             } catch (DateTimeParseException e) {
-                e.getStackTrace();
+                System.err.println("Wrong pattern, please re-do:");
+                flag = true;
+            } catch (AgeValidateException ex) {
+                ex.message();
+                flag = true;
             }
         }
         return birthday;
     }
 
-        public static LocalDate inputBirthday() {
-           while (true) {
-                    System.out.println("Enter birthday:");
-                    return parseLocalDate(sc.nextLine());
-                }
-            }
+        public static LocalDate parseLocalDate(String input){
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return LocalDate.parse(input, dateFormat);
+        }
 }

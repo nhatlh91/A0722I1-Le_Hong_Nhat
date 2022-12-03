@@ -8,11 +8,11 @@ public class Customer extends Person {
     private String typeOfCustomer;
     private String address;
 
-    public Customer(String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address, String CustomerID) {
+    public Customer(String customerID, String name, LocalDate birthday, String gender, String id, String tel, String email, String typeOfCustomer, String address) {
         super(name, birthday, gender, id, tel, email);
+        this.customerID = customerID;
         this.typeOfCustomer = typeOfCustomer;
         this.address = address;
-        this.customerID = CustomerID;
     }
 
     public String getCustomerID() {
@@ -48,8 +48,7 @@ public class Customer extends Person {
                 '}';
     }
 
-    public String toFile() {
-        return this.getName() + COMMA + this.getBirthday() + COMMA + this.getGender() + COMMA + this.getId() + COMMA
-                + this.getTel() + COMMA + this.getEmail() + COMMA + this.getTypeOfCustomer() + COMMA + this.getAddress() + COMMA + this.getCustomerID();
+    public String toFile(){
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",customerID,name,birthday,gender,id,tel,email,typeOfCustomer,address);
     }
 }

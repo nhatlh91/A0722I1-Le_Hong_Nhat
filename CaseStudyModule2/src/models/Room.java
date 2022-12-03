@@ -19,7 +19,10 @@ public class Room extends Facility {
     @Override
     public String toString() {
         return super.toString() +
-                ", Extra sercice = " + extraServices + '\'' +
-                '}';
+                ", Extra sercice: " + extraServices;
+    }
+
+    public String toFile() {
+        return String.format("%s,%s,%s,%s,%s,%s", name, usingArea, rentExpense, maxPeople, typeOfRent, extraServices);
     }
 }

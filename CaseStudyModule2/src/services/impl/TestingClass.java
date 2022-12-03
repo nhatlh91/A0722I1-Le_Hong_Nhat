@@ -1,12 +1,15 @@
 package services.impl;
 
-import models.Employee;
-import services.Service;
 import utils.DateUtils;
 import utils.Pattern;
 
+import java.time.LocalDate;
+import java.util.Scanner;
+
 public class TestingClass implements Pattern {
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 //        String string = "Male";
 //        System.out.println(string.matches(GENDER_PATTERN));
 //        String string2 = "42 Hoa Nam 07 - Hoa Khanh Bac - Lien Chieu - TP.Da Nang";
@@ -27,7 +30,7 @@ public class TestingClass implements Pattern {
 //        System.out.println(phone3.matches(PHONE_PATTERN));
 //        String phone4 = "+849055898909";
 //        System.out.println(phone4.matches(PHONE_PATTERN));
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-        employeeService.displayEmployeeMenu();
+        FacilityServiceImpl facilityService = new FacilityServiceImpl();
+        facilityService.displayFacilityMenu();
     }
 }

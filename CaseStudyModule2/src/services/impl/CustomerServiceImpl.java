@@ -3,20 +3,13 @@ package services.impl;
 import controllers.FuramaController;
 import models.Customer;
 import services.CustomerService;
-import libs.AgeValidateException;
-import utils.DateUtils;
-import utils.FileUtils;
-
+import utils.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class CustomerServiceImpl implements CustomerService {
-    private static final String PATH_CUSTOMER = "/mnt/01D8F8C16EEA6020/CODEGYM/Git/CaseStudyModule2/src/data/customer.csv";
-    private static final String COMMA = ",";
-    static Scanner input = new Scanner(System.in);
+public class CustomerServiceImpl implements CustomerService, Pattern {
+    private static Scanner sc = new Scanner(System.in);
 
     public void displayCustomerMenu() {
         System.out.println("Furama Resort Controller System");
@@ -25,148 +18,152 @@ public class CustomerServiceImpl implements CustomerService {
                 "2\tAdd new customer\n" +
                 "3\tEdit customer\n" +
                 "4\tReturn to main menu\n");
-        int choose = Integer.parseInt(input.nextLine());
+        String choose = sc.nextLine();
         switch (choose) {
-            case 1:
-                this.display();
+            case "1":
+                display();
                 break;
-            case 2:
-                this.add();
+            case "2":
+                add();
                 break;
-            case 3:
-                this.edit();
+            case "3":
+                edit();
                 break;
-            case 4:
+            case "4":
                 FuramaController.displayMainMenu();
                 break;
             default:
-                System.out.println("Wrong input, please re-choose");
                 displayCustomerMenu();
         }
     }
 
     @Override
     public void display() {
-        LinkedList<Customer> customerList = readCustomerFile();
+        LinkedList<Customer> customerList = FileUtils.readCustomerFile();
         System.out.println("The Customer list as below:");
         for (Customer item : customerList) {
             System.out.println(item);
         }
-        System.out.println("Press any key to go back to menu");
-        String press = input.nextLine();
+        System.out.println(BACK_TO_MENU);
+        String press = sc.nextLine();
         this.displayCustomerMenu();
     }
 
     @Override
     public void add() {
-        LinkedList<Customer> customers = readCustomerFile();
+        LinkedList<Customer> customers = FileUtils.readCustomerFile();
         System.out.println("=== Adding Customer Terminal ===");
-        customers.add(createCustomerInforSet(customers.size()));
-        writeCustomerFile(customers);
-        System.out.println("New Customer added. Press any key to go back to menu");
-        String press = input.nextLine();
+        Customer newCustomer = createCustomerInforSet();
+        customers.add(newCustomer);
+        FileUtils.writeCustomerFile(customers);
+        System.out.println("New Customer added.\n" + BACK_TO_MENU);
+        String back = sc.nextLine();
         this.displayCustomerMenu();
     }
 
+
     @Override
     public void edit() {
-        LinkedList<Customer> customers = readCustomerFile();
+        LinkedList<Customer> customers = FileUtils.readCustomerFile();
+        int idx = -1;
         System.out.println("Edit Customer Terminal");
-        System.out.println("Please input Customer ID:");
-        String search = input.nextLine();
+        System.out.println("Please input CustomerID:");
+        String search = sc.nextLine();
+        while (!search.matches(CUSTOMER_ID_PATTERN)){
+            System.err.println("Enter CustomerID with wrong pattern, please re-do:");
+            search = sc.nextLine();
+        }
         for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getCustomerID().equals(search)) {
-                System.out.println("Customer found, pls input the updated information");
-                editCustomerInforSet(i, customers);
-                writeCustomerFile(customers);
-                System.out.println("Customer infor. updated. Press any key to go back.");
-                String press = input.nextLine();
-                this.displayCustomerMenu();
+            if (customers.get(i).getCustomerID().equalsIgnoreCase(search)) {
+                idx = i;
+                break;
             }
         }
-        System.out.println("Customer not found !!");
-        this.edit();
+        if (idx != -1) {
+            System.out.println("Customer found !");
+            System.out.println(customers.get(idx));
+            System.out.println("Enter 1 to edit customer's information");
+            String confirm = sc.nextLine();
+            if (confirm.equals(("1"))) {
+             Customer updatedCustomer = createCustomerInforSet();
+             customers.set(idx,updatedCustomer);
+             FileUtils.writeCustomerFile(customers);
+             System.out.println("Customer information has been updated.");
+            }
+        } else {
+            System.out.println("Customer not found.");
+        }
+        System.out.println(BACK_TO_MENU);
+        String back = sc.nextLine();
+        this.displayCustomerMenu();
     }
-
-    public Customer createCustomerInforSet(int size) {
+    public Customer createCustomerInforSet(){
+        System.out.println("CustomerID:");
+        String customerID = sc.nextLine();
+        boolean validate = valiadateCustomerID(customerID);
+        while ((!customerID.matches(STAFF_ID_PATTERN))||validate) {
+            if (!customerID.matches(STAFF_ID_PATTERN)) {
+                System.err.println(WRONG_INPUT);
+            }
+            if (validate) {
+                System.err.println("StaffID is not available, please re-do: ");
+            }
+            customerID = sc.nextLine();
+            validate = valiadateCustomerID(customerID);
+        }
         System.out.println("Name:");
-        String name = input.nextLine();
-        System.out.println("Date of birth:");
+        String name = sc.nextLine();
+        while (!name.matches(NAME_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            name = sc.nextLine();
+        }
         LocalDate birthday = DateUtils.inputBirthday();
         System.out.println("Gender:");
-        String gender = input.nextLine();
+        String gender = sc.nextLine();
+        while (!gender.matches(GENDER_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            gender = sc.nextLine();
+        }
         System.out.println("ID:");
-        String id = input.nextLine();
+        String id = sc.nextLine();
+        while (!id.matches(ID_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            id = sc.nextLine();
+        }
         System.out.println("Telephone number:");
-        String tel = input.nextLine();
+        String tel = sc.nextLine();
+        while (!tel.matches(PHONE_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            tel = sc.nextLine();
+        }
         System.out.println("Email:");
-        String email = input.nextLine();
+        String email = sc.nextLine();
+        while (!email.matches(EMAIL_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            email = sc.nextLine();
+        }
         System.out.println("Type of customer:");
-        String typeOfCustomer = input.nextLine();
+        String typeOfCustomer = sc.nextLine();
+        while (!typeOfCustomer.matches(CUSTOMER_TYPE_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            typeOfCustomer = sc.nextLine();
+        }
         System.out.println("Address:");
-        String address = input.nextLine();
-        System.out.println("CustomerID:");
-        String CustomerID = input.nextLine();
-        return new Customer(name, birthday, gender, id, tel, email, typeOfCustomer, address, CustomerID);
-    }
-
-    public void editCustomerInforSet(int index, LinkedList<Customer> list) {
-        System.out.println("Current name is: " + list.get(index).getName());
-        list.get(index).setName(input.nextLine());
-        System.out.println("Current DOB is: " + list.get(index).getBirthday());
-        list.get(index).setBirthday(DateUtils.inputBirthday());
-        System.out.println("Current gender is: " + list.get(index).getGender());
-        list.get(index).setGender(input.nextLine());
-        System.out.println("Current ID is: " + list.get(index).getId());
-        list.get(index).setId(input.nextLine());
-        System.out.println("Current telephone number is: " + list.get(index).getTel());
-        list.get(index).setTel(input.nextLine());
-        System.out.println("Current email is: " + list.get(index).getEmail());
-        list.get(index).setEmail(input.nextLine());
-        System.out.println("Current type of customer is:" + list.get(index).getTypeOfCustomer());
-        list.get(index).setTypeOfCustomer(input.nextLine());
-        System.out.println("Current address is: " + list.get(index).getAddress());
-        list.get(index).setAddress(input.nextLine());
-    }
-
-//    public LocalDate inputBirthday() {
-//        LocalDate birthday = null;
-//        String userInput;
-//        try {
-//            userInput = input.nextLine();
-//            birthday = DateUtils.parseLocalDate(userInput);
-//            if (!DateUtils.ageValidate(birthday)) {
-//                throw new AgeValidateException();
-//            }
-//        } catch (DateTimeParseException e) {
-//            System.err.println("The correct format is \"yyyy-MM-dd\", please re input: ");
-//            this.inputBirthday();
-//        } catch (AgeValidateException e) {
-//            e.noti();
-//            this.inputBirthday();
-//        }
-//        return birthday;
-//    }
-//    public static boolean ageValidator(LocalDate birthday){
-//        int age = Period.between(birthday, LocalDate.now()).getYears();
-//        return (age >= 18 && age <= 100);
-//    }
-
-    public static LinkedList<Customer> readCustomerFile() {
-        LinkedList<Customer> customers = new LinkedList<>();
-        ArrayList<String> strings = (ArrayList<String>) FileUtils.readFromFile(PATH_CUSTOMER);
-        for (String customer : strings) {
-            String[] prop = customer.split(",");
-            customers.add(new Customer(prop[0], DateUtils.parseLocalDate(prop[1]), prop[2], prop[3], prop[4], prop[5], prop[6], prop[7], prop[8]));
+        String address = sc.nextLine();
+        while (!address.matches(ADDRESS_PATTERN)){
+            System.err.println(WRONG_INPUT);
+            address = sc.nextLine();
         }
-        return customers;
+        return new Customer(customerID, name, birthday, gender, id, tel, email, typeOfCustomer, address);
     }
 
-    public static void writeCustomerFile(LinkedList<Customer> customers) {
-        ArrayList<String> content = new ArrayList<>();
+    public boolean valiadateCustomerID(String customerID) {
+        LinkedList<Customer> customers = FileUtils.readCustomerFile();
         for (Customer customer : customers) {
-            content.add(customer.toFile());
+            if(customer.getCustomerID().equalsIgnoreCase(customerID)) {
+                return true;
+            }
         }
-        FileUtils.overwriteToFile(PATH_CUSTOMER, content);
+        return false;
     }
 }
