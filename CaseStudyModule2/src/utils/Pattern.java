@@ -21,4 +21,5 @@ public interface Pattern {
     String RENT_TYPE_PATTERN = "Year|Month|Day";
     String ROOM_STANDARD_PATTERN = "[A-Z]{1}[a-z]+";
     String EXTRA_SERVICE_PATTERN = "[A-Za-z ;_-]+";
+    String BOOKING_ID_PATTERN = "Booking\\d+";
 }

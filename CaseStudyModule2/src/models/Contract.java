@@ -2,16 +2,19 @@ package models;
 
 import java.util.Date;
 
-public class Contract extends Booking{
+public class Contract {
     private String contractNo;
+    private String bookingID;
     private double deposit;
     private double totalAmount;
+    private String customerID;
 
-    public Contract(String bookingID, Date checkinDate, Date checkoutDate, String customerID, String serviceName, String typeOfService, String contractNo, double deposit, double totalAmount) {
-        super(bookingID, checkinDate, checkoutDate, customerID, serviceName, typeOfService);
+    public Contract(String contractNo, String bookingID, double deposit, double totalAmount, String customerID) {
         this.contractNo = contractNo;
+        this.bookingID = bookingID;
         this.deposit = deposit;
         this.totalAmount = totalAmount;
+        this.customerID = customerID;
     }
 
     public String getContractNo() {
@@ -20,6 +23,14 @@ public class Contract extends Booking{
 
     public void setContractNo(String contractNo) {
         this.contractNo = contractNo;
+    }
+
+    public String getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(String bookingID) {
+        this.bookingID = bookingID;
     }
 
     public double getDeposit() {
@@ -36,5 +47,13 @@ public class Contract extends Booking{
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 }

@@ -1,23 +1,26 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Booking {
-    private int id;
     private String bookingID;
-    private Date checkinDate;
-    private Date checkoutDate;
+    private LocalDate checkin;
+    private LocalDate checkout;
     private String customerID;
-    private String serviceName;
-    private String typeOfService;
 
-    public Booking(String bookingID, Date checkinDate, Date checkoutDate, String customerID, String serviceName, String typeOfService) {
+    private String facilityName;
+    private String typeOfFacility;
+    private LocalDate bookingDay;
+    private final String COMMA = ",";
+
+    public Booking(String bookingID, LocalDate checkin, LocalDate checkout, String customerID, String facilityName, String typeOfFacility, LocalDate bookingDay) {
         this.bookingID = bookingID;
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkin = checkin;
+        this.checkout = checkout;
         this.customerID = customerID;
-        this.serviceName = serviceName;
-        this.typeOfService = typeOfService;
+        this.facilityName = facilityName;
+        this.typeOfFacility = typeOfFacility;
+        this.bookingDay = bookingDay;
     }
 
     public String getBookingID() {
@@ -28,20 +31,20 @@ public class Booking {
         this.bookingID = bookingID;
     }
 
-    public Date getCheckinDate() {
-        return checkinDate;
+    public LocalDate getCheckin() {
+        return checkin;
     }
 
-    public void setCheckinDate(Date checkinDate) {
-        this.checkinDate = checkinDate;
+    public void setCheckin(LocalDate checkin) {
+        this.checkin = checkin;
     }
 
-    public Date getCheckoutDate() {
-        return checkoutDate;
+    public LocalDate getCheckout() {
+        return checkout;
     }
 
-    public void setCheckoutDate(Date checkoutDate) {
-        this.checkoutDate = checkoutDate;
+    public void setCheckout(LocalDate checkout) {
+        this.checkout = checkout;
     }
 
     public String getCustomerID() {
@@ -52,19 +55,36 @@ public class Booking {
         this.customerID = customerID;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getFacilityName() {
+        return facilityName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
     }
 
-    public String getTypeOfService() {
-        return typeOfService;
+    public String getTypeOfFacility() {
+        return typeOfFacility;
     }
 
-    public void setTypeOfService(String typeOfService) {
-        this.typeOfService = typeOfService;
+    public void setTypeOfFacility(String typeOfFacility) {
+        this.typeOfFacility = typeOfFacility;
+    }
+
+    public LocalDate getBookingDay() {
+        return bookingDay;
+    }
+
+    public void setBookingDay(LocalDate bookingDay) {
+        this.bookingDay = bookingDay;
+    }
+
+    public String toString() {
+        return " Booking ID: " + bookingID + COMMA + " Check-in: " + checkin + COMMA + " Check-out: " + checkout + COMMA +
+                " Customer ID: " + customerID + COMMA + " Facility name: " + facilityName + COMMA + " Facility type: " + typeOfFacility + COMMA + " Booking day: " + bookingDay;
+    }
+
+    public String toFile(){
+        return String.format("%s,%s,%s,%s,%s,%s,%s",bookingID,checkin,checkout,customerID,facilityName,typeOfFacility,bookingDay);
     }
 }

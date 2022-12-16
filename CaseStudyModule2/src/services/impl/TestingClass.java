@@ -1,5 +1,6 @@
 package services.impl;
 
+import services.Service;
 import utils.DateUtils;
 import utils.Pattern;
 
@@ -30,7 +31,7 @@ public class TestingClass implements Pattern {
 //        System.out.println(phone3.matches(PHONE_PATTERN));
 //        String phone4 = "+849055898909";
 //        System.out.println(phone4.matches(PHONE_PATTERN));
-        FacilityServiceImpl facilityService = new FacilityServiceImpl();
-        facilityService.displayFacilityMenu();
+        BookingServiceImpl bookingService = new BookingServiceImpl();
+        bookingService.displayBookingMenu();
     }
 }

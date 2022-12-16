@@ -42,10 +42,7 @@ public class Customer extends Person {
     @Override
     public String toString() {
         return super.toString() +
-                "customerID='" + customerID + '\'' +
-                ", typeOfCustomer='" + typeOfCustomer + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+                " Customer ID: " + customerID + COMMA + " TypeOfCustomer: " + typeOfCustomer + COMMA + " Address: " + address;
     }
 
     public String toFile(){
