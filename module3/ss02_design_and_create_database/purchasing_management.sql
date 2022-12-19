@@ -5,7 +5,7 @@ customer_id int not null auto_increment primary key,
 customer_name varchar(30) not null,
 customer_age tinyint check (customer_age<100 and customer_age>10)
 );
-create table order_infor (
+create table `order` (
 order_id int not null auto_increment primary key,
 customer_id int,
 order_date date not null,
@@ -23,5 +23,5 @@ order_id int not null,
 order_qty int not null check (order_qty>0),
 primary key (product_id, order_id),
 foreign key (product_id) references product (product_id),
-foreign key (order_id) references order_infor (order_id)
+foreign key (order_id) references `order` (order_id)
 );
