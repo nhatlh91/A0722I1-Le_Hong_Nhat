@@ -300,39 +300,19 @@ public class FileUtils {
         }
     }
 
-    public static TreeSet<Booking> readBookingFile2() {
-        TreeSet<Booking> bookings = new TreeSet<>(new ContractComparator());
-        try {
-            File file = new File(BOOKING_FILE);
-            if (!file.exists()) {
-                throw new FileNotFoundException();
-            }
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                String[] props = line.split(",");
-                bookings.add(new Booking(props[0], DateUtils.parseLocalDate(props[1]), DateUtils.parseLocalDate(props[2]), props[3], props[4], props[5], DateUtils.parseLocalDate(props[6])));
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bookings;
-    }
-
     public static void writeContractFile(LinkedList<Contract> contracts) {
         try {
-            File file = new File(BOOKING_FILE);
+            File file = new File(CONTRACT_FILE);
             if (!file.exists()) {
                 throw new FileNotFoundException();
             }
-            if (bookings.isEmpty()) {
+            if (contracts.isEmpty()) {
                 return;
             }
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             String temp;
-            for (Booking booking : bookings) {
-                bufferedWriter.write(booking.toFile());
+            for (Contract contract : contracts) {
+                bufferedWriter.write(contract.toFile());
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();

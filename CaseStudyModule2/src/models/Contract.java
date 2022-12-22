@@ -56,4 +56,19 @@ public class Contract {
     public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "contractNo='" + contractNo + '\'' +
+                ", bookingID='" + bookingID + '\'' +
+                ", deposit=" + deposit +
+                ", totalAmount=" + totalAmount +
+                ", customerID='" + customerID + '\'' +
+                '}';
+    }
+
+    public String toFile(){
+        return String.format("%s,%s,%s,%s,%s",contractNo,bookingID,deposit,totalAmount,customerID);
+    }
 }
