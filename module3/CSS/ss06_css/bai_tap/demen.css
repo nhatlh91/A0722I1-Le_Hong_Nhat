@@ -1,0 +1,32 @@
+body{
+    background-color: dimgrey;
+    max-width: 1000px;
+}
+h1{
+    text-align: center;
+    color: lightseagreen;
+    font-family: "Segoe UI";
+}
+h4{
+    text-align: right;
+    color: lightgrey;
+    font-family: "Segoe UI";
+}
+h3{
+    font-size: 120%;
+    font-family: "Segoe UI";
+    text-decoration: underline;
+    color: darkgreen;
+
+}
+h5{
+    font-size: 120%;
+    font-family: Arial;
+    color: saddlebrown;
+}
+p{
+    font-family: Arial;
+}
+.header{
+    font-weight: bold;
+}
