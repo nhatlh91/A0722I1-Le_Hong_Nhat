@@ -1,0 +1,25 @@
+body{
+    max-width: 800px;
+    margin: auto;
+}
+p{
+    font-family: Arial;
+    text-indent: 40px;
+    font-size: 15px;
+    text-align: justify;
+}
+h1{
+    margin: 0;
+}
+h4{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-weight: lighter;
+}
+hr{
+    margin: 0;
+}
+.darkblue{
+    color: darkblue;
+}
