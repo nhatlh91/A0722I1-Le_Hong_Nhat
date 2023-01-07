@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tao layout voi RWD</title>
+    <style>
+        body{
+            font-family: Arial;
+        }
+
+        #header{
+            background-color: black;
+            color: grey;
+            padding: 5px;
+            text-decoration: none;
+            position: sticky;
+        }
+
+        #header ul li{
+            list-style-type: none;
+            display: inline;
+            padding: 8px;
+            margin-bottom: 7px;
+            color: darkgrey;
+        }
+
+        #header li:hover{
+            color: white;
+        }
+
+        #login{
+            position: absolute;
+            right: 5px;
+            bottom: 7px;
+        }
+
+        #left{
+            width: 18%;
+            height: 600px;
+            float: left;
+            text-align: center;
+            background-color: lightgrey;
+        }
+
+        #main{
+            width: 60%;
+            max-height: 600px;
+            float: left;
+            padding: 5px;
+        }
+
+        #right{
+            width: 18%;
+            height: 600px;
+            float: right;
+            text-align: center;
+            background-color: lightgrey;
+        }
+
+        #footer{
+            background-color: grey;
+            color: white;
+            text-align: center;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <ul>
+        <li>Logo</li>
+        <li>Home</li>
+        <li>About</li>
+        <li>Project</li>
+        <li>Contact</li>
+        <li id="login">Login</li>
+    </ul>
+<!--    <span id="logo">Logo</span>-->
+<!--    <span id="home"><a href="tao_layout_voi_RWD.html">Home</a></span>-->
+<!--    <span id="about">About</span>-->
+<!--    <span id="projects">Project</span>-->
+<!--    <span id="contact">Contact</span>-->
+</div>
+
+<div id="left">
+    <p><a href="#">Link</a></p>
+    <p><a href="http://google.com">Link</a></p>
+    <p><a href="http://codegym.vn">Link</a></p>
+
+</div>
+
+<div id="main">
+    <h1>Welcome</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h3>Test</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div id="right">
+    <p>ADS</p>
+    <p>ADS</p>
+</div>
+
+<div id="footer">
+<p>Footer text</p>
+</div>
+</body>
+</html>
