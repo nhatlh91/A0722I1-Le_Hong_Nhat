@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <title>Website xem phim hoat hinh</title>
     <style>
-        img{
+        .thumbnail{
+            max-width: 100%;
+            margin: 20px 10px 0 10px;
+        }
+
+        h4{
+            margin: 0 10px;
+        }
+
+        #logo {
             max-width: 5%;
             margin-left: 5px;
         }
@@ -20,7 +29,6 @@
 
         .container > div{
             font-family: Tahoma;
-            border: black solid 1px;
         }
 
         .container{
@@ -68,7 +76,7 @@
 <body>
 <div class="container">
     <div id="header">
-           <img src="cartoons.png">
+           <img id="logo" src="cartoons.png">
     </div>
     <div id="link">
         <span class="upperlink"><a href="list">Phim hoat hinh</a></span> |
@@ -77,7 +85,14 @@
         <span class="upperlink"><a href="feedback">Gop y</a></span>
     </div>
     <div id="left">
-        Video links
+        <a href="https://youtu.be/fNlBvIEn9tk"><img class="thumbnail" src="pix1.jpg"></a>
+        <a href="https://youtu.be/fNlBvIEn9tk"><h4>Nobita và nước Nhật thời tiền sử</h4></a>
+        <a href="https://youtu.be/1if0YLK2myk"><img class="thumbnail" src="pix2.jpg"></a>
+        <a href="https://youtu.be/1if0YLK2myk"><h4>Nobita và lịch sử khai phá vũ trụ</h4></a>
+        <a href="https://youtu.be/fNlBvIEn9tk"><img class="thumbnail" src="pix1.jpg"></a>
+        <a href="https://youtu.be/fNlBvIEn9tk"><h4>Nobita và nước Nhật thời tiền sử</h4></a>
+        <a href="https://youtu.be/1if0YLK2myk"><img class="thumbnail" src="pix2.jpg"></a>
+        <a href="https://youtu.be/1if0YLK2myk"><h4>Nobita và lịch sử khai phá vũ trụ</h4></a>
     </div>
     <div id="main">
         <div id="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/fNlBvIEn9tk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
