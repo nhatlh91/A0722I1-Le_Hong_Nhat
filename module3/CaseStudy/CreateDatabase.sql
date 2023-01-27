@@ -34,7 +34,6 @@ values ('Sale-Marketing'),
 		('Quản lý');
         
 -- Khởi tạo dữ liệu cho table nhân viên
-drop table nhan_vien;
 create table nhan_vien (
 ma_nhan_vien tinyint primary key auto_increment,
 ho_ten varchar(50),
@@ -145,16 +144,6 @@ values 	('Villa Beach Front',25000,10000000,10,'VIP','Có hồ bơi',500,4,3,1),
 		('House Princess 02',10000,4000000,5,'NORMAL','Có thêm bếp nướng',default,2,3,2),
 		('Room Twin 02',3000,900000,2,'NORMAL','Có tivi',default,default,4,3);
 
--- Khởi tạo dữ liệu cho table loại dịch vụ
-create table loai_dich_vu (
-ma_loai_dich_vu tinyint primary key auto_increment,
-ten_loai_dich_vu varchar(10)
-);
-insert into loai_dich_vu (ten_loai_dich_vu)
-values ('Villa'),
-		('House'),
-		('Room');
-        
 -- Khởi tạo dữ liệu cho table dịch vụ đi kèm
 create table dich_vu_di_kem (
 ma_dich_vu_di_kem tinyint primary key auto_increment,
