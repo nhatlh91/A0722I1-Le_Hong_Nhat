@@ -54,4 +54,15 @@ public class ProductRepository implements IProductRepository {
         }
         return productList.get(idx);
     }
+
+    @Override
+    public List<Product> searchbyName(String name) {
+        List<Product> result = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())){
+                result.add(product);
+            }
+        }
+        return result;
+    }
 }

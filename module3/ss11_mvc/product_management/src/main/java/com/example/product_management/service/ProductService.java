@@ -32,4 +32,9 @@ public class ProductService implements IProductService{
     public Product view(int id) {
         return repository.view(id);
     }
+
+    @Override
+    public List<Product> searchbyName(String name) {
+        return repository.searchbyName(name);
+    }
 }

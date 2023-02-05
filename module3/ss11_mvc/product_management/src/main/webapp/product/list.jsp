@@ -6,6 +6,12 @@
 </head>
 <body>
 <h1>Product List:</h1>
+<p>
+    <a href="/product/create.jsp">Add a new product</a>
+</p>
+<p>
+    <a href="/product/search.jsp">Search</a>
+</p>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -28,9 +34,6 @@
         </tr>
     </c:forEach>
 </table>
-<p>
-    <a href="/product/create.jsp">Add a new product</a>
-</p>
 
 </body>
 </html>
