@@ -11,6 +11,11 @@
     <h2>
         <a href="/users?action=create">Add New User</a>
     </h2>
+    <form action="/users" method="post">
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="country" placeholder="Search by country">
+        <input type="submit" value="Search">
+    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">

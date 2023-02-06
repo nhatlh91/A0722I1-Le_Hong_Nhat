@@ -82,7 +82,6 @@ public class UserRepository implements IUserRepository{
     }
     @Override
     public List<User> selectAllUsers() {
-
         // using try-with-resources to avoid closing resources (boiler plate code)
         List<User> users = new ArrayList<>();
         // Step 1: Establishing a Connection
@@ -107,6 +106,7 @@ public class UserRepository implements IUserRepository{
         }
         return users;
     }
+
     @Override
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;

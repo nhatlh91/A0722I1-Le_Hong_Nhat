@@ -5,6 +5,8 @@ import com.example.user_management.repository.UserRepository;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,10 +36,29 @@ public class UserServlet extends HttpServlet {
                 case "edit":
                     updateUser(request, response);
                     break;
+                case "search":
+                    search(request, response);
+                    break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String country = request.getParameter("country");
+        List<User> result = new ArrayList<>();
+        List<User> users = userRepository.selectAllUsers();
+        for (User user : users) {
+            if (user.getCountry().toLowerCase().contains(country.toLowerCase())) {
+                result.add(user);
+            }
+        }
+
+        Collections.sort(result);
+        request.setAttribute("listUser", result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        dispatcher.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -70,6 +91,7 @@ public class UserServlet extends HttpServlet {
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<User> listUser = userRepository.selectAllUsers();
+        Collections.sort(listUser);
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
@@ -109,8 +131,7 @@ public class UserServlet extends HttpServlet {
 
         User book = new User(id, name, email, country);
         userRepository.updateUser(book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/users");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
