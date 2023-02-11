@@ -1,6 +1,6 @@
 package com.example.product_management.service;
 
-import com.example.product_management.Product;
+import com.example.product_management.models.Product;
 
 import java.util.List;
 

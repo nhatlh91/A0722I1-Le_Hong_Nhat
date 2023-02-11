@@ -1,6 +1,6 @@
 package com.example.product_management.controller;
 
-import com.example.product_management.Product;
+import com.example.product_management.models.Product;
 import com.example.product_management.service.IProductService;
 import com.example.product_management.service.ProductService;
 

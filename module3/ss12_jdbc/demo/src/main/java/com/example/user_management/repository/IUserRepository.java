@@ -12,7 +12,13 @@ public interface IUserRepository {
 
     public List<User> selectAllUsers();
 
-    public boolean deleteUser(int id) throws SQLException;
+    public void deleteUser(int id);
 
-    public boolean updateUser(User user) throws SQLException;
+    public void updateUser(User user);
+
+    User getUserById(int id);
+
+    void insertUserStore(User user) throws SQLException;
+
+    void addUserTransaction(User user, int[] permisions);
 }
