@@ -1,10 +1,13 @@
 package com.example.case_study.utils;
 
-        import java.time.LocalDate;
-        import java.time.Period;
-        import java.time.format.DateTimeFormatter;
-        import java.time.format.DateTimeParseException;
-        import java.util.Scanner;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
 public class DateUtil implements Pattern{
     private static Scanner sc = new Scanner(System.in);
@@ -48,8 +51,21 @@ public class DateUtil implements Pattern{
         return date;
     }
 
-    public static LocalDate parseLocalDate(String input){
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(input, dateFormat);
+    public static Date parseDate(String input){
+        Date date = null;
+//        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(input);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static String parseString(Date date) {
+        String result = "";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        result = formatter.format(date);
+        return result;
     }
 }

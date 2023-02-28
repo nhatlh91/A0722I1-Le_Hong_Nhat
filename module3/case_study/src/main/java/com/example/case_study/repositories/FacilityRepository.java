@@ -288,4 +288,57 @@ public class FacilityRepository implements IFacilityRepository {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Facility> findByName(String keyword) {
+        List<Facility> facilities = new ArrayList<>();
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        String pattern = "%"+keyword+"%";
+        if (connection!=null) {
+            try {
+                statement = connection.prepareStatement("SELECT * FROM service WHERE service_name like ?");
+                statement.setString(1,pattern);
+                resultSet = statement.executeQuery();
+                System.out.println(statement);
+                while (resultSet.next()) {
+                    int service_id = resultSet.getInt("service_id");
+                    int service_type_id = resultSet.getInt("service_type_id");
+                    String service_name = resultSet.getString("service_name");
+                    int service_area = resultSet.getInt("service_area");
+                    double service_cost = resultSet.getDouble("service_cost");
+                    int service_max_people = resultSet.getInt("service_max_people");
+                    int rent_type_id = resultSet.getInt("rent_type_id");
+                    String room_standard;
+                    String description_other_convenience;
+                    double pool_area;
+                    int number_of_floors;
+                    switch (service_type_id) {
+                        case 1:
+                            room_standard = resultSet.getString("standard_room");
+                            description_other_convenience = resultSet.getString("description_other_convenience");
+                            pool_area = resultSet.getDouble("pool_area");
+                            number_of_floors = resultSet.getInt("number_of_floors");
+                            facilities.add(new Villa(service_id, service_name,service_area,service_cost,service_max_people,rent_type_id,service_type_id,room_standard,
+                                    description_other_convenience, pool_area, number_of_floors));
+                            break;
+                        case 2:
+                            room_standard = resultSet.getString("standard_room");
+                            description_other_convenience = resultSet.getString("description_other_convenience");
+                            number_of_floors = resultSet.getInt("number_of_floors");
+                            facilities.add(new House(service_id, service_name,service_area,service_cost,service_max_people,rent_type_id,service_type_id,room_standard,
+                                    description_other_convenience, number_of_floors));
+                            break;
+                        case 3:
+                            facilities.add(new Room(service_id, service_name,service_area,service_cost,service_max_people,rent_type_id,service_type_id));
+                            break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return facilities;
+    }
 }

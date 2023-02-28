@@ -26,8 +26,15 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Employee</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Employees
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/employees">List of employee</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/employee/create.jsp">Add new employee</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Customer</a>
@@ -50,8 +57,9 @@
                 <a class="nav-link" href="#">Contact</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form method="get" action="/services" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+            <input type="hidden" name="action" value="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -62,7 +70,9 @@
             <button type="button" class="list-group-item list-group-item-action active" aria-current="true">Home
             </button>
         </a>
+        <a href="/employees">
         <button type="button" class="list-group-item list-group-item-action">Employee management</button>
+        </a>
         <button type="button" class="list-group-item list-group-item-action">Customer management</button>
         <a href="/services">
             <button type="button" class="list-group-item list-group-item-action">Service management</button>

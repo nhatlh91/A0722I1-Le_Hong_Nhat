@@ -5,7 +5,6 @@ import com.example.case_study.services.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -36,9 +35,50 @@ public class ServiceServlet extends HttpServlet {
             case "delete":
                 deleteServiceById(request, response);
                 break;
+            case "search":
+                search(request, response);
+                break;
             default:
                 showAllService(request, response);
                 break;
+        }
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String keyword = request.getParameter("keyword");
+        List<Villa> villas = new ArrayList<>();
+        List<House> houses = new ArrayList<>();
+        List<Room> rooms = new ArrayList<>();
+        List<Facility> facilities = facilityService.findByName(keyword);
+        for (Facility facility : facilities) {
+            if (facility.getService_type_id()==1){
+                villas.add((Villa) facility);
+            } else if (facility.getService_type_id()==2) {
+                houses.add((House) facility);
+            } else {
+                rooms.add((Room) facility);
+            }
+        }
+        if (villas.size()!=0){
+            Collections.sort(villas);
+            request.setAttribute("villas", villas);
+        }
+        if (houses.size()!=0){
+            Collections.sort(houses);
+            request.setAttribute("houses", houses);
+        }
+        if (rooms.size()!=0){
+            Collections.sort(rooms);
+            request.setAttribute("rooms", rooms);
+        }
+        System.out.println("Got the data");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/service/list.jsp");
+        try {
+            dispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -124,9 +164,6 @@ public class ServiceServlet extends HttpServlet {
             case "create":
                 createService(request, response);
                 break;
-            case "delete":
-                showDeleteForm(request, response);
-                break;
             case "edit":
                 editService(request, response);
                 break;
@@ -179,10 +216,6 @@ public class ServiceServlet extends HttpServlet {
         }
     }
 
-    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        facilityService.findById(id);
-    }
 
     private void createService(HttpServletRequest request, HttpServletResponse response) {
         int service_type_id = Integer.parseInt(request.getParameter("service_type"));

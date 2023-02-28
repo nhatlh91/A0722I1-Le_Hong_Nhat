@@ -15,4 +15,5 @@ public interface IFacilityRepository {
     void addRoom(Room room);
     void deleteFacility(int service_id);
     void editService(Facility facility);
+    List<Facility> findByName(String keyword);
 }

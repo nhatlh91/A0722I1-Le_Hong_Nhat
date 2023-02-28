@@ -2,7 +2,7 @@ package com.example.case_study.models.person;
 
 import java.util.Date;
 
-public class Employee extends Person{
+public class Employee extends Person implements Comparable<Employee>{
     int employee_id;
     double salary;
     int position_id;
@@ -13,7 +13,7 @@ public class Employee extends Person{
     public Employee() {
     }
 
-    public Employee(String name, Date birthday, String id_card, String phone, String email, String address, int employee_id, double salary, int position_id, int education_degree_id, int division_id, String username) {
+    public Employee(int employee_id, String name, Date birthday, String id_card, String phone, String email, String address, double salary, int position_id, int education_degree_id, int division_id, String username) {
         super(name, birthday, id_card, phone, email, address);
         this.employee_id = employee_id;
         this.salary = salary;
@@ -80,4 +80,26 @@ public class Employee extends Person{
         this.username = username;
     }
 
+    @Override
+    public int compareTo(Employee o) {
+        return this.employee_id - o.employee_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employee_id=" + employee_id +
+                ", salary=" + salary +
+                ", position_id=" + position_id +
+                ", education_degree_id=" + education_degree_id +
+                ", division_id=" + division_id +
+                ", username='" + username +
+                ", name='" + name +
+                ", birthday=" + birthday +
+                ", id_card='" + id_card +
+                ", phone='" + phone +
+                ", email='" + email +
+                ", address='" + address +
+                '}';
+    }
 }

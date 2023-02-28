@@ -18,6 +18,11 @@ public class FacilityService implements IFacilityService{
     }
 
     @Override
+    public List<Facility> findByName(String keyword) {
+        return facilityRepository.findByName(keyword);
+    }
+
+    @Override
     public void addFacility(Facility facility) {
         if (facility.getService_type_id() == 1) {
             facilityRepository.addVilla((Villa) facility);

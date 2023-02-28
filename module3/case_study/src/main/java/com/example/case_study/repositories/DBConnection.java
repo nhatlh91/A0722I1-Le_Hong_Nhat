@@ -21,14 +21,4 @@ public class DBConnection {
         }
         return connection;
     }
-
-    public static void close(){
-        try {
-            if(connection != null){
-                connection.close();
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 }
