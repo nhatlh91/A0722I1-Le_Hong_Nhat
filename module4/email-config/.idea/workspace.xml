@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/email/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../heath-declare" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -146,7 +146,8 @@
       <option name="presentableId" value="Default" />
       <updated>1678542232092</updated>
       <workItem from="1678542233738" duration="3349000" />
-      <workItem from="1678545796111" duration="3241000" />
+      <workItem from="1678545796111" duration="3388000" />
+      <workItem from="1678585440778" duration="58000" />
     </task>
     <servers />
   </component>
