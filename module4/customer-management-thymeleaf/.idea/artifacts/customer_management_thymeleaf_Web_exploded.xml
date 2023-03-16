@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="customer-management-thymeleaf:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/customer_management_thymeleaf_Web_exploded</output-path>
+    <root id="root" />
+  </artifact>
+</component>

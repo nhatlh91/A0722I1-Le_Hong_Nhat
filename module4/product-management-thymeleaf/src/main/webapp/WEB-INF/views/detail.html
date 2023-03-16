@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Product detail</h3>
+<form th:action="@{/product/create}" method="post" th:object="${product}">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th><input type="number" th:field="*{id}" readonly/></th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th><input type="text" th:field="*{name}" readonly/></th>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <th><input type="number" th:field="*{price}" readonly/></th>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <th><input type="text" th:field="*{description}" readonly/></th>
+    </tr>
+    <tr>
+      <th>Manufacturer</th>
+      <th><input type="text" th:field="*{manufacturer}" readonly/></th>
+    </tr>
+    <tr>
+      <th><a th:href="@{/product/{id}/edit(id=${product.getId()})}">Edit</a></th>
+      <th><a th:href="@{/product/{id}/delete(id=${product.getId()})}">Delete</a></th>
+    </tr>
+  </table>
+</form>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

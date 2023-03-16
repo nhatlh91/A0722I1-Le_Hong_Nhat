@@ -17,7 +17,6 @@ public class DeclareController {
 
     @Autowired
     private DeclareRepo repo;
-
     public String[] nationals = new String[]{"Việt Nam","Trung Quốc", "Hàn Quốc", "Mỹ", "Nhật Bản", "Thái Lan", "Lào", "Campuchia"};
 
     @GetMapping("home")
