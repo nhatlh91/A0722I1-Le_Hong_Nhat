@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Tracklist</h3>
+
+<a th:href="@{/songs/create}">
+  <button>Add new song</button>
+</a>
+
+
+<table id = "songs" border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Gender</th>
+    <th>URL</th>
+    <th colspan="2">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="row,rowStat : ${songList}">
+    <td th:text="${row.getId()}"></td>
+    <td th:text="${row.getName()}"></td>
+    <td th:text="${row.getArtist()}"></td>
+    <td th:text="${row.getType()}"></td>
+    <td th:text="${row.getUrl()}"></td>
+    <td>
+      <a th:href="@{/songs/{id}/edit(id=${row.getId()})}">
+        <button>Edit</button>
+      </a>
+    </td>
+    <td>
+      <a th:href="@{/songs/{id}/delete(id=${row.getId()})}">
+        <button>
+        Delete
+        </button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+      <h4 th:if="${message!=null}" th:text="${message}"></h4>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

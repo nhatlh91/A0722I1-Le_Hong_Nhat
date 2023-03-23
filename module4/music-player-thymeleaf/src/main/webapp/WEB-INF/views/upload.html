@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head">-->
+<head>
+</head>
+<body>
+<h3>Upload myFile</h3>
+<a th:href="@{/songs}">
+    <button>Back to list</button>
+</a>
+<form th:action="@{/songs/upload}" method="post" th:object="${myFile}" enctype="multipart/form-data">
+    <fieldset>
+        <legend>File upload:</legend>
+            File: <input type="file" th:field = "*{multipartFile}" /> <br /> <br/>
+            Description: <input type="text" th:field = "*{description}"/> <br />
+            <input type="submit" value="Submit" />
+    </fieldset>
+</form>
+<!--<footer th:replace="/layout :: footer"></footer>-->
+</body>
+</html>
