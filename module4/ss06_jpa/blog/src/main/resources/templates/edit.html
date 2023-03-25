@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Edit the content')}">
+</head>
+<body class="col-md-12">
+<form th:action="@{/save}" method="post" th:object="${blog}">
+    <fieldset>
+        <legend>Edit the content:</legend>
+        <table>
+            <tr>
+                <th>Content:</th>
+                <td><textarea th:field="*{content}" rows="4" cols="150" maxlength="250" autofocus></textarea></td>
+            </tr>
+            <tr>
+                <th>Summary:</th>
+                <td><textarea th:field="*{summary}" rows="1" cols="150" maxlength="20"></textarea></td>
+            </tr>
+            <tr>
+                <th>Author:</th>
+                <td><input th:field="*{author}" type="text" maxlength="20"/></td>
+            </tr>
+        </table>
+        <input type="hidden" th:field="*{id}">
+        <input th:field="*{dateOfCreate}" type="date" id="date-form" hidden/>
+        <br>
+        <input class="btn btn-outline-primary" type="submit" value="Submit"/>
+    </fieldset>
+</form>
+<script>
+    document.getElementById("date-form").valueAsDate=new Date();
+</script>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>

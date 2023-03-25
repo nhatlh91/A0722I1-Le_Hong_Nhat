@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Create a blog')}">
+</head>
+<body class="col-md-12">
+<form th:action="@{/create}" method="post" th:object="${blog}">
+    <fieldset>
+        <legend>Write your log here:</legend>
+        <table>
+            <tr>
+                <th>Content:</th>
+                <td><textarea th:field="*{content}" rows="4" cols="150" maxlength="250" autofocus></textarea></td>
+            </tr>
+            <tr>
+                <th>Summary:</th>
+                <td><textarea th:field="*{summary}" rows="1" cols="150" maxlength="20"></textarea></td>
+            </tr>
+            <tr>
+                <th>Author:</th>
+                <td><input th:field="*{author}" type="text" maxlength="20"/></td>
+            </tr>
+        </table>
+        <input th:field="*{dateOfCreate}" type="date" id="date-form" hidden/>
+        <input class="btn btn-outline-success" type="submit" value="Submit"/>
+    </fieldset>
+</form>
+<script>
+    document.getElementById("date-form").valueAsDate=new Date();
+</script>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>

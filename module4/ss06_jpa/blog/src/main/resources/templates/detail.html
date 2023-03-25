@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('View a blog')}">
+</head>
+<body class="col-md-12">
+<h3>Full content of the blog:</h3>
+<div>
+    <textarea th:object="${blog}" th:field="*{content}" rows="4" cols="150" readonly></textarea>
+    <br/>
+    <a th:href="@{/}" role="button" class="btn btn-outline-primary">
+        <h5>Back to list</h5>
+    </a>
+    <a th:href="@{/{id}/edit(id=${blog.id})}" role="button" class="btn btn-outline-warning">
+        <h5>Edit</h5>
+    </a>
+    <a th:href="@{/{id}/delete(id=${blog.id})}" role="button" class="btn btn-outline-danger">
+        <h5>Delete</h5>
+    </a>
+</div>
+
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>
