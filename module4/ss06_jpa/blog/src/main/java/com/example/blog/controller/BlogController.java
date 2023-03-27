@@ -3,12 +3,12 @@ package com.example.blog.controller;
 import com.example.blog.model.Blog;
 import com.example.blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -17,8 +17,8 @@ public class BlogController {
     IBlogService service;
 
     @GetMapping("")
-    public String showList(Model model){
-        List<Blog> blogs = new ArrayList<>(service.findAll());
+    public String showList(Model model, Pageable pageable){
+        Page<Blog> blogs = service.findAll(pageable);
         model.addAttribute("blogs",blogs);
         return "/index";
     }
@@ -31,7 +31,7 @@ public class BlogController {
 
     @PostMapping("/create")
     public String save(@ModelAttribute("blog") Blog blog){
-        if (blog.getSummary()==null) {
+        if (blog.getSummary().equals("")) {
             blog.setSummary(blog.getContent().substring(0, 20) + "...");
         }
         service.create(blog);
