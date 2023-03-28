@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Create a blog')}">
+</head>
+<body class="col-md-12">
+<form th:action="@{/blog/create}" method="post" th:object="${blog}">
+    <fieldset>
+        <legend>Write your log here:</legend>
+        <table>
+            <tr>
+                <th>Tiêu đề:</th>
+                <td><textarea th:field="*{title}" rows="1" cols="150" maxlength="50"></textarea></td>
+            </tr>
+            <tr>
+                <th>Nội dung:</th>
+                <td><textarea th:field="*{content}" rows="4" cols="150" maxlength="10000" autofocus></textarea></td>
+            </tr>
+            <tr>
+                <th>Tác giả:</th>
+                <td><input th:field="*{author}" type="text" maxlength="20"/></td>
+            </tr>
+            <tr>
+                <th>Danh mục:</th>
+                <td>
+                    <select th:field="*{category}" class="form-control" tabindex="4">
+                        <option th:each="category : ${categories}"
+                                th:value="${category.categoryId}"
+                                th:text="${category.categoryName}"
+                                />
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input th:field="*{dateOfCreate}" type="date" id="date-form" hidden/>
+        <input class="btn btn-outline-success" type="submit" value="Submit"/>
+    </fieldset>
+</form>
+<script>
+    document.getElementById("date-form").valueAsDate=new Date();
+</script>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>

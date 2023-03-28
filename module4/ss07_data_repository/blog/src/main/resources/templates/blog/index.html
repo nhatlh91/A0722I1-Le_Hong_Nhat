@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Danh sách các bài viết')}">
+</head>
+<body class="col-md-12">
+<div>
+    <a th:href="@{/blog/create}" role="button" class="btn btn-outline-primary">
+        <h4>Viết bài mới</h4>
+    </a>
+    <a th:href="@{/category}" role="button" class="btn btn-outline-primary">
+        <h4>Quản lý danh mục</h4>
+    </a>
+</div>
+<br/>
+<div>
+    <form class="form-inline" th:action="@{/blog/search}">
+        <input th:name="keyword" type="text" placeholder="Tìm kiếm theo tiêu đề bài viết">
+        <input type="submit" value="Tìm kiếm">
+    </form>
+</div>
+<h3>Danh sách bài viết:</h3>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Tiêu đề</th>
+        <th>Tác giả</th>
+        <th>Danh mục</th>
+        <th>Ngày tạo/chỉnh sửa</th>
+        <th colspan="3">Hành động</th>
+    </tr>
+    <tr th:each="blog: ${blogs}" th:object="${blog}">
+        <td th:text="*{id}"></td>
+        <td><a th:href="@{/blog/{id}/detail(id=*{id})}"><span th:text="*{title}"></span></a></td>
+        <td><a th:href="@{/blog/{author}/search(author=*{author})}"><span th:text="*{author}"></span></a></td>
+        <td th:text="*{category.categoryName}"></td>
+        <td th:text="*{dateOfCreate}"></td>
+        <td><a th:href="@{/blog/{id}/detail(id=*{id})}" role="button" class="btn btn-outline-primary">Xem</a></td>
+        <td><a th:href="@{/blog/{id}/edit(id=*{id})}" role="button" class="btn btn-outline-warning">Sửa</a></td>
+        <td><a th:href="@{/blog/{id}/delete(id=*{id})}" role="button" class="btn btn-outline-danger">Xoá</a></td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{'/'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('List of category')}">
+</head>
+<body class="col-md-12">
+<a th:href="@{/category/create}" role="button" class="btn btn-outline-primary">
+    <h4>Tạo danh mục mới</h4>
+</a>
+<a th:href="@{/blog}" role="button" class="btn btn-outline-primary">
+    <h4>Quản lý bài đăng</h4>
+</a>
+<h4>Danh sách các danh mục:</h4>
+<table class="table table-bordered">
+    <tr>
+        <th>ID:</th>
+        <th>Tên danh mục:</th>
+        <th colspan="3">Hành động</th>
+    </tr>
+    <tr th:each="category: ${categories}" th:object="${category}">
+        <td th:text="*{categoryId}"></td>
+        <td><a th:href="@{/category/{id}/detail(id=*{categoryId})}"><span th:text="*{categoryName}"></span></a></td>
+        <td><a th:href="@{/category/{id}/detail(id=*{categoryId})}" role="button" class="btn btn-outline-primary">Xem các bài viết</a></td>
+        <td><a th:href="@{/category/{id}/edit(id=*{categoryId})}" role="button" class="btn btn-outline-warning">Chỉnh sửa danh mục</a></td>
+        <td><a th:href="@{/category/{id}/delete(id=*{categoryId})}" role="button" class="btn btn-outline-danger">Xoá danh mục</a></td>
+    </tr>
+</table>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>

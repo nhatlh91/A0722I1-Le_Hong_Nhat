@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Xem bài viết')}">
+</head>
+<body class="col-md-12">
+<h4>Bài viết thuộc danh mục: <span style="color: brown" th:text="${blog.category.categoryName}"></span></h4>
+<h4 th:text="${blog.title}"></h4>
+<div>
+    <p th:text="${blog.content}"></p>
+    <a th:href="@{/blog}" role="button" class="btn btn-outline-primary">
+        <h5>Quay lại danh sách</h5>
+    </a>
+    <a th:href="@{/blog/{id}/edit(id=${blog.id})}" role="button" class="btn btn-outline-warning">
+        <h5>Chỉnh sửa bài viết</h5>
+    </a>
+    <a th:href="@{/blog/{id}/delete(id=${blog.id})}" role="button" class="btn btn-outline-danger">
+        <h5>Xoá bài viết</h5>
+    </a>
+</div>
+
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>
