@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div>
+    <a th:href="@{pictures/}">Picture for today</a>
+</div>
+<div>
+    <h3>List of picture:</h3>
+    <table>
+        <tr>
+            <th>PictureID</th>
+            <th>Picture</th>
+            <th>View comments</th>
+        </tr>
+        <tr th:each="picture:${pictures}">
+            <td th:text="${picture.getPixId()}"></td>
+            <td><img th:src="${picture.getUrl()}" th:alt="${picture.getUrl()}"/></td>
+            <td th:text="Writing function"></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</script>
+</body>
+</html>
