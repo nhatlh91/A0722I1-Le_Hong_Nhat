@@ -39,4 +39,11 @@ public class SongServiceImpl implements SongService{
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public void deleteAll(Long[] ids) {
+        for(Long id: ids){
+            delete(id);
+        }
+    }
 }

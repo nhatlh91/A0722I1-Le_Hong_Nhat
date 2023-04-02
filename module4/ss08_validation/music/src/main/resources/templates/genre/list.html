@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre management</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h3>Genre list:</h3>
+
+<a th:href="@{/genres/create}">
+    <button>Add new one</button>
+</a>
+<br/>
+<br/>
+<div>
+    <form th:action="@{/genres/deleteAll}" method="post">
+        <table border="1">
+            <thead>
+            <tr>
+                <th colspan="2">ID</th>
+                <th>Genre</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="genre:${genres}" th:object="${genre}">
+                <td><input type="checkbox" th:value="*{genreId}" name="ids"></td>
+                <td th:text="*{genreId}"></td>
+                <td th:text="*{genreName}"></td>
+                <td>pending function</td>
+                <td>
+                    <button>
+                        <a th:href="@{/genres/edit/{id}(id=*{getGenreId()})}">
+                            Edit
+                        </a>
+                    </button>
+                    <button>
+                        <a th:href="@{/genres/delete/{id}(id=*{getGenreId()})}">
+                            Delete
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <input type="submit" value="Delete selected">
+    </form>
+</div>
+<br/>
+</body>
+</html>

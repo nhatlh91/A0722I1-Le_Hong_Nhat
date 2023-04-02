@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new genre</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/genres/save}" th:object="${genre}" method="post">
+        <fieldset>
+            <legend>Genre information:</legend>
+            <input th:field="*{genreId}" type="hidden">
+            <label for="name">Name:</label>
+            <input id="name" th:field="*{genreName}" type="text" autofocus>
+            <span th:if="${#fields.hasErrors('genreName')}" th:errors="*{genreName}"></span>
+            <br/><br/>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

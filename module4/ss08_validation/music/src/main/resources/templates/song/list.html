@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of songs</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h3>Song list:</h3>
+
+<a th:href="@{/songs/create}">
+    <button>Add a new song</button>
+</a>
+<br/>
+<br/>
+<div>
+    <form th:action="@{/songs/deleteAll}" method="post">
+        <table border="1">
+            <thead>
+            <tr>
+                <th colspan="2">ID</th>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="song:${songs}" th:object="${song}">
+                <td><input type="checkbox" th:value="*{id}" name="ids"></td>
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{artist}"></td>
+                <td th:text="*{genre.genreName}"></td>
+                <td>
+                    <button>
+                        <a th:href="@{/songs/edit/{id}(id=*{id})}">
+                            Edit
+                        </a>
+                    </button>
+                    <button>
+                        <a th:href="@{/songs/view/{id}(id=*{id})}">
+                            View
+                        </a>
+                    </button>
+                    <button>
+                        <a th:href="@{/songs/delete/{id}(id=*{id})}">
+                            Delete
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <input type="submit" value="Delete selected">
+    </form>
+</div>
+<br/>
+<div>
+    <a th:href="@{'/songs/list'(page=${songs.number - 1})}" th:if="${songs.hasPrevious()}"><button>Previous</button></a>
+    <span th:text="${songs.number + 1}"></span>/<span th:text="${songs.totalPages}"></span>
+    <a th:href="@{'/songs/list'(page=${songs.number + 1})}" th:if="${songs.hasNext()}"><button>Next</button></a>
+</div>
+</body>
+</html>

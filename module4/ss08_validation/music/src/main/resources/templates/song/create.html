@@ -19,8 +19,12 @@
             <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></span>
             <br/><br/>
             <label for="genre">Genre:</label>
-            <input id="genre" th:field="*{genre}" type="text">
-            <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span>
+            <select th:field="*{genre}" class="form-control" tabindex="3" id="genre">
+                <option value=""></option>
+                <option th:each="g : ${genres}"
+                        th:value="${g.genreId}"
+                        th:text="${g.genreName}"/>
+            </select>
             <br/><br/>
             <input type="reset" value="Reset">
             <input type="submit" value="Submit">
