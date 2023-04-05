@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:object="${todo}" method="post" action="/create">
+<fieldset>
+    <legend>Task information:</legend>
+    <input type="text" th:field="*{title}">
+    <input type="text" th:field="*{detail}">
+    <button type="submit">Save</button>
+</fieldset>
+</form>
+</body>
+</html>

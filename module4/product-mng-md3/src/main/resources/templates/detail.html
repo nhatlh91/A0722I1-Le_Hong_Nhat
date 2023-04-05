@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head-fragment}">
+    <meta charset="UTF-8">
+    <title>Create a new product</title>
+</head>
+<body>
+<div>
+    <h3>Thông tin chi tiết sản phẩm:</h3>
+    <table th:object="${product}">
+        <tr>
+            <th>Nhãn hiệu:</th>
+            <td th:text="*{brand.brandName}"></td>
+        </tr>
+        <tr>
+            <th>Mã sản phẩm:</th>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <th>Giá:</th>
+            <td th:text="*{price}"></td>
+        </tr>
+        <tr>
+            <th>So lượng:</th>
+            <td th:text="*{quantity}"></td>
+        </tr>
+        <tr>
+            <th>Màu sắc:</th>
+            <td th:text="*{color}"></td>
+        </tr>
+        <tr>
+            <th>Mô tả:</th>
+            <td th:text="*{detail}"></td>
+        </tr>
+        <tr>
+            <th>Danh mục:</th>
+            <td th:text="*{category.categoryName}"></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/edit(id=*{id})}" role="button" class="btn btn-warning">Edit</a></td>
+            <td><a th:href="@{/delete(id=*{id})}" role="button" class="btn btn-danger">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<div th:replace="~{layout :: script-fragment}"></div>
+</body>
+</html>

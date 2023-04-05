@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "~{layout :: head-fragment}">
+    <meta charset="UTF-8">
+    <title>List of product</title>
+</head>
+<body>
+<div th:if="${message!=null}" th:text="${message}" class="alert alert-success"></div>
+<div>
+<a th:href="@{/create}" class="btn btn-primary" role="button">Thêm mới</a>
+</div>
+<br/>
+<div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Hãng</th>
+            <th>Loại</th>
+            <th>Giá tiền</th>
+            <th>Số lượng</th>
+            <th>Màu sắc</th>
+            <th>Mô tả</th>
+            <th>Danh mục</th>
+            <th>Tương tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, stat:${productList}" th:object="${product}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="*{brand.brandName}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{price}"></td>
+            <td th:text="*{quantity}"></td>
+            <td th:text="*{color}"></td>
+            <td th:text="*{detail}"></td>
+            <td th:text="*{category.categoryName}"></td>
+            <td>
+                <a th:href="@{/detail/{id}(id=*{id})}" role="button" class="btn btn-primary">Chi tiết</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace = "~{layout :: script-fragment}"></div>
+</body>
+</html>

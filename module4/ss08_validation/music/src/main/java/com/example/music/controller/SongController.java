@@ -1,7 +1,6 @@
 package com.example.music.controller;
 
-import com.example.music.model.Genre;
-import com.example.music.model.Song;
+import com.example.music.model.*;
 import com.example.music.service.GenreService;
 import com.example.music.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;

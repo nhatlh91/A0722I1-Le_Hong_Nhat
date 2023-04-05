@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+<a th:href="@{/create}">Add new task</a>
+<ul>
+    <li th:each="todo:${todoList}" th:object="${todo}">
+        <span th:text="*{title}"/> -- <span th:text="*{detail}"/>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head-fragment}">
+    <meta charset="UTF-8">
+    <title>Create a new product</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/create}" th:object="${requestForm}" method="post">
+        <fieldset>
+            <legend>Thông tin sản phẩm:</legend>
+            <table>
+                <tr>
+                    <th><label for="id">ID:</label></th>
+                    <td><input id="id" th:field="*{id}" readonly placeholder="ID sẽ được khởi tạo tự động"></td>
+                </tr>
+                <tr>
+                    <th><label for="brand">Nhãn hiệu:</label></th>
+                    <td>
+                        <input id="brand" th:field="*{brandName}" type="text" tabindex="1" autofocus>
+                        <span th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="name">Mã sản phẩm:</label></th>
+                    <td>
+                        <input id="name" th:field="*{productName}" type="text" tabindex="2">
+                        <span th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="price">Giá:</label></th>
+                    <td>
+                        <input id="price" th:field="*{productPrice}" type="number" tabindex="3">
+                        <span th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="quantity">Số lượng:</label></th>
+                    <td>
+                        <input id="quantity" th:field="*{productQuantity}" type="number" tabindex="4">
+                        <span th:if="${#fields.hasErrors('productQuantity')}" th:errors="*{productQuantity}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="color">Màu sắc:</label></th>
+                    <td>
+                        <input id="color" th:field="*{productColor}" type="text" tabindex="5">
+                        <span th:if="${#fields.hasErrors('productColor')}" th:errors="*{productColor}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="detail">Chi tiết:</label></th>
+                    <td>
+                        <input id="detail" th:field="*{productDetail}" type="text" tabindex="6">
+                        <span th:if="${#fields.hasErrors('productDetail')}" th:errors="*{productDetail}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="category">Danh mục:</label></th>
+                    <td>
+                        <input id="category" th:field="*{categoryName}" type="text" tabindex="7">
+                        <span th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="~{layout :: script-fragment}"></div>
+</body>
+</html>
