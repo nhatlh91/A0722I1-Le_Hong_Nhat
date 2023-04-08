@@ -51,7 +51,8 @@ public class CommentServiceImpl implements CommentService{
         String[] words = comment.getComment().split(" ");
         for (String word : words) {
             if (badWords.contains(word.toLowerCase())) {
-                throw new CommentException("The comment is not accepted");
+                String message = "The comment include " + word + " is not accepted.";
+                throw new CommentException(message, comment);
             }
         }
         return commentRepository.save(comment);
