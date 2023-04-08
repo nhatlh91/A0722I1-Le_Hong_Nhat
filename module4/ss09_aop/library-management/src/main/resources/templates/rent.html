@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h1>Thông tin mượn sách:</h1>
+<form th:action="@{/rent}" method="post" th:object="${rent}">
+<table>
+    <tr>
+        <th><label for="title">Đề mục:</label></th>
+        <td>
+            <input id="title" type="text" th:field="*{book.title}" readonly/>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="author">Tác giả:</label></th>
+        <td>
+            <input id="author" type="text" th:field="*{book.author}" readonly/>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="rentCode">Mã mượn sách:</label></th>
+        <td>
+            <input id="rentCode" type="text" th:field="*{rentCode}" readonly/>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="name">Người mượn:</label></th>
+        <td>
+            <input id="name" type="text" th:field="*{name}" autofocus/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-warning"></span>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="date">Ngày mượn:</label></th>
+        <td>
+            <input id="date" type="text" th:field="*{date}" readonly/>
+        </td>
+    </tr>
+    <tr>
+        <input type="hidden" th:field="*{book.id}"/>
+        <th colspan="2"><button type="submit" class="btn btn-primary">Lưu</button></th>
+    </tr>
+</table>
+</form>
+</body>
+</html>

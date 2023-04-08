@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h1>Thêm sách vào hệ thống:</h1>
+<form th:action="@{/add}" method="post" th:object="${book}">
+  <table>
+    <tr>
+      <th><label for="title">Đề mục:</label></th>
+      <td>
+        <input id="title" type="text" th:field="*{title}" autofocus tabindex="1"/>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-warning"></span>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="author">Tác giả:</label></th>
+      <td>
+        <input id="author" type="text" th:field="*{author}" tabindex="2"/>
+        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="alert alert-warning"></span>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="rentCode">Số lượng:</label></th>
+      <td>
+        <input id="rentCode" type="text" th:field="*{quantity}" tabindex="3"/>
+        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="alert alert-warning"></span>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2"><button type="submit" class="btn btn-primary">Lưu</button></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h1 class="alert alert-warning">Lỗi rồi</h1>
+<h3 th:text="${message}" class="alert alert-warning"></h3>
+<a th:href="@{/}" class="btn btn-success">Quay lại trang chính</a>
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>
