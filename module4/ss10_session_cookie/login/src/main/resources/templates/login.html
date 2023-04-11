@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Login demo</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h1>User Login</h1>
+<form th:action="@{/dologin}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td><label>Username</label></td>
+            <td><input type="text" th:field="*{username}"/></td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td><input type="password" th:field="*{password}"/></td>
+        </tr>
+    </table>
+    <input type="submit" value="Đăng nhập"/>
+</form>
+<br>
+<span th:text="${message}"></span>
+<span th:text="${user.username}"></span>
+<script>
+    let findingKey = "setUser";
+    getCookie(findingKey);
+    function getCookie(findingKey){
+        //Hốt cookies từ trình duyệt và tách thành mảng
+        const cookies = document.cookie.split(";");
+        //Lấy chiều dài mảng
+        let length = cookies.length;
+        //Kiểm tra chiều dài mảng
+        console.log("cookies length: "+length);
+        //Duyệt mảng
+        for (var i=0; i< length ; i++){
+            //Lấy các phần tử trong mảng
+            let ck = cookies[i];
+            //Kiểm tra từng phần tử
+            console.log("ck: "+ck);
+            //Lấy và kiểm tra index của dấu bằng
+            let equalIdx = ck.indexOf("=");
+            console.log("index of =: "+equalIdx);
+            //Tách key và kiểm tra key
+            let key=ck.substring(0,equalIdx);
+            console.log("key: "+key);
+            //So key, nếu khớp thi tach value và truyền vào input.
+            if (key === findingKey){
+                let value = ck.substring(equalIdx+1,ck.length);
+                console.log("value: "+value);
+                document.getElementById("username").value = value;
+                break;
+            }
+        }
+    }
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
+</body>
+</html>

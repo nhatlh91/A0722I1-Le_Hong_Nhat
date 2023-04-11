@@ -154,13 +154,17 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
+    // Ví dụ phương thức create có validate bằng cơm
     private void create(HttpServletRequest request, HttpServletResponse response) {
+        //Set 1 biến flag nếu false là ok, true là có trường bị lỗi
         boolean flag = false;
+        //Lấy giá trị trừ trường name từ form gởi về
         String name = request.getParameter("name");
+        //Kiểm tra nó có đúng yêu cầu hay ko, nếu không đúng yêu cầu thì setflag = true;
         if (name.length() > 50) {
             flag = true;
         }
+        //Tương tự với các thuộc tính khác
         int price = Integer.parseInt(request.getParameter("price"));
         if (price < 10000000) {
             flag = true;
@@ -176,6 +180,7 @@ public class ProductServlet extends HttpServlet {
         }
         int category_id = Integer.parseInt(request.getParameter("category_id"));
         RequestDispatcher dispatcher = null;
+        //Kiểm tra biến flag, nếu true thì báo lỗi, gởi lỗi về lại view, nếu false thì tiếp tục chương trình.
         if (flag) {
             request.setAttribute("fail", flag);
             dispatcher = request.getRequestDispatcher("/product/create.jsp");

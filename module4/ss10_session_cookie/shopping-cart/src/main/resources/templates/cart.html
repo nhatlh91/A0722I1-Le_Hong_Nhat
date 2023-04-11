@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Shop</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<!--<p>-->
+<!--  <a th:href="@{/shopping-cart}" class="btn btn-outline-primary">Giỏ hàng của bẹn</a>-->
+<!--</p>-->
+<div th:object="${cart}">
+    <p>Thông tin Giỏ hàng của bạn</p>
+    <form th:action="@{/payment}" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <th>Hình ảnh sản phẩm</th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Xoá sản phẩm</th>
+            </tr>
+            <tr th:each="product:${cart.productList}" th:object="${product}">
+                <th><img th:src="@{/img/{picture}(picture=*{picture})}" style="height: 100px; object-fit: scale-down"/></th>
+                <th th:text="*{id}"></th>
+                <th th:text="*{name}"></th>
+                <th><input type="number" th:value="*{price}" th:id="*{id+'_price'}" readonly></th>
+                <th><input type="number" min="0" th:value="${cart.products.get(product)}" th:id="*{id}" onchange="totalAmountCal(this.id)" name="quantity"/></th>
+                <th><input type="number" th:value="${cart.products.get(product)*product.price}" th:id="*{id+'_total'}" readonly/></th>
+                <th><a th:href="@{/remove(id=*{id})}" class="btn btn-outline-warning">Xoá</a> </th>
+            </tr>
+        </table>
+      <a th:href="@{/shop}" class="btn btn-outline-primary">Trở lại</a>
+      <button type="submit" class="btn btn-outline-primary">Thanh toán</button>
+    </form>
+</div>
+<script>
+  function totalAmountCal(id){
+    console.log("id:"+id);
+    let quantity = document.getElementById(id).value;
+    console.log("qty:"+quantity);
+    let price = document.getElementById(id+"_price").value;
+    console.log("price:" + price);
+    let total = quantity*price;
+    document.getElementById(id+"_total").value = total;
+  }
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
+</body>
+</html>
