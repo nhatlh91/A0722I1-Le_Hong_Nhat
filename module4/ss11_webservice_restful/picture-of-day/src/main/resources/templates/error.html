@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h1 class="alert alert-warning">There is something wrong</h1>
+<h2 th:text="${message}" class="alert alert-warning"></h2>
+<a href="/pictures/" class="btn btn-primary">Go back to main page</a>
+</body>
+</html>
