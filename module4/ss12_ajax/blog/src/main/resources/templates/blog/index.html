@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Danh sách các bài viết')}">
+</head>
+<body class="col-md-12">
+<div class="row col-md-12">
+<div class="col-md-2">
+    <a th:href="@{/blog/create}" role="button" class="btn btn-outline-primary">
+       Viết bài mới
+    </a>
+    <a th:href="@{/category}" role="button" class="btn btn-outline-primary">
+        Quản lý danh mục
+    </a>
+</div>
+<div class="col-md-10">
+<div class="form-inline">
+    <input id="keyword" type="text" placeholder="Tìm kiếm theo tiêu đề bài viết"/>
+    <button onclick="search();" class="btn btn-primary">Tìm kiếm</button>
+</div>
+<h3>Danh sách bài viết:</h3>
+<br/>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Tiêu đề</th>
+        <th>Tác giả</th>
+        <th>Danh mục</th>
+        <th>Ngày tạo/chỉnh sửa</th>
+        <th colspan="3">Hành động</th>
+    </tr>
+    </thead>
+    <tbody id="result"></tbody>
+</table>
+<button id="show-more" onclick="getMore()" class="btn btn-outline-primary" style="display: none">Tải thêm
+</button>
+</div>
+</div>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+<script>
+    $(document).ready(search());
+    let data_temp = null;
+    function builResult(data,length){
+        let result = "";
+        if(data!=null){
+        for (let i = 0; i < length; i++) {
+            result +=
+                `
+                <tr>
+                <td>${data[i].id}</td>
+                <td>${data[i].title}</td>
+                <td>${data[i].author}</td>
+                <td>${data[i].category.categoryName}</td>
+                <td>${data[i].dateOfCreate}</td>
+                <td><a href="/blog/detail/${data[i].id}" role="button" class="btn btn-outline-primary">Xem</a></td>
+                <td><a href="/blog/edit/${data[i].id}" role="button" class="btn btn-outline-primary">Sửa</a></td>
+                <td><a href="/blog/delete/${data[i].id}" role="button" class="btn btn-outline-primary">Xoá</a></td>
+                </tr>
+                `
+        }
+        }
+        $("#result").html(result);
+    }
+    function getMore() {
+        $("#show-more").hide();
+        builResult(data_temp,data_temp.length);
+        data_temp = null;
+    }
+
+    function search() {
+        $("#show-more").hide();
+        let keyword = $("#keyword").val();
+        $.ajax({
+            url: "/api/blog",
+            data: {
+                keyword: keyword
+            },
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                data_temp = data;
+                let length = data.length;
+                if (length > 5) {
+                    length = 5;
+                    $("#show-more").show();
+                }
+                builResult(data,length);
+            },
+            error: function (){
+                $("#result").text("Không tìm được kết quả tương ứng");
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

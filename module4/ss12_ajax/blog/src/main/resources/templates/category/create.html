@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::header('Tạo danh mục mới')}">
+</head>
+<body class="col-md-12">
+<form th:action="@{/category/create}" method="post" th:object="${category}">
+    <fieldset>
+        <legend>Thông tin danh mục</legend>
+        <label for="categoryName">Tên danh mục:</label>
+        <br/>
+        <input id="categoryName" th:field="*{categoryName}" maxlength="20"/>
+        <br>
+        <input class="btn btn-outline-success" type="submit" value="Tạo"/>
+    </fieldset>
+</form>
+<div th:replace="~{layout::footer}"></div>
+<div th:replace="~{layout::script}"></div>
+</body>
+</html>
