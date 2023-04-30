@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="error::head">
+</head>
+<body>
+<h1>Mời thiếu hiệp khai báo danh tính</h1>
+<form th:href="@{/login}" method="post">
+    <table>
+        <tr>
+            <th>Danh phận giang hồ:</th>
+            <th><input name="username" type="text" autofocus placeholder="Điền tên đăng nhập dô"></th>
+        </tr>
+        <tr>
+            <th>Tín vật:</th>
+            <th><input name="password" type="password" placeholder="Mật khẩu chứ gì nữa"></th>
+        </tr>
+        <tr>
+            <th><button type="submit" class="btn btn-primary">Đăng nhập</button></th>
+            <th><a th:href="@{/register}" class="btn btn-secondary">Ghi danh</a></th>
+        </tr>
+    </table>
+<p th:if="${noti!=null}" th:text="${noti}" class="alert alert-warning"></p>
+</form>
+<div th:replace="error::script"></div>
+</body>
+</html>

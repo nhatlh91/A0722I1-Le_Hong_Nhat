@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Danh sách dịch vụ')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container col-md-12">
+    <div th:replace="layout::header"></div>
+    <div class="row">
+        <div th:replace="layout::side-bar"></div>
+        <div class="col-md-10">
+
+            <!--    Notification toast-->
+            <th:block th:if="${message!=null}">
+                <div class="alert alert-primary" role="alert" th:text="${message}"></div>
+            </th:block>
+
+            <!--    Error notification-->
+            <h1 class="alert alert-primary">Code ngu</h1>
+        </div>
+        <div th:replace="layout::footer"></div>
+    </div>
+    <div th:replace="layout::script"></div>
+</div>
+</body>
+</html>

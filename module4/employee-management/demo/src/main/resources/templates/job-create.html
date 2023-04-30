@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="error::head">
+</head>
+<body>
+<h1>Thêm đầu việc</h1>
+<form th:action="@{/job}" method="post" th:object="${job}">
+    <table>
+        <tr>
+            <th>Mô tả công việc:</th>
+            <th><input th:field="*{description}" type="text"/></th>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button type="submit" class="btn btn-success">Tạo</button>
+            </th>
+        </tr>
+    </table>
+</form>
+<div th:replace="error::script"></div>
+</body>
+</html>

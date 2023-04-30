@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="error::head">
+</head>
+<body>
+<th:block th:if="${fullName!=null}">
+    <h1>Chào mừng <span th:text="${fullName}"></span> đại hiệp đã tái xuất</h1>
+</th:block>
+<p th:text="${noti}"></p>
+<a th:href="@{/job-finding}" class="btn btn-primary">Bảng cáo thị</a>
+<a th:href="@{/job}" class="btn btn-primary">Đăng bố cáo</a>
+<div th:replace="error::script"></div>
+</body>
+</html>

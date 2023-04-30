@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Trang chủ')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Diện tích</th>
+                    <th>Giá</th>
+                    <th>Số người tối đa</th>
+                    <th>Loại thuê</th>
+                    <th>Tiêu chuẩn phòng</th>
+                    <th>Tiện nghi khác</th>
+                    <th>Diện tích hồ bơi</th>
+                    <th>Số tầng</th>
+                    <th>Dịch vụ gia tăng</th>
+                    <th>Loại dịch vụ</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="facility:${facilities}" th:object="${facility}">
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{area}"></td>
+                    <td th:text="*{cost}"></td>
+                    <td th:text="*{maxPeople}"></td>
+                    <td th:text="*{rentType.rentType}"></td>
+                    <td th:text="*{roomStandard}"></td>
+                    <td th:text="*{otherConvenience}"></td>
+                    <td th:text="*{poolArea}"></td>
+                    <td th:text="*{numberOfFloor}"></td>
+                    <td th:text="*{additionalServiceId}"></td>
+                    <td th:text="*{facilityType}"></td>
+                    <td>
+                        <a th:href="@{/facilities/delete(id=*{id})}" class="btn btn-outline-danger">Xoá</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--Phân trang-->
+        <div>
+            <a th:href="@{'/facilities/'(page=${facilities.number - 1})}" th:if="${facilities.hasPrevious()}">Previous</a>
+            <span th:text="${facilities.number + 1}"></span>/<span th:text="${facilities.totalPages}"></span>
+            <a th:href="@{'/facilities/'(page=${facilities.number + 1})}" th:if="${facilities.hasNext()}">Next</a>
+        </div>
+    </div>
+</div>
+<div th:replace="layout::footer"></div>
+<div th:replace="layout::script"></div>
+</body>
+</html>

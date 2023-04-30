@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="error::head">
+</head>
+<body>
+<h1>Tìm việc</h1>
+<form th:action="@{/job-finding}" method="post" class="form-inline">
+    <label for="radius">Bán kính:</label>
+    <input name="radius" type="number" id="radius"/>
+    <button class="btn btn-success" onclick="find()">Tìm việc</button>
+</form>
+<th:block th:if="${notification!=null}">
+    <p class="alert alert-success" th:text="${notification}"></p>
+</th:block>
+<th:block th:if="${jobs!=null}">
+    <h2>Cáo thị:</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Mã công việc</th>
+            <th>Mô tả</th>
+            <th>Người giao</th>
+            <th>Vĩ độ</th>
+            <th>Kinh độ</th>
+            <th>Tương tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="job:${jobs}" th:object="${job}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{description}"></td>
+            <td th:text="*{hiringId}"></td>
+            <td th:text="*{latitude}"></td>
+            <td th:text="*{longitude}"></td>
+            <td><a th:href="@{/accept(id=*{id})}" class="btn btn-outline-primary">Tiếp nhận</a></td>
+            <td><a th:href="@{/cancel(id=*{id})}" class="btn btn-outline-warning">Thu hồi</a></td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+<div th:replace="error::script"></div>
+</body>
+</html>

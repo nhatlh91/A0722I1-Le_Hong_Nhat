@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Danh sách dịch vụ')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container col-md-12">
+    <div th:replace="layout::header"></div>
+    <div class="row">
+        <div th:replace="layout::side-bar"></div>
+        <div class="col-md-10">
+
+            <!--    Notification toast-->
+            <th:block th:if="${message!=null}">
+                <div class="alert alert-primary" role="alert" th:text="${message}"></div>
+            </th:block>
+
+            <!--    Table-->
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Diện tích</th>
+                        <th>Giá</th>
+                        <th>Số người tối đa</th>
+                        <th>Loại thuê</th>
+                        <th>Tiêu chuẩn phòng</th>
+                        <th>Tiện nghi khác</th>
+                        <th>Diện tích hồ bơi</th>
+                        <th>Số tầng</th>
+                        <th>Dịch vụ gia tăng</th>
+                        <th>Loại dịch vụ</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="facility:${facilities}" th:object="${facility}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{name}"></td>
+                        <td th:text="*{area}"></td>
+                        <td th:text="*{cost}"></td>
+                        <td th:text="*{maxPeople}"></td>
+                        <td><a th:href="@{/facility/search(rentType=*{rentType.rentTypeId})}" th:text="*{rentType.rentType}" class="btn btn-outline-primary"></a></td>
+                        <td th:text="*{roomStandard}"></td>
+                        <td th:text="*{otherConvenience}"></td>
+                        <td th:text="*{poolArea}"></td>
+                        <td th:text="*{numberOfFloor}"></td>
+                        <td th:text="*{additionalServiceId}"></td>
+                        <td><a th:href="@{/facility/search(facilityType=*{facilityType})}" th:text="*{facilityType}" class="btn btn-outline-primary"></a></td>
+                        <td th:text="*{dateOfModified}"></td>
+                        <td>
+                            <a th:href="@{/facilities/delete(id=*{id})}" class="btn btn-outline-danger">Xoá</a>
+                            <a th:href="@{/facilities/edit(id=*{id})}" class="btn btn-outline-secondary">Sửa</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Phân trang-->
+            <div>
+                <a th:href="@{'/facilities/list'(page=${facilities.number - 1})}"
+                   th:if="${facilities.hasPrevious()}">Previous</a>
+                <span th:text="${facilities.number + 1}"></span>/<span th:text="${facilities.totalPages}"></span>
+                <a th:href="@{'/facilities/list'(page=${facilities.number + 1})}" th:if="${facilities.hasNext()}">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="layout::footer"></div>
+</div>
+<div th:replace="layout::script"></div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Chỉnh sửa thông tin dịch vụ')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <th:block th:if="${facility.facilityType=='Vila'}">
+            <!--        Vila form-->
+            <form id="vila-form" th:object="${facility}" method="post" th:action="@{/facilities/update}">
+                <table>
+                    <tr>
+                        <th>Tên dịch vụ:</th>
+                        <th>
+                            <input th:field="*{name}" type="text">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Diện tích sử dụng:</th>
+                        <th>
+                            <input th:field="*{area}" type="text">
+                            <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></span>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Giá tiền:</th>
+                        <th>
+                            <input th:field="*{cost}" type="number">
+                            <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Số người tối đa:</th>
+                        <th>
+                            <input th:field="*{maxPeople}" type="number">
+                            <span th:if="${#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Loại thuê:</th>
+                        <th>
+                            <select th:field="*{rentType}">
+                                <option th:each="rentType:${rentTypes}" th:text="${rentType.rentType}"
+                                        th:value="${rentType.rentTypeId}"
+                                        th:selected="${rentType.rentTypeId.equals(facility.rentType.rentTypeId)}"></option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Tiêu chuẩn phòng:</th>
+                        <th><input th:field="*{roomStandard}" type="text"/></th>
+                    </tr>
+                    <tr>
+                        <th>Tiện ích khác:</th>
+                        <th><input th:field="*{otherConvenience}" type="text"/></th>
+                    </tr>
+                    <tr>
+                        <th>Diện tích hồ bơi:</th>
+                        <th><input th:field="*{poolArea}" type="text"/></th>
+                    </tr>
+                    <tr>
+                        <th>Số tầng:</th>
+                        <th><input th:field="*{numberOfFloor}" type="number"/></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <input th:field="*{id}" type="hidden"/>
+                            <input name="facilityType" value="Vila" type="hidden"/>
+                            <input th:field="*{dateOfModified}" id="dateOfVila" type="date" hidden="true"/>
+                            <button type="submit" class="btn btn-outline-success">Lưu</button>
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        </th:block>
+
+        <!--        House form-->
+
+        <th:block th:if="${facility.facilityType=='House'}">
+            <form id="house-form" th:object="${facility}" method="post" th:action="@{/facilities/update}">
+                <table>
+                    <tr>
+                        <th>Tên dịch vụ:</th>
+                        <th>
+                            <input th:field="*{name}" type="text">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Diện tích sử dụng:</th>
+                        <th>
+                            <input th:field="*{area}" type="text">
+                            <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></span>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Giá tiền:</th>
+                        <th>
+                            <input th:field="*{cost}" type="number">
+                            <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Số người tối đa:</th>
+                        <th>
+                            <input th:field="*{maxPeople}" type="number">
+                            <span th:if="${#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Loại thuê:</th>
+                        <th>
+                            <select th:field="*{rentType}">
+                                <option th:each="rentType:${rentTypes}" th:text="${rentType.rentType}"
+                                        th:value="${rentType.rentTypeId}"
+                                        th:selected="${rentType.rentTypeId.equals(facility.rentType.rentTypeId)}"></option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Tiêu chuẩn phòng:</th>
+                        <th><input th:field="*{roomStandard}" type="text"></th>
+                    </tr>
+                    <tr>
+                        <th>Tiện ích khác:</th>
+                        <th><input th:field="*{otherConvenience}" type="text"></th>
+                    </tr>
+                    <tr>
+                        <th>Số tầng:</th>
+                        <th><input th:field="*{numberOfFloor}" type="number"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <input th:field="*{id}" type="hidden"/>
+                            <input name="facilityType" value="House" type="hidden"/>
+                            <input th:field="*{dateOfModified}" id="dateOfHouse" type="date" hidden="true"/>
+                            <button type="submit" class="btn btn-outline-success">Lưu</button>
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        </th:block>
+
+        <!--        Room form-->
+
+        <th:block th:if="${facility.facilityType=='Room'}">
+            <form id="room-form" th:object="${facility}" method="post" th:action="@{/facilities/update}">
+                <table>
+                    <tr>
+                        <th>Tên dịch vụ:</th>
+                        <th>
+                            <input th:field="*{name}" type="text">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Diện tích sử dụng:</th>
+                        <th>
+                            <input th:field="*{area}" type="text">
+                            <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></span>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Giá tiền:</th>
+                        <th>
+                            <input th:field="*{cost}" type="number">
+                            <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Số người tối đa:</th>
+                        <th>
+                            <input th:field="*{maxPeople}" type="number">
+                            <span th:if="${#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Loại thuê:</th>
+                        <th>
+                            <select th:field="*{rentType}">
+                                <option th:each="rentType:${rentTypes}" th:text="${rentType.rentType}"
+                                        th:value="${rentType.rentTypeId}"
+                                        th:selected="${rentType.rentTypeId.equals(facility.rentType.rentTypeId)}"></option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Dịch vụ gia tăng:</th>
+                        <th><input th:field="*{additionalServiceId}" type="text"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <input th:field="*{id}" type="hidden"/>
+                            <input name="facilityType" value="Room" type="hidden"/>
+                            <input th:field="*{dateOfModified}" id="dateOfRoom" type="date" hidden="true"/>
+                            <button type="submit" class="btn btn-outline-success">Lưu</button>
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        </th:block>
+    </div>
+</div>
+<div th:replace="layout:: script"></div>
+<script>
+    $(document).ready(function (){
+        function dateUpdate(facilityType){
+
+        }
+    })
+</script>
+</body>
+</html>

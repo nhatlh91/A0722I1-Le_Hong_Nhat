@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="error::head">
+</head>
+<body>
+<form th:action="@{/register}" method="post" th:object="${user}">
+    <label for="username">Username</label><br/>
+    <input th:field="*{username}" id="username" autofocus type="text"><br/>
+    <label for="password">Password</label><br/>
+    <input th:field="*{password}" id="password" type="password"><br/>
+    <label for="fullName">Full name</label><br/>
+    <input th:field="*{fullName}" id="fullName" type="text"><br/>
+    <label for="latitude">Vĩ độ</label><br/>
+    <input th:field="*{latitude}" id="latitude" type="text"><br/>
+    <label for="longitude">Kinh độ</label><br/>
+    <input th:field="*{longitude}" id="longitude" type="text"><br/>
+    <label>Vai trò</label><br/>
+    <input type="checkbox" th:each="role : ${roles}"
+           th:value="${role.id}"
+           th:text="${role.name}" th:field="*{roles}"/>
+    <br/>
+    <button type="submit" class="btn btn-primary">Ghi danh</button>
+</form>
+<div th:replace="error::script"></div>
+</body>
+</html>
