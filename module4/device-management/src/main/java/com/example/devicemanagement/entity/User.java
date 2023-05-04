@@ -1,5 +1,6 @@
 package com.example.devicemanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
     private String fullName;
     @NotEmpty
     private String englishName;
@@ -28,8 +29,12 @@ public class User {
     private String password;
 
     private String role;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Device> devices = new LinkedHashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dept_id")
+    private Dept dept;
 
 }
