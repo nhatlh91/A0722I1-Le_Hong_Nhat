@@ -34,9 +34,13 @@
                         <th>Thao tác</th>
                     </tr>
                     </thead>
+                    <form th:action="@{/device/deleteAll}" method="POST">
                     <tbody id="result">
                     <tr th:each="device:${devices}" th:object="${device}">
-                        <td th:text="*{id}"></td>
+                        <td>
+                            <input type="checkbox" th:name="ids" th:value="*{id}"/>
+                            <span th:text="*{id}"></span>
+                        </td>
                         <td th:text="*{brand}"></td>
                         <td th:text="*{model}"></td>
                         <td th:text="*{color}"></td>
@@ -50,10 +54,12 @@
                             <a th:href="@{/device/detail(id=*{id})}" class="btn btn-outline-primary">Chi tiết</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="11"><button type="submit" class="btn btn-outline-danger" style="position: relative">Xoá</button></td></tr>
                     </tbody>
+                    </form>
                 </table>
             </div>
-
             <!--Phân trang-->
             <div>
                 <a th:href="@{'/device/list'(page=${devices.number - 1})}"

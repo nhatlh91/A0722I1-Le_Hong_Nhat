@@ -9,10 +9,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,7 +25,7 @@ public class DeviceController {
     private UserServiceImpl userService;
 
     @Autowired
-    public DeviceController(DeviceServiceImpl deviceService, CategoryServiceImpl categoryService, UserServiceImpl userService){
+    public DeviceController(DeviceServiceImpl deviceService, CategoryServiceImpl categoryService, UserServiceImpl userService) {
         this.categoryService = categoryService;
         this.deviceService = deviceService;
         this.userService = userService;
@@ -44,41 +46,40 @@ public class DeviceController {
     }
 
     @GetMapping("/create")
-    public String showCreateForm(Model model, Pageable pageable){
+    public String showCreateForm(Model model) {
         model.addAttribute("device", new Device());
-        model.addAttribute("categories", categoryService.findAll(pageable));
-        model.addAttribute("users", userService.findAll(pageable));
+        model.addAttribute("categories", categoryService.findAll(Pageable.unpaged()));
+        model.addAttribute("users", userService.findAll(Pageable.unpaged()));
         return "/device/create";
     }
 
     @PostMapping("/create")
-    public String addNewDevice(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Pageable pageable, Model model) {
-        try {
-            if (bindingResult.hasErrors()) {
-                String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
-                model.addAttribute("message", message);
-                model.addAttribute("categories", categoryService.findAll(pageable));
-                model.addAttribute("users", userService.findAll(pageable));
-                return "/device/create";
-            }
-        } catch (IllegalArgumentException ex){
-            System.out.println(ex);
-            device.setPurchasingDate(null);
+    public String addNewDevice(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Model model) {
+        List<FieldError> dateErrors = bindingResult.getFieldErrors("purchasingDate");
+        if (!dateErrors.isEmpty()) {
+            bindingResult.rejectValue("purchasingDate", null);
+        }
+        if (bindingResult.hasErrors()) {
+            String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
+            model.addAttribute("message", message);
+            model.addAttribute("categories", categoryService.findAll(Pageable.unpaged()));
+            model.addAttribute("users", userService.findAll(Pageable.unpaged()));
+            return "/device/create";
         }
         Long id = deviceService.save(device).getId();
-        String message = "Thêm mới thành công, sản phẩm có ID là: "+id;
+        String message = "Thêm mới thành công, sản phẩm có ID là: " + id;
         rd.addFlashAttribute("message", message);
         return "redirect:/device/list";
     }
 
     @GetMapping("/detail")
-    public String showDetail(Model model, @RequestParam("id")Long id){
+    public String showDetail(Model model, @RequestParam("id") Long id) {
         model.addAttribute("device", deviceService.findById(id));
         return "/device/detail";
     }
 
     @GetMapping("/edit")
-    public String showEditForm(Model model, Pageable pageable, @RequestParam("id")Long id){
+    public String showEditForm(Model model, Pageable pageable, @RequestParam("id") Long id) {
         model.addAttribute("device", deviceService.findById(id));
         model.addAttribute("categories", categoryService.findAll(pageable));
         model.addAttribute("users", userService.findAll(pageable));
@@ -87,8 +88,8 @@ public class DeviceController {
 
 
     @PostMapping("/update")
-    public String updateDeviceInfo(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Pageable pageable, Model model){
-        if(bindingResult.hasErrors()){
+    public String updateDeviceInfo(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Pageable pageable, Model model) {
+        if (bindingResult.hasErrors()) {
             String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
             model.addAttribute("message", message);
             model.addAttribute("categories", categoryService.findAll(pageable));
@@ -98,6 +99,18 @@ public class DeviceController {
         Long id = deviceService.save(device).getId();
         String message = "Cập nhật thông tin cho thiết bị " + id + " thành công";
         rd.addFlashAttribute("message", message);
+        return "redirect:/device/list";
+    }
+    @PostMapping("/deleteAll")
+    public String deleteAll(@RequestParam(value = "ids", required = false) Long[] ids, RedirectAttributes rd) {
+        String message = "Không có gì để xoá";
+        if (ids!=null) {
+            for (Long id : ids) {
+                System.out.println(id);
+            }
+            message = "Đã xoá thành công";
+        }
+        rd.addFlashAttribute("message",message);
         return "redirect:/device/list";
     }
 

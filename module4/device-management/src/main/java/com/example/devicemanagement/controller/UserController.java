@@ -1,6 +1,6 @@
 package com.example.devicemanagement.controller;
 
-import com.example.devicemanagement.entity.Device;
+import com.example.devicemanagement.entity.User;
 import com.example.devicemanagement.service.CategoryServiceImpl;
 import com.example.devicemanagement.service.DeviceServiceImpl;
 import com.example.devicemanagement.service.UserServiceImpl;
@@ -23,10 +23,9 @@ public class UserController {
     private UserServiceImpl userService;
 
     @Autowired
-    public UserController(DeviceServiceImpl deviceService, CategoryServiceImpl categoryService, UserServiceImpl userService){
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
-
 
     @GetMapping("/list")
     public String showListOfDevice(Model model, @RequestParam("page") Optional<Integer> page,
@@ -37,66 +36,52 @@ public class UserController {
         String sortField = sort.orElse("purchasingDate");
 //        Sort sortBy = Sort.by("").descending().and(Sort.by("phoneNumber").ascending());
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(sortField).descending());
-        model.addAttribute("devices", deviceService.findAll(pageable));
-        return "/device/list";
+        model.addAttribute("user", userService.findAll(pageable));
+        return "/user/list";
     }
 
     @GetMapping("/create")
-    public String showCreateForm(Model model, Pageable pageable){
-        model.addAttribute("device", new Device());
-        model.addAttribute("categories", categoryService.findAll(pageable));
-        model.addAttribute("users", userService.findAll(pageable));
-        return "/device/create";
+    public String showCreateForm(Model model) {
+        model.addAttribute("user", new User());
+        return "/user/create";
     }
 
     @PostMapping("/create")
-    public String addNewDevice(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Pageable pageable, Model model) {
-        try {
-            if (bindingResult.hasErrors()) {
-                String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
-                model.addAttribute("message", message);
-                model.addAttribute("categories", categoryService.findAll(pageable));
-                model.addAttribute("users", userService.findAll(pageable));
-                return "/device/create";
-            }
-        } catch (IllegalArgumentException ex){
-            System.out.println(ex);
-            device.setPurchasingDate(null);
+    public String addNewDevice(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes rd, Model model) {
+        if (bindingResult.hasErrors()) {
+            String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
+            model.addAttribute("message", message);
+            return "/user/create";
         }
-        Long id = deviceService.save(device).getId();
-        String message = "Thêm mới thành công, sản phẩm có ID là: "+id;
+        Long id = userService.save(user).getUserId();
+        String message = "Thêm mới thành công, sản phẩm có ID là: " + id;
         rd.addFlashAttribute("message", message);
-        return "redirect:/device/list";
+        return "redirect:/user/list";
     }
 
     @GetMapping("/detail")
-    public String showDetail(Model model, @RequestParam("id")Long id){
-        model.addAttribute("device", deviceService.findById(id));
-        return "/device/detail";
+    public String showDetail(Model model, @RequestParam("id") Long id) {
+        model.addAttribute("device", userService.findById(id));
+        return "/user/detail";
     }
 
     @GetMapping("/edit")
-    public String showEditForm(Model model, Pageable pageable, @RequestParam("id")Long id){
-        model.addAttribute("device", deviceService.findById(id));
-        model.addAttribute("categories", categoryService.findAll(pageable));
-        model.addAttribute("users", userService.findAll(pageable));
-        return "/device/edit";
+    public String showEditForm(Model model, @RequestParam("id") Long id) {
+        model.addAttribute("device", userService.findById(id));
+        return "/user/edit";
     }
 
-
     @PostMapping("/update")
-    public String updateDeviceInfo(@Valid @ModelAttribute("device") Device device, BindingResult bindingResult, RedirectAttributes rd, Pageable pageable, Model model){
-        if(bindingResult.hasErrors()){
+    public String updateDeviceInfo(@Valid @ModelAttribute("device") User user, BindingResult bindingResult, RedirectAttributes rd, Model model) {
+        if (bindingResult.hasErrors()) {
             String message = "Đã có lỗi trong quá trình xác minh dữ liệu, vui lòng kiểm tra lại thông tin đã nhập";
             model.addAttribute("message", message);
-            model.addAttribute("categories", categoryService.findAll(pageable));
-            model.addAttribute("users", userService.findAll(pageable));
-            return "/device/edit";
+            return "/user/edit";
         }
-        Long id = deviceService.save(device).getId();
+        Long id = userService.save(user).getUserId();
         String message = "Cập nhật thông tin cho thiết bị " + id + " thành công";
         rd.addFlashAttribute("message", message);
-        return "redirect:/device/list";
+        return "redirect:/user/list";
     }
 
 }
