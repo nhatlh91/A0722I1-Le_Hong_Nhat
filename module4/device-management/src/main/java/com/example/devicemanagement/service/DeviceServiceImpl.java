@@ -22,6 +22,10 @@ public class DeviceServiceImpl implements Service<Device> {
         return deviceRepository.findAllByBrandContainsOrModelContainsOrDescriptionContains(keyword,keyword,keyword);
     }
 
+    public Page<Device> searchWithPaging(Pageable pageable, String keyword) {
+        return deviceRepository.findAllByBrandContainsOrModelContainsOrDescriptionContains(pageable, keyword,keyword,keyword);
+    }
+
     @Override
     public Device findById(Long id) {
         return deviceRepository.findById(id).orElse(null);

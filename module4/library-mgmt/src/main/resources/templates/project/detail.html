@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Thông tin chi tiết')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <h2 class="alert alert-primary">Chi tiết dự án</h2>
+        <th:block th:object="${project}">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mã dự án:</th>
+                    <td th:text="*{projectCode}"></td>
+                </tr>
+                <tr>
+                    <th>Ten dự án:</th>
+                    <td th:text="*{projectName}"></td>
+                </tr>
+                <tr>
+                    <th>Tên doanh nghiệp:</th>
+                    <td th:text="*{company.companyName}"></td>
+                </tr>
+                <tr>
+                    <th>Lĩnh vực kinh doanh:</th>
+                    <td th:text="*{company.field}"></td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td th:text="*{company.phone}"></td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td th:text="*{company.email}"></td>
+                </tr>
+                <tr>
+                    <th>Kinh phí yêu cầu:</th>
+                    <td th:text="${#numbers.formatCurrency(project.projectCost)}"></td>
+                </tr>
+                <tr>
+                    <th>Thời gian giới thiệu:</th>
+                    <td th:text="*{announMonth}"></td>
+                </tr>
+                <tr>
+                    <th>Ngày đăng ký:</th>
+                    <td th:text="${#dates.format(project.announDate,'dd-MM-yyyy')}"></td>
+                </tr>
+                <tr>
+                    <th>Chi phí:</th>
+                    <td th:text="${#numbers.formatCurrency(project.fee)}"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <a th:href="@{/projects/list}" class="btn btn-outline-success">Quay về</a>
+                    </th>
+                </tr>
+            </table>
+        </th:block>
+    </div>
+</div>
+<div th:replace="layout:: script"></div>
+</body>
+</html>

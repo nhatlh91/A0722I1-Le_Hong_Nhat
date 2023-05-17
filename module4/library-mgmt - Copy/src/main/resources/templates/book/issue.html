@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Mượn sách')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <th:block th:if="${message!=null}">
+            <div class="alert alert-primary" th:text="${message}"></div>
+        </th:block>
+        <h1>Mượn sách</h1>
+        <form th:action="@{/books/issue}" method="POST" th:object="${ticket}" class="form">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mã mượn sách:</th>
+                    <td>
+                        <input th:field="*{ticketCode}" type="text">
+                        <span th:if="${#fields.hasErrors('ticketCode')}" th:errors="*{ticketCode}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên sách:</th>
+                    <td><input readonly th:value="*{book.bookName}">
+                        <input th:field="*{book}" hidden="hidden">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên học sinh:</th>
+                    <td>
+                        <select th:field="*{student}">
+                            <option th:each="student:${students}" th:text="${student.studentName}"
+                                    th:value="${student.studentId}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày mượn sách:</th>
+                    <td><input th:field="*{borrowDate}" id="borrowDate" type="date" readonly></td>
+                </tr>
+                <tr>
+                    <th>Ngày trả sách:</th>
+                    <td>
+                        <input th:field="*{returnDate}" id="returnDate" type="date">
+                        <span th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="submit" class="btn btn-success" value="Mượn sách">
+                    </th>
+                    <th>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Trở về trang trước
+                        </button>
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Xác nhận trở về trang danh sách</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                <a th:href="@{/books/list}" role="button" class="btn btn-primary">Quay về</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout:: script"></div>
+<script>
+    $(document).ready(function (){
+        document.getElementById("borrowDate").valueAsDate = new Date();
+        document.getElementById("returnDate").valueAsDate = new Date();
+    })
+</script>
+</body>
+</html>

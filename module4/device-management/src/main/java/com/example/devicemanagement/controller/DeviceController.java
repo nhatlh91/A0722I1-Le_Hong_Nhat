@@ -14,15 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/device")
 public class DeviceController {
-    private DeviceServiceImpl deviceService;
-    private CategoryServiceImpl categoryService;
-    private UserServiceImpl userService;
+    private final DeviceServiceImpl deviceService;
+    private final CategoryServiceImpl categoryService;
+    private final UserServiceImpl userService;
+    private final List<Status> status = Arrays.asList(Status.values());
 
     @Autowired
     public DeviceController(DeviceServiceImpl deviceService, CategoryServiceImpl categoryService, UserServiceImpl userService) {
@@ -79,10 +82,11 @@ public class DeviceController {
     }
 
     @GetMapping("/edit")
-    public String showEditForm(Model model, Pageable pageable, @RequestParam("id") Long id) {
+    public String showEditForm(Model model, @RequestParam("id") Long id) {
         model.addAttribute("device", deviceService.findById(id));
-        model.addAttribute("categories", categoryService.findAll(pageable));
-        model.addAttribute("users", userService.findAll(pageable));
+        model.addAttribute("categories", categoryService.findAll(Pageable.unpaged()));
+        model.addAttribute("users", userService.findAll(Pageable.unpaged()));
+        model.addAttribute("statusList", status);
         return "/device/edit";
     }
 
@@ -94,6 +98,7 @@ public class DeviceController {
             model.addAttribute("message", message);
             model.addAttribute("categories", categoryService.findAll(pageable));
             model.addAttribute("users", userService.findAll(pageable));
+            model.addAttribute("statusList", status);
             return "/device/edit";
         }
         Long id = deviceService.save(device).getId();
@@ -101,9 +106,20 @@ public class DeviceController {
         rd.addFlashAttribute("message", message);
         return "redirect:/device/list";
     }
+
+    @GetMapping("/search")
+    public String search(Model model, @RequestParam("keyword") String keyword) {
+        int currentPage = 0;
+        int pageSize = 5;
+        String sortField = "purchasingDate";
+        Pageable pageable = PageRequest.of(currentPage,pageSize,Sort.by(sortField));
+        model.addAttribute("devices", deviceService.searchWithPaging(pageable, keyword));
+        return "/device/list";
+    }
+
     @PostMapping("/deleteAll")
     public String deleteAll(@RequestParam(value = "ids", required = false) Long[] ids, RedirectAttributes rd) {
-        String message = "Không có gì để xoá";
+        String message = "Hãy chọn sản phẩm cần xoá";
         if (ids!=null) {
             for (Long id : ids) {
                 System.out.println(id);
@@ -113,5 +129,4 @@ public class DeviceController {
         rd.addFlashAttribute("message",message);
         return "redirect:/device/list";
     }
-
 }

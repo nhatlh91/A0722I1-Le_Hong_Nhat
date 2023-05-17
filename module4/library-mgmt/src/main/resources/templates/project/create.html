@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Thêm dự án mới')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <th:block th:if="${message!=null}">
+            <div class="alert alert-primary" th:text="${message}"></div>
+        </th:block>
+        <form th:action="@{/projects/create}" th:object="${project}" method="POST">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mã dự án:</th>
+                    <td>
+                        <input th:field="*{projectCode}" type="text">
+                        <span th:if="${#fields.hasErrors('projectCode')}" th:errors="*{projectCode}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên doanh nghiệp:</th>
+                    <td>
+                        <select th:field="*{company}">
+                            <option th:each="company:${companies}" th:text="${company.companyName}"
+                                    th:value="${company.companyId}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên dự án:</th>
+                    <td>
+                        <input th:field="*{projectName}" type="text">
+                        <span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Kinh phí yêu cầu:</th>
+                    <td>
+                        <input th:field="*{projectCost}" type="number">
+                        <span th:if="${#fields.hasErrors('projectCost')}" th:errors="*{projectCost}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Mô tả:</th>
+                    <td><textarea th:field="*{projectDesc}"></textarea></td>
+                </tr>
+                <tr>
+                    <th>Thời gian đăng ký:</th>
+                    <td>
+                        <input th:field="*{announMonth}" type="number">
+                        <span th:if="${#fields.hasErrors('announMonth')}" th:errors="*{announMonth}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày đăng ký:</th>
+                    <td>
+                        <input th:field="*{announDate}" type="date" readonly id="announDate">
+                        <span th:if="${#fields.hasErrors('announDate')}" th:errors="*{announDate}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <button type="submit" class="btn btn-success">Đăng ký</button>
+                    </th>
+                    <th>
+                        <button type="reset" class="btn btn-success">Huỷ</button>
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div th:replace="layout:: script"></div>
+<script>
+    $(document).ready(function (){
+        document.getElementById("announDate").valueAsDate = new Date();
+    })
+</script>
+</body>
+</html>

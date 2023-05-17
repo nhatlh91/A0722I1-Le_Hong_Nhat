@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout::head('Chỉnh sửa thông tin thiết bị')">
+<head th:replace="layout::head('Thêm thiết bi mới')">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -9,15 +9,11 @@
 <div class="row col-md-12">
     <div th:replace="layout::side-bar"></div>
     <div class="col-md-10">
-        <form th:action="@{/device/update}" th:object="${device}" method="POST">
-            <table>
-                <tr>
-                    <th>ID:</th>
-                    <td>
-                        <input th:field="*{id}" type="text" readonly>
-                    </td>
-
-                </tr>
+        <th:block th:if="${message!=null}">
+            <div class="alert alert-primary" th:text="${message}"></div>
+        </th:block>
+        <form th:action="@{/device/create}" th:object="${device}" method="POST">
+            <table class="table table-bordered">
                 <tr>
                     <th>Hãng:</th>
                     <td>
@@ -64,12 +60,8 @@
                 <tr>
                     <th>Tình trạng:</th>
                     <td>
-                        <select th:field="*{status}">
-                            <option th:each="stt:${statusList}" th:text="${stt}"
-                                    th:value="${stt}"
-                                    th:selected="${stt.equals(device.status)}">
-                            </option>
-                        </select>
+                        <input th:field="*{status}" type="text">
+                        <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
                     </td>
 
                 </tr>
@@ -78,20 +70,18 @@
                     <td>
                         <select th:field="*{category}">
                             <option th:each="cate:${categories}" th:text="${cate.categoryName}"
-                                    th:value="${cate.categoryId}"
-                                    th:selected="${cate.categoryId.equals(device.category.categoryId)}">
+                                    th:value="${cate.categoryId}">
                             </option>
                         </select>
                     </td>
                 </tr>
                 </tr>
                 <tr>
-                    <th>Người được cấp phát:</th>
+                    <th>Người khai thác:</th>
                     <td>
                         <select th:field="*{user}">
                             <option value=""></option>
-                            <option th:each="user:${users}" th:text="${user.englishName}" th:value="${user.userId}"
-                                    th:selected="${user.userId.equals(device.user?.userId)}">
+                            <option th:each="user:${users}" th:text="${user.englishName}" th:value="${user.userId}">
                             </option>
                         </select>
                     </td>

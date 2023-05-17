@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Danh sách')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container col-md-12">
+    <div th:replace="layout::header"></div>
+    <div class="row">
+        <div th:replace="layout::side-bar"></div>
+        <div class="col-md-10">
+            <h2>Các dự án hiện có</h2>
+
+            <!--    Notification toast-->
+            <th:block th:if="${message!=null}">
+                <div class="alert alert-primary" th:text="${message}"></div>
+            </th:block>
+            <!--    Table-->
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Mã dự án</th>
+                        <th>Tên dự án</th>
+                        <th>Tên doanh nghiệp</th>
+                        <th>Kinh phí</th>
+                        <th>Thời gian</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Chi phí</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                    </thead>
+                    <tbody id="result" th:if="${projects.size}">
+                    <tr th:each="project:${projects}" th:object="${project}">
+                        <td th:text="*{projectCode}"></td>
+                        <td th:text="*{projectName}"></td>
+                        <td th:text="*{company.companyName}"></td>
+                        <td th:text="${#numbers.formatCurrency(project.projectCost)}"></td>
+                        <td th:text="*{announMonth}"></td>
+                        <td th:text="${#dates.format(project.announDate,'dd-MM-yyyy')}"></td>
+                        <td th:text="${#numbers.formatCurrency(project.fee)}"></td>
+                        <td>
+                            <a th:href="@{/projects/detail(projectId=*{projectId})}" class="btn btn-outline-primary">Chi tiết</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Phân trang-->
+            <div>
+                <a th:href="@{'/projects/list'(page=${projects.number - 1})}"
+                   th:if="${projects.hasPrevious()}">Previous</a>
+                <span th:text="${projects.number + 1}"></span>/<span th:text="${projects.totalPages}"></span>
+                <a th:href="@{'/projects/list'(page=${projects.number + 1})}" th:if="${projects.hasNext()}">Next</a>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layout::footer"></div>
+</div>
+<div th:replace="layout::script"></div>
+</body>
+</html>

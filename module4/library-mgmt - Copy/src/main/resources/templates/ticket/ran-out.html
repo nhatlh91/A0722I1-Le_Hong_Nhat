@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Chỉnh sửa thông tin thiết bị')">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+  <div th:replace="layout::side-bar"></div>
+  <div class="col-md-10">
+    <h2>Đầu sách muốn mượn hiện tại đã hết</h2>
+    <a class="btn btn-primary" th:href="@{/books/list}">Mượn sách khác</a>
+  </div>
+</div>
+<div th:replace="layout:: script"></div>
+</body>
+</html>
