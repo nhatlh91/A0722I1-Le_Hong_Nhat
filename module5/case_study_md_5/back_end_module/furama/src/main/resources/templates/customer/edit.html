@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Chỉnh sửa thông tin thiết bị')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <form th:action="@{/templates/customer/update}" th:object="${device}" method="POST">
+            <table>
+                <tr>
+                    <th>ID:</th>
+                    <td>
+                        <input th:field="*{id}" type="text" readonly>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Hãng:</th>
+                    <td>
+                        <input th:field="*{brand}" type="text">
+                        <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Model:</th>
+                    <td>
+                        <input th:field="*{model}" type="text">
+                        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Màu sắc:</th>
+                    <td>
+                        <input th:field="*{color}" type="text">
+                        <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Mô tả:</th>
+                    <td><textarea th:field="*{description}"></textarea></td>
+                </tr>
+                <tr>
+                    <th>Giá:</th>
+                    <td>
+                        <input th:field="*{price}" type="number">
+                        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Ngày mua:</th>
+                    <td>
+                        <input th:field="*{purchasingDate}" type="date">
+                        <span th:if="${#fields.hasErrors('purchasingDate')}" th:errors="*{purchasingDate}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tình trạng:</th>
+                    <td>
+                        <select th:field="*{status}">
+                            <option th:each="stt:${statusList}" th:text="${stt}"
+                                    th:value="${stt}"
+                                    th:selected="${stt.equals(device.status)}">
+                            </option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>Danh mục:</th>
+                    <td>
+                        <select th:field="*{category}">
+                            <option th:each="cate:${categories}" th:text="${cate.categoryName}"
+                                    th:value="${cate.categoryId}"
+                                    th:selected="${cate.categoryId.equals(device.category.categoryId)}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                </tr>
+                <tr>
+                    <th>Người được cấp phát:</th>
+                    <td>
+                        <select th:field="*{user}">
+                            <option value=""></option>
+                            <option th:each="user:${users}" th:text="${user.englishName}" th:value="${user.userId}"
+                                    th:selected="${user.userId.equals(device.user?.userId)}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div th:replace="layout:: script"></div>
+</body>
+</html>

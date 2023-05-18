@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Thông tin chi tiết')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="layout::header"></div>
+<div class="row col-md-12">
+    <div th:replace="layout::side-bar"></div>
+    <div class="col-md-10">
+        <th:block th:object="${device}">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID:</th>
+                    <td th:text="*{id}"></td>
+                </tr>
+                <tr>
+                    <th>Hãng:</th>
+                    <td th:text="*{brand}"></td>
+                </tr>
+                <tr>
+                    <th>Model:</th>
+                    <td th:text="*{model}"></td>
+                </tr>
+                <tr>
+                    <th>Màu sắc:</th>
+                    <td><p th:text="*{color}"/></td>
+
+                </tr>
+                <tr>
+                    <th>Mô tả:</th>
+                    <td><textarea th:text="*{description}" readonly></textarea></td>
+                </tr>
+                <tr>
+                    <th>Giá:</th>
+                    <td><p th:text="*{price}"/></td>
+                </tr>
+                <tr>
+                    <th>Ngày mua:</th>
+                    <td th:text="${#dates.format(device.purchasingDate,'dd-MM-yyyy')}"></td>
+                </tr>
+                <tr>
+                    <th>Tình trạng:</th>
+                    <td th:text="*{status}"></td>
+                <tr>
+                    <th>Danh mục:</th>
+                    <td th:text="*{category.categoryName}"></td>
+                </tr>
+                <tr>
+                    <th>Người khai thác:</th>
+                    <td th:if="*{user!=null}" th:text="*{user.englishName}"></td>
+                    <td th:unless="*{user!=null}">Thiết bị chưa được cấp phát</td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <a th:href="@{/templates/customer/edit(id=*{id})}" class="btn btn-primary">Chỉnh sửa</a>
+                        <a th:href="*{user} ? @{/device/recall(id=*{id})} : @{/device/issue(id=*{id})}" class="btn btn-outline-primary"
+                            th:text="*{user} ? 'Thu hồi' : 'Cấp phát'"></a>
+                        <a th:href="@{/templates/customer/delete(id=*{id})}" class="btn btn-danger">Xoá</a>
+                    </th>
+                </tr>
+            </table>
+        </th:block>
+    </div>
+</div>
+<div th:replace="layout:: script"></div>
+</body>
+</html>

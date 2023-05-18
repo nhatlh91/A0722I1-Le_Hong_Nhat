@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Danh sách dịch vụ')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container col-md-12">
+    <div th:replace="layout::header"></div>
+    <div class="row">
+        <div th:replace="layout::side-bar"></div>
+        <div class="col-md-10">
+
+            <!--    Notification toast-->
+            <th:block th:if="${message!=null}">
+                <div class="alert alert-primary" th:text="${message}"></div>
+            </th:block>
+
+            <!--    Table-->
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Hãng</th>
+                        <th>Model</th>
+                        <th>Màu sắc</th>
+                        <th>Mô tả</th>
+                        <th>Giá tiền</th>
+                        <th>Ngày mua</th>
+                        <th>Trạng thái</th>
+                        <th>Danh mục</th>
+                        <th>Người khai thác</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody id="result">
+                    <tr th:each="device:${devices}" th:object="${device}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{brand}"></td>
+                        <td th:text="*{model}"></td>
+                        <td th:text="*{color}"></td>
+                        <td th:text="*{description}"></td>
+                        <td th:text="${#numbers.formatCurrency(device.price)}"></td>
+                        <td th:text="${#dates.format(device.purchasingDate,'dd-MM-yyyy')}"></td>
+                        <td th:text="*{status}"></td>
+                        <td th:text="*{category.categoryName}"></td>
+                        <td th:text="*{user} ? *{user.englishName} : 'Thiết bị chưa được cấp phát'"></td>
+                        <td>
+                            <a th:href="@{/templates/customer/detail(id=*{id})}" class="btn btn-outline-primary">Chi tiết</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Phân trang-->
+            <div>
+                <a th:href="@{'/device/list'(page=${devices.number - 1})}"
+                   th:if="${devices.hasPrevious()}">Previous</a>
+                <span th:text="${devices.number + 1}"></span>/<span th:text="${devices.totalPages}"></span>
+                <a th:href="@{'/device/list'(page=${devices.number + 1})}" th:if="${devices.hasNext()}">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="layout::footer"></div>
+</div>
+<div th:replace="layout::script"></div>
+<script>
+    function buildResult(data) {
+        let result = "";
+        for (let i = 0; i < data.length; i++) {
+            result += `
+                     <tr>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].brand}</td>
+                        <td>${data[i].model}</td>
+                        <td>${data[i].color}</td>
+                        <td>${data[i].description}</td>
+                        <td>${data[i].price}</td>
+                        <td>${data[i].purchasingDate}</td>
+                        <td>${data[i].status}</td>
+                        <td>${data[i].category.categoryName}</td>
+                        <td>${data[i].user ? data[i].user.englishName : "Thiết bị chưa được cấp phát"}</td>
+                        <td>
+                            <a href="/device/detail?id=${data[i].id}" class="btn btn-outline-primary">Chi tiết</a>
+                        </td>
+                     </tr>
+    `
+        }
+        return result;
+    }
+
+    function search() {
+        let keyword = $("#keyword").val();
+        // alert(keyword);
+        $.ajax({
+            url: "/api/device/search",
+            data: {
+                keyword: keyword
+            },
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                // console.log(data);
+                let result = buildResult(data)
+                $("#result").html(result);
+            },
+            error: function () {
+                let result = "Không tìm được kết quả tương ứng"
+                $("#result").text(result);
+            }
+        })
+    }
+</script>
+</body>
+</html>

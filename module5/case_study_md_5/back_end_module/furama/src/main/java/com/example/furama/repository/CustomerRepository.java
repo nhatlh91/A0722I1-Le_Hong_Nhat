@@ -1,0 +1,7 @@
+package com.example.furama.repository;
+
+import com.example.furama.entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+}
