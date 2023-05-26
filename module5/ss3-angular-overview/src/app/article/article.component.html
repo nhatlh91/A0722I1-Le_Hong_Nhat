@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+<hr>
 <h2>Today's article</h2>
 <hr>
 <div *ngFor="let art of articles">
@@ -19,9 +21,9 @@
     </tr>
     <tr>
       <td></td>
-      <td><button style="float: right" (click)="addNewArticle()">Add</button></td>
+      <td><button style="float: right" (click)="addNewArticle()" class="btn btn-outline-success">Add</button></td>
     </tr>
   </table>
 </div>
 <hr>
-<p>Codegym@2022</p>
+<app-footer></app-footer>
