@@ -1,0 +1,15 @@
+<form action="" [formGroup]="loginForm">
+  <div class="input-group">
+    <label for="email">Email: </label>
+    <input type="email" class="form-control" name="email" id="email" placeholder="email">
+  </div>
+  <p class="text-danger" *ngIf="loginForm.controls.email?.touched && loginForm.controls.email?.errors?.required">Email cannot be blank</p>
+  <p class="text-danger" *ngIf="loginForm.controls.email?.touched && loginForm.controls.email?.errors?.email">Email doesn't valid</p>
+
+  <div class="input-group">
+    <label for="password">Password: </label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="password">
+  </div>
+  <p class="text-danger" *ngIf="loginForm.controls.password?.touched && loginForm.controls.password?.errors?.required">Password cannot be blank</p>
+  <p class="text-danger" *ngIf="loginForm.controls.password?.touched && loginForm.controls.password?.errors?.minlength">Password at least 7 characters</p>
+</form>

@@ -3,42 +3,41 @@
     <label for="email">Email: </label>
     <input formControlName="email" type="email" id="email">
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.email?.touched && registerForm.controls.email?.errors?.required">Email bắt buộc nhập</p>
+  <p class="text-danger" *ngIf="registerForm.controls.email?.touched && registerForm.controls.email?.errors?.email">Email không đúng định dạng</p>
   <div class="input-group mb-3">
     <label for="password">Password: </label>
-    <input formControlName="password" type="password" id="password">
+    <input #password formControlName="password" type="password" id="password">
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.password?.touched && registerForm.controls.password?.errors?.required">Password bắt buộc nhập</p>
+  <p class="text-danger" *ngIf="registerForm.controls.password?.touched && registerForm.controls.password?.errors?.minlength">Password phải có ít nhất 6 ký tự</p>
   <div class="input-group mb-3">
     <label for="confirmPassword">Confirm password: </label>
-    <input formControlName="confirmPassword" type="password" id="confirmPassword">
+    <input #confirmPassword formControlName="confirmPassword" type="password" id="confirmPassword">
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.confirmPassword?.touched && password.value!=confirmPassword.value">Password không trùng khớp</p>
   <div class="input-group mb-3">
-    <label for="country">Country: </label>
-    <select formControlName="country" id="country" ng-options="item for item in names">
+    <label>Country: </label>
+    <select formControlName="country">
+      <option value="" selected>Choose country</option>
+      <option *ngFor="let country of countries" [value]="country">{{country}}</option>
     </select>
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.country?.touched && registerForm.controls.country?.errors?.required">Trường này bắt buộc phải có thông tin</p>
   <div class="input-group mb-3">
     <label for="age">Age: </label>
     <input formControlName="age" type="number" id="age">
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.age?.touched && registerForm.controls.age?.errors?.min">Tuổi không được nhỏ hơn 18</p>
   <div class="input-group mb-3">
     <label>Gender: </label>
     <input formControlName="gender" type="radio" name="gender" value="Male">Male
     <input formControlName="gender" type="radio" name="gender" value="Female">Female
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.gender?.touched && registerForm.controls.gender?.errors?.required">Yêu cầu chọn giới tính</p>
   <div class="input-group mb-3">
     <label for="phone">Phone:</label>
     <input formControlName="phone" type="text" id="phone">
   </div>
+  <p class="text-danger" *ngIf="registerForm.controls.phone?.touched && registerForm.controls.phone?.errors?.pattern">Yêu cầu đúng định dạng</p>
 </form>
-
-<!--Email: bắt buộc, và phải có định dạng là email.-->
-
-<!--Password và confirm password: bắt buộc, min length là 6, và phải giống nhau.-->
-
-<!--Country: bắt buộc, và là một select box để người dùng chọn 1 phần tử trong list.-->
-
-<!--Age: bắt buộc và phải lớn hơn 18 tuổi.-->
-
-<!--Gender: bắt buộc và là radio button.-->
-
-<!--Phone: bắt buộc và phải có định dạng bao gồm: bắt đầu với +84, và theo sau là 9 đến 10 chữ số. (Regex có dạng /^\+84\d{9,10}$/)-->
