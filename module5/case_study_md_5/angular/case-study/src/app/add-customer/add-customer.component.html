@@ -1,0 +1,124 @@
+<form action="" [formGroup]="addCustomerForm">
+  <table class="col-md-10">
+    <tr>
+      <td>
+        <label for="customer-code">Customer code:</label>
+      </td>
+      <td>
+        <input
+          type="text" [(ngModel)]="customer.customerCode"
+          class="form-control col-md-10" id="customer-code" placeholder="Customer code" formControlName="customerCode">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.customerCode.touched
+  && addCustomerForm.controls.customerCode?.errors?.required">Customer code is required</p>
+        <p class="text-danger" *ngIf="addCustomerForm.controls.customerCode.touched
+  && addCustomerForm.controls.customerCode?.errors?.pattern">Customer code is not meet the pattern</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="customer-name">Customer name:</label>
+      </td>
+      <td>
+        <input
+          type="text" [(ngModel)]="customer.customerName"
+          class="form-control" id="customer-name" placeholder="Customer name" formControlName="customerName">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.customerName.touched
+  && addCustomerForm.controls.customerName?.errors?.required">Customer name is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="birthday">Birthday:</label>
+      </td>
+      <td>
+        <input
+          type="date" [(ngModel)]="customer.birthday"
+          class="form-control" id="birthday" formControlName="birthday">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.birthday.touched
+  && addCustomerForm.controls.birthday?.errors?.required">Birthday is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Gender:</label>
+      </td>
+      <td>
+        <input type="radio" name="gender" formControlName="gender" value="Male" [(ngModel)]="customer.gender">Male
+        <input type="radio" name="gender" formControlName="gender" value="Female" [(ngModel)]="customer.gender">Female
+        <p class="text-danger" *ngIf="addCustomerForm.controls.gender.untouched
+  && addCustomerForm.controls.gender?.errors?.required">Gender is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="customer-code">Customer ID:</label>
+      </td>
+      <td>
+        <input [(ngModel)]="customer.idNumber"
+          type="text"
+          class="form-control" id="idNumber" placeholder="ID number" formControlName="idNumber">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.idNumber.touched
+  && addCustomerForm.controls.idNumber?.errors?.required">ID is required</p>
+        <p class="text-danger" *ngIf="addCustomerForm.controls.idNumber.touched
+  && addCustomerForm.controls.idNumber?.errors?.pattern">ID is not meet the pattern</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="customer-code">Phone number:</label>
+      </td>
+      <td>
+        <input
+          type="text" [(ngModel)]="customer.phone"
+          class="form-control" id="phone" placeholder="Phone number" formControlName="phone">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.phone.touched
+  && addCustomerForm.controls.phone?.errors?.required">Phone is required</p>
+        <p class="text-danger" *ngIf="addCustomerForm.controls.phone.touched
+  && addCustomerForm.controls.phone?.errors?.pattern">Phone is not meet the pattern</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="email">Email:</label>
+      </td>
+      <td>
+        <input
+          type="email" [(ngModel)]="customer.email"
+          class="form-control" id="email" placeholder="Email" formControlName="email">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.email.touched
+  && addCustomerForm.controls.email?.errors?.email">Email is not correct</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="customer-type">Customer Type:</label>
+      </td>
+      <td>
+        <select formControlName="typeOfCustomer" class="form-control" id="customer-type" [(ngModel)]="customer.typeOfCustomer">
+          <option *ngFor="let item of customerTypes" value="{{item}}">{{item}}</option>
+        </select>
+        <p class="text-danger" *ngIf="addCustomerForm.controls.typeOfCustomer.touched
+  && addCustomerForm.controls.typeOfCustomer?.errors?.required">Please choose customer type</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="address">Address:</label>
+      </td>
+      <td>
+        <input
+          type="text" [(ngModel)]="customer.address"
+          class="form-control" id="address" placeholder="Address" formControlName="address">
+        <p class="text-danger" *ngIf="addCustomerForm.controls.email.touched
+  && addCustomerForm.controls.address?.errors?.required">Address is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+        <button (click)="save()" class="btn btn-outline-primary">Save</button>
+      </td>
+    </tr>
+  </table>
+</form>
