@@ -1,0 +1,39 @@
+<form [formGroup]="editForm" (ngSubmit)="update()">
+  <table border="1">
+    <tr>
+      <th colspan="2" class="text-bg-primary">Create new product</th>
+    </tr>
+    <tr>
+      <td>Product ID:</td>
+      <td>
+        <input type="number" formControlName="id">
+        <p class="text-danger" *ngIf="editForm.controls.id.touched && editForm.controls.id?.errors?.required">Product ID is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Product name:</td>
+      <td>
+        <input type="text" formControlName="name">
+        <p class="text-danger" *ngIf="editForm.controls.name.touched && editForm.controls.name?.errors?.required">Product name is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Price:</td>
+      <td>
+        <input type="number" formControlName="price">
+        <p class="text-danger" *ngIf="editForm.controls.price.touched && editForm.controls.price?.errors?.required">Product price is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Product description:</td>
+      <td>
+        <input type="text" formControlName="description">
+        <p class="text-danger" *ngIf="editForm.controls.description.touched && editForm.controls.description?.errors?.required">Product description is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn btn-success">Update</button></td>
+    </tr>
+  </table>
+</form>

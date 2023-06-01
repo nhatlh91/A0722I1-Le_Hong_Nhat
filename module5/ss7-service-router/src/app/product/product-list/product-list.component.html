@@ -1,0 +1,24 @@
+<table class="table table-bordered table-responsive table-striped">
+  <thead>
+  <tr>
+    <th colspan="6" class="text-bg-primary text-center">PRODUCT LIST</th>
+  </tr>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th colspan="2">Edit</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td>{{product.id}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price | currency : 'VND'}}</td>
+    <td>{{product.description}}</td>
+    <td><a class="btn btn-outline-primary" routerLink="/product/edit/{{product.id}}">Edit</a></td>
+    <td><a class="btn btn-outline-danger" routerLink="/product/delete/{{product.id}}">Delete</a></td>
+  </tr>
+  </tbody>
+</table>

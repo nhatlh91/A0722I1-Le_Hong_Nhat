@@ -1,0 +1,17 @@
+<table class="table">
+  <tr>
+    <th colspan="4" class="text-center text-primary-emphasis">LIST OF WORDS</th>
+  </tr>
+  <tr>
+    <th>STT</th>
+    <th>Word</th>
+    <th>Meaning</th>
+    <th>Detail</th>
+  </tr>
+  <tr *ngFor="let item of list, index as i">
+    <td>{{i+1}}</td>
+    <td>{{item.word}}</td>
+    <td>{{item.mean}}</td>
+    <td><a routerLink="/dictionary/detail/{{item.word}}" class="btn btn-outline-success">Detail</a></td>
+  </tr>
+</table>
