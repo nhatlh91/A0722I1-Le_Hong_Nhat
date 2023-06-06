@@ -1,0 +1,10 @@
+<form [formGroup]="rf" (ngSubmit)="save()">
+  <div class="input-group">
+    <label for="name"></label>
+    <input formControlName="name"
+      type="text"
+      class="form-control" id="name" aria-describedby="helpId" placeholder="Name of new category">
+  </div>
+  <button class="btn btn-outline-secondary" routerLink="/categories/list">Cancel</button>
+  <button class="btn btn-outline-success" type="submit">Save</button>
+</form>

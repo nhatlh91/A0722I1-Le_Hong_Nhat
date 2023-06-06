@@ -20,8 +20,10 @@ export class ProductDeleteComponent implements OnInit {
   private del() {
     this.activatedRoute.paramMap.subscribe(param => {
       const id = parseInt(param.get('id'), 10);
-      this.productService.delete(id);
-      this.router.navigateByUrl('/product/list');
+      this.productService.delete(id).subscribe(next => {
+        alert('Deleted successfully, Back to product list');
+        this.router.navigateByUrl('/product/list');
+      });
     });
   }
 }

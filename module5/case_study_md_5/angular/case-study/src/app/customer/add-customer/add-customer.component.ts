@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../Customer';
+import {Customer} from '../../model/Customer';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomerService} from '../service/customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -8,15 +10,25 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-  customers: Customer[] = [];
+  customers: Customer[];
   addCustomerForm: FormGroup;
   customerTypes: string[] = ['Member', 'Silver', 'Gold', 'Platinum', 'Diamond'];
   customer: Customer = {};
 
-  constructor() {
+  constructor(private customeService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  save() {
+    this.customeService.customers.push(this.customer);
+    this.router.navigateByUrl('/customer/list');
+  }
+
+  private buildForm() {
     this.addCustomerForm = new FormGroup({
       customerCode: new FormControl('', [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
       customerName: new FormControl('', [Validators.required]),
@@ -29,11 +41,4 @@ export class AddCustomerComponent implements OnInit {
       address: new FormControl('', [Validators.required]),
     });
   }
-
-  save() {
-    this.customers.push(this.customer);
-    console.log(this.customers);
-  }
-
-  protected readonly FormGroup = FormGroup;
 }

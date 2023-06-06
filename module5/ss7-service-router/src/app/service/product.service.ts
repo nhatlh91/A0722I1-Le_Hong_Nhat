@@ -1,70 +1,48 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
+import {de} from 'date-fns/locale';
+const API_URL = `${environment.apiUrl}`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'IPhone 12',
-      price: 24000000,
-      description: 'New'
-    }, {
-      id: 2,
-      name: 'IPhone 11',
-      price: 15600000,
-      description: 'Like new'
-    }, {
-      id: 3,
-      name: 'IPhone X',
-      price: 9680000,
-      description: '97%'
-    }, {
-      id: 4,
-      name: 'IPhone 8',
-      price: 7540000,
-      description: '98%'
-    }, {
-      id: 5,
-      name: 'IPhone 11 Pro',
-      price: 18950000,
-      description: 'Like new'
-    }
-  ];
-
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.products;
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/products`);
   }
 
-  saveProduct(product: Product) {
-    this.products.push(product);
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${API_URL}/products`, product);
   }
 
-  findById(id: number): Product {
-    let result: Product;
-    this.products.forEach((item: Product) =>{
-      if (item.id === id) {
-        result = item;
-      }
-    });
-    return result;
+  findById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${API_URL}/products/${id}`);
   }
 
-  update(product: Product) {
-    const tempList: Product[] = [];
-    this.products.forEach((item: Product) => {
-      item.id === product.id ? tempList.push(product) : tempList.push(item);
-    });
-    this.products = tempList;
+  update(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${API_URL}/products/${product.id}`, product);
   }
 
-  delete(id: number) {
-    const idx: number = this.products.indexOf(this.findById(id));
-    this.products.splice(idx, 1);
+  delete(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${API_URL}/products/${id}`);
+  }
+
+  searchByName(keyword: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/products?name_like=${keyword}`);
+  }
+
+  searchByDescription(keyword: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/products?description_like=${keyword}`);
+  }
+
+  search(keyword: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/products${keyword}`);
   }
 }
+

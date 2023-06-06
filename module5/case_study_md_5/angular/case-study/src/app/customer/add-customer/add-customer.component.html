@@ -1,5 +1,5 @@
-<form action="" [formGroup]="addCustomerForm">
-  <table class="col-md-10">
+<form action="" [formGroup]="addCustomerForm" (ngSubmit)="save()">
+  <table class="table">
     <tr>
       <td>
         <label for="customer-code">Customer code:</label>
@@ -117,7 +117,7 @@
       <td></td>
       <td>
         <button type="reset" class="btn btn-outline-secondary">Reset</button>
-        <button (click)="save()" class="btn btn-outline-primary">Save</button>
+        <button class="btn btn-outline-primary">Save</button>
       </td>
     </tr>
   </table>

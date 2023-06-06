@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th colspan="11"><h3 class="text-primary text-center">List of customer</h3></th>
+  </tr>
+  <tr>
+    <th>STT</th>
+    <th>Mã khách hàng</th>
+    <th>Tên khách hàng</th>
+    <th>Ngày sinh</th>
+    <th>Giới tính</th>
+    <th>CMND</th>
+    <th>Số điện thoại</th>
+    <th>Email</th>
+    <th>Loại khác</th>
+    <th>Địa chỉ</th>
+    <th>Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers, index as i">
+    <td>{{i + 1}}</td>
+    <td>{{customer.customerCode}}</td>
+    <td>{{customer.customerName}}</td>
+    <td>{{customer.birthday}}</td>
+    <td>{{customer.gender}}</td>
+    <td>{{customer.idNumber}}</td>
+    <td>{{customer.phone}}</td>
+    <td>{{customer.email}}</td>
+    <td>{{customer.typeOfCustomer}}</td>
+    <td>{{customer.address}}</td>
+    <td class="d-flex justify-content-evenly">
+      <button class="btn btn-outline-primary" routerLink="/customer/edit/{{customer.customerCode}}">Chỉnh sửa</button>
+      <button class="btn btn-outline-danger">Xoá</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

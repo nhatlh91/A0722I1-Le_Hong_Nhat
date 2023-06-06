@@ -1,4 +1,13 @@
 <app-nav-bar></app-nav-bar>
-<app-side-bar></app-side-bar>
-<app-add-customer></app-add-customer>
+<div class="row col-md-12">
+  <div class="col-md-1">
+    <app-side-bar></app-side-bar>
+  </div>
+  <div class="col-md-11">
+    <a routerLink='/customer/list' class="btn btn-primary">Danh sách khách hàng</a> |
+    <a routerLink='/customer/create' class="btn btn-primary">Thêm mới khách hàng</a>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<br>
 <app-footer></app-footer>
