@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ProductService} from '../../service/product.service';
 import {Product} from '../../model/product';
@@ -11,7 +11,10 @@ import {Product} from '../../model/product';
 export class ProductSearchComponent implements OnInit {
   rf: FormGroup;
   products: Product[] = [];
-  constructor(private productService: ProductService) { }
+  @Output() newItemEvent = new EventEmitter<Product[]>();
+
+  constructor(private productService: ProductService) {
+  }
 
   ngOnInit(): void {
     this.rf = new FormGroup({
@@ -23,20 +26,31 @@ export class ProductSearchComponent implements OnInit {
   }
 
   search() {
-    console.log(this.rf.value.name);
-    console.log(this.rf.value.description);
-    console.log(this.rf.value.beginDate);
-    console.log(this.rf.value.endDate);
-    console.log(this.rf.value.endDate === '');
-    const form = this.rf.value;
-    let keyword = `?name_like=${this.rf.value.name}&description_like=${this.rf.value.description}&purchasingDate_gte=${this.rf.value.beginDate}`;
-    if (this.rf.value.endDate !== '') {
-      keyword += `&purchasingDate_lte=${this.rf.value.endDate}`;
+    let keyword = '?';
+    const name = this.rf.value.name;
+    console.log(`name: ${name}`);
+    if (name !== '' && name != null) {
+      keyword += `name_like=${name}&`;
     }
-    console.log(keyword);
+    const description = this.rf.value.description;
+    console.log(`description: ${description}`);
+    if (description !== '' && description != null) {
+      keyword += `description_like=${description}&`;
+    }
+    const beginDate = this.rf.value.beginDate;
+    console.log(`beginDate: ${beginDate}`);
+    if (beginDate !== '' && beginDate != null) {
+      keyword += `purchasingDate_gte=${beginDate}&`;
+    }
+    const endDate = this.rf.value.endDate;
+    console.log(`endDate: ${endDate}`);
+    if (endDate !== '' && endDate != null) {
+      keyword += `purchasingDate_lte=${endDate}`;
+    }
+    console.log(`keyword: ${keyword}`);
     this.productService.search(keyword).subscribe(next => {
-      this.products = next;
-      console.log(this.products);
+      console.log(next);
+      this.newItemEvent.emit(next);
     });
   }
 }

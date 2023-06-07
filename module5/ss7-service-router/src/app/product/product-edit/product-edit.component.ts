@@ -41,22 +41,6 @@ export class ProductEditComponent implements OnInit {
     this.categoryService.getAll().subscribe(item => {
       this.categories = item;
     });
-    // this.rf =  new FormGroup({
-    //   id: new FormControl(this.product.id),
-    //   name: new FormControl(this.product.name, [Validators.required]),
-    //   price: new FormControl(this.product.price, [Validators.required, Validators.min(0)]),
-    //   description: new FormControl(this.product.description, [Validators.required]),
-    //   category: new FormControl(this.product.category, [Validators.required]),
-    //   purchasingDate: new FormControl(this.product.purchasingDate, [Validators.required]),
-    // });
-    // this.rf = this.fb.group({
-    //   id: this.product.id,
-    //   name: [this.product.name, Validators.required],
-    //   price: [this.product.price, Validators.required, Validators.min(0)],
-    //   description: [this.product.description, Validators.required],
-    //   category: [this.product.category, Validators.required],
-    //   purchasingDate: [this.product.purchasingDate, Validators.required]
-    // });
   }
 
   update() {
@@ -64,6 +48,5 @@ export class ProductEditComponent implements OnInit {
       alert('Updated successfully');
       this.router.navigateByUrl('/product/list');
     });
-
   }
 }

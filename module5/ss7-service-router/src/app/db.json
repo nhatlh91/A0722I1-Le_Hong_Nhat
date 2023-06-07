@@ -65,6 +65,28 @@
         "name": "laptop"
       },
       "purchasingDate": "2023-05-29"
+    },
+    {
+      "name": "Product Z",
+      "price": 7500000,
+      "description": "Used fullbox",
+      "category": {
+        "id": 1,
+        "name": "smartphone"
+      },
+      "purchasingDate": "2023-06-07",
+      "id": 15
+    },
+    {
+      "name": "Product Y",
+      "price": 10000000,
+      "description": "New",
+      "category": {
+        "id": 2,
+        "name": "laptop"
+      },
+      "purchasingDate": "2023-06-08",
+      "id": 16
     }
   ],
   "categories": [

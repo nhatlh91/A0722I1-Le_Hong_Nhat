@@ -32,6 +32,7 @@ export class ProductCreateComponent implements OnInit {
 
   save() {
     this.productService.saveProduct(this.rf.value).subscribe();
+    debugger;
     this.rf.reset();
     alert('Saved successfully, back to product list');
     this.router.navigateByUrl('/product/list');
