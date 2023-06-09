@@ -16,7 +16,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let product of products">
+  <tr *ngFor="let product of products | paginate:{ itemsPerPage: 5, currentPage: p}">
     <td>{{product.id}}</td>
     <td>{{product.name|titlecase}}</td>
     <td>{{product.price | currency : 'VND'}}</td>
@@ -30,5 +30,6 @@
   </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 <button class="btn btn-outline-primary" routerLink="/product/create">Add new product</button>
 

@@ -1,0 +1,41 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "customerName": "Nhân",
+      "birthday": "2000-12-24",
+      "gender": "Male",
+      "idNumber": "386671772",
+      "phone": "0482991857",
+      "email": "nhan@gmail.com",
+      "typeOfCustomer": "Member",
+      "address": "Cẩm Lệ"
+    }
+  ],
+  "customerTypes": [
+    {
+      "id": 1,
+      "customerType": "Member"
+    },
+    {
+      "id": 2,
+      "customerType": "Silver"
+    },
+    {
+      "id": 3,
+      "customerType": "Gold"
+    },
+    {
+      "id": 4,
+      "customerType": "Platinum"
+    },
+    {
+      "id": 5,
+      "customerType": "Diamond"
+    }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}

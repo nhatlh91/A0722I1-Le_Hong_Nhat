@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CustomerService} from '../service/customer.service';
+import {CustomerService} from '../../service/customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../../model/Customer';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -21,7 +21,7 @@ export class EditCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(param => {
       const code = param.get('customerCode');
-      this.customer = this.customerService.getByCode(code);
+      this.customer = this.customerService.getById(code);
     });
     this.buildForm();
   }
@@ -34,7 +34,7 @@ export class EditCustomerComponent implements OnInit {
 
   buildForm() {
     this.customerForm = new FormGroup({
-      customerCode: new FormControl(this.customer.customerCode, [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
+      customerCode: new FormControl(this.customer.id, [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
       customerName: new FormControl(this.customer.customerName, [Validators.required]),
       birthday: new FormControl(this.customer.birthday, [Validators.required]),
       gender: new FormControl(this.customer.gender, [Validators.required]),

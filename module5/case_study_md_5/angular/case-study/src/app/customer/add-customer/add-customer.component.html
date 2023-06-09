@@ -6,7 +6,7 @@
       </td>
       <td>
         <input
-          type="text" [(ngModel)]="customer.customerCode"
+          type="text" [(ngModel)]="customer.id"
           class="form-control col-md-10" id="customer-code" placeholder="Customer code" formControlName="customerCode">
         <p class="text-danger" *ngIf="addCustomerForm.controls.customerCode.touched
   && addCustomerForm.controls.customerCode?.errors?.required">Customer code is required</p>

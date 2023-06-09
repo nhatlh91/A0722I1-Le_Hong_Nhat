@@ -21,6 +21,7 @@ import { CategoryCreateComponent } from './category/category-create/category-cre
 import { CategoryDeleteComponent } from './category/category-delete/category-delete.component';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { ProductSearchComponent } from './product/product-search/product-search.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProductSearchComponent } from './product/product-search/product-search.
         ReactiveFormsModule,
         ImageGalleryModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgxPaginationModule
     ],
   providers: [{provide: GalleryConfig, useValue: 3}],
   bootstrap: [AppComponent]

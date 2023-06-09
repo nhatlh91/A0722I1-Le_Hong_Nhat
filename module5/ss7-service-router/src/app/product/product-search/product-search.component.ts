@@ -20,6 +20,8 @@ export class ProductSearchComponent implements OnInit {
     this.rf = new FormGroup({
       name: new FormControl(''),
       description: new FormControl(''),
+      lowerPrice: new FormControl(''),
+      upperPrice: new FormControl(''),
       beginDate: new FormControl(''),
       endDate: new FormControl(''),
     });
@@ -37,6 +39,16 @@ export class ProductSearchComponent implements OnInit {
     if (description !== '' && description != null) {
       keyword += `description_like=${description}&`;
     }
+    const lowerPrice = this.rf.value.lowerPrice;
+    console.log(`lowerPrice: ${lowerPrice}`);
+    if (lowerPrice !== '' && lowerPrice != null) {
+      keyword += `price_gte=${lowerPrice}&`;
+    }
+    const upperPrice = this.rf.value.upperPrice;
+    console.log(`lowerPrice: ${upperPrice}`);
+    if (upperPrice !== '' && upperPrice != null) {
+      keyword += `price_lte=${upperPrice}&`;
+    }
     const beginDate = this.rf.value.beginDate;
     console.log(`beginDate: ${beginDate}`);
     if (beginDate !== '' && beginDate != null) {
@@ -50,6 +62,7 @@ export class ProductSearchComponent implements OnInit {
     console.log(`keyword: ${keyword}`);
     this.productService.search(keyword).subscribe(next => {
       console.log(next);
+      this.rf.reset();
       this.newItemEvent.emit(next);
     });
   }
