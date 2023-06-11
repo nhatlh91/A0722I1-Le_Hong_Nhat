@@ -12,7 +12,7 @@
     <th>CMND</th>
     <th>Số điện thoại</th>
     <th>Email</th>
-    <th>Loại khác</th>
+    <th>Loại khách</th>
     <th>Địa chỉ</th>
     <th>Thao tác</th>
   </tr>
@@ -20,14 +20,14 @@
   <tbody>
   <tr *ngFor="let customer of customers, index as i">
     <td>{{i + 1}}</td>
-    <td>{{customer.id}}</td>
+    <td>{{customer.customerCode}}</td>
     <td>{{customer.customerName}}</td>
     <td>{{customer.birthday}}</td>
     <td>{{customer.gender}}</td>
     <td>{{customer.idNumber}}</td>
     <td>{{customer.phone}}</td>
     <td>{{customer.email}}</td>
-    <td>{{customer.typeOfCustomer}}</td>
+    <td>{{customer.type.customerType}}</td>
     <td>{{customer.address}}</td>
     <td class="d-flex justify-content-evenly">
       <button class="btn btn-outline-primary" routerLink="/customer/edit/{{customer.id}}">Chỉnh sửa</button>

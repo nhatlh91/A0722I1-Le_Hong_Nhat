@@ -1,18 +1,22 @@
 {
   "customers": [
     {
-      "id": 1,
-      "customerName": "Nhân",
-      "birthday": "2000-12-24",
-      "gender": "Male",
-      "idNumber": "386671772",
-      "phone": "0482991857",
-      "email": "nhan@gmail.com",
-      "typeOfCustomer": "Member",
-      "address": "Cẩm Lệ"
+      "customerCode": "KH-0001",
+      "customerName": "Nguyễn Lê Khánh",
+      "birthday": "2023-06-15",
+      "gender": "Female",
+      "idNumber": "6954847222",
+      "phone": "0908442864",
+      "email": "thanh@gmail.com",
+      "type": {
+        "id": 4,
+        "customerType": "Platinum"
+      },
+      "address": "Da Nang",
+      "id": 1
     }
   ],
-  "customerTypes": [
+  "customer-types": [
     {
       "id": 1,
       "customerType": "Member"
@@ -35,7 +39,13 @@
     }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "typicode"
+  }
 }

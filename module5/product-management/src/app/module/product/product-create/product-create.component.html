@@ -1,0 +1,52 @@
+<form [formGroup]="rf" (ngSubmit)="save()">
+  <table class="table">
+    <tr>
+      <th colspan="2" class="text-bg-primary">Product information</th>
+    </tr>
+    <tr>
+      <td>Product name:</td>
+      <td>
+        <input type="text" formControlName="name">
+        <p class="text-danger" *ngIf="rf.controls.name.touched && rf.controls.name?.errors?.required">Product name is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Price:</td>
+      <td>
+        <input type="number" formControlName="price">
+        <p class="text-danger" *ngIf="rf.controls.price.touched && rf.controls.price?.errors?.required">Product price is required</p>
+        <p class="text-danger" *ngIf="rf.controls.price.touched && rf.controls.price?.errors?.min">Product price is cannot less than 0</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Product description:</td>
+      <td>
+        <input type="text" formControlName="description">
+        <p class="text-danger" *ngIf="rf.controls.description.touched && rf.controls.description?.errors?.required">Product description is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Category:</td>
+      <td>
+        <select formControlName="category">
+          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+        <p class="text-danger" *ngIf="rf.controls.category.touched && rf.controls.category?.errors?.required">Category is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Purchasing date:</td>
+      <td>
+        <input type="date" formControlName="purchasingDate">
+        <p class="text-danger" *ngIf="rf.controls.purchasingDate.touched && rf.controls.purchasingDate?.errors?.required">Purchasing date is required</p>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn btn-success" type="submit" [disabled]="rf.invalid">Create</button></td>
+    </tr>
+  </table>
+</form>
+<pre>{{rf.value | json}}</pre>
+<pre>invalid: {{rf.invalid}}</pre>
+

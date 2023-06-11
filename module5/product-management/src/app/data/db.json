@@ -1,0 +1,113 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iphone 12",
+      "price": 24000000,
+      "description": "New",
+      "category": {
+        "id": 1,
+        "name": "smartphone"
+      },
+      "purchasingDate": "2022-05-12"
+    },
+    {
+      "id": 2,
+      "name": "Lenovo Y330",
+      "price": 12000000,
+      "description": "Broken",
+      "category": {
+        "id": 2,
+        "name": "laptop"
+      },
+      "purchasingDate": "2017-05-15"
+    },
+    {
+      "id": 3,
+      "name": "lg gram",
+      "price": 40000000,
+      "description": "New",
+      "category": {
+        "id": 2,
+        "name": "laptop"
+      },
+      "purchasingDate": "2023-01-22"
+    },
+    {
+      "id": 4,
+      "name": "Dell colorfull",
+      "price": 7000000,
+      "description": "New",
+      "category": {
+        "id": 4,
+        "name": "monitor"
+      },
+      "purchasingDate": "2022-05-12"
+    },
+    {
+      "id": 13,
+      "name": "LG",
+      "price": 5000000,
+      "description": "24inches used",
+      "category": {
+        "id": 4,
+        "name": "monitor"
+      },
+      "purchasingDate": "2016-06-22"
+    },
+    {
+      "id": 14,
+      "name": "Goliath",
+      "price": 500000,
+      "description": "New",
+      "category": {
+        "id": 2,
+        "name": "laptop"
+      },
+      "purchasingDate": "2023-05-29"
+    },
+    {
+      "name": "Product Z",
+      "price": 7500000,
+      "description": "Used fullbox",
+      "category": {
+        "id": 1,
+        "name": "smartphone"
+      },
+      "purchasingDate": "2023-06-07",
+      "id": 15
+    },
+    {
+      "name": "Product Y",
+      "price": 10000000,
+      "description": "New",
+      "category": {
+        "id": 2,
+        "name": "laptop"
+      },
+      "purchasingDate": "2023-06-08",
+      "id": 16
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "smartphone"
+    },
+    {
+      "id": 2,
+      "name": "laptop"
+    },
+    {
+      "id": 3,
+      "name": "table"
+    },
+    {
+      "id": 4,
+      "name": "monitor"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

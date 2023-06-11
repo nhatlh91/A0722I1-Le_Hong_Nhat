@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../../model/Customer';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomerService} from '../../service/customer.service';
 import {Router} from '@angular/router';
+import {CustomerTypeService} from '../../service/customer-type.service';
+import {CustomerType} from '../../model/customer-type';
 
 @Component({
   selector: 'app-add-customer',
@@ -10,26 +11,30 @@ import {Router} from '@angular/router';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-  customers: Customer[];
-  addCustomerForm: FormGroup;
-  customerTypes: string[] = ['Member', 'Silver', 'Gold', 'Platinum', 'Diamond'];
-  customer: Customer = {};
+  rf: FormGroup;
+  customerTypes: CustomerType[];
 
-  constructor(private customeService: CustomerService,
+  constructor(private customerService: CustomerService,
+              private customertypeService: CustomerTypeService,
               private router: Router) {
   }
 
   ngOnInit(): void {
     this.buildForm();
+    this.customertypeService.getAll().subscribe(next => {
+      this.customerTypes = next;
+    });
   }
 
   save() {
-    this.customeService.customers.push(this.customer);
-    this.router.navigateByUrl('/customer/list');
+    this.customerService.save(this.rf.value).subscribe(next => {
+      this.rf.reset();
+      this.router.navigateByUrl('/customer/list');
+    });
   }
 
   private buildForm() {
-    this.addCustomerForm = new FormGroup({
+    this.rf = new FormGroup({
       customerCode: new FormControl('', [Validators.required, Validators.pattern(/^KH-\d{4}$/)]),
       customerName: new FormControl('', [Validators.required]),
       birthday: new FormControl('', [Validators.required]),
@@ -37,8 +42,8 @@ export class AddCustomerComponent implements OnInit {
       idNumber: new FormControl('', [Validators.required, Validators.pattern(/\d{9,11}/)]),
       phone: new FormControl('', [Validators.required, Validators.pattern(/^(091|090|\+8490|\+8491)\d{7}$/)]),
       email: new FormControl('', [Validators.email]),
-      typeOfCustomer: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required]),
+      type: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required])
     });
   }
 }

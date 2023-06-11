@@ -10,7 +10,6 @@ const API_URL = `${environment.apiUrl}/customers`;
   providedIn: 'root'
 })
 export class CustomerService {
-  customers: Customer[] = [];
 
   constructor(private httpClient: HttpClient) {
   }
@@ -19,12 +18,12 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(API_URL);
   }
 
-  getById(id: number): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>(`${API_URL}/${id}`);
+  getById(id: number): Observable<Customer> {
+    return this.httpClient.get<Customer>(`${API_URL}/${id}`);
   }
 
-  save(customer: Customer) {
-    this.httpClient.post(`${API_URL}`, customer);
+  save(customer: Customer): Observable<Customer> {
+    return this.httpClient.post<Customer>(API_URL, customer);
   }
 
   delete(id: number) {

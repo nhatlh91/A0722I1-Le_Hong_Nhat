@@ -3,6 +3,8 @@ import {CustomerService} from '../../service/customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../../model/Customer';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomerTypeService} from '../../service/customer-type.service';
+import {CustomerType} from "../../model/customer-type";
 
 @Component({
   selector: 'app-edit-customer',
@@ -12,18 +14,23 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class EditCustomerComponent implements OnInit {
   customer: Customer;
   customerForm: FormGroup;
-  customerTypes: string[] = ['Member', 'Silver', 'Gold', 'Platinum', 'Diamond'];
+  customerTypes: CustomerType[];
 
   constructor(private customerService: CustomerService,
+              private customerTypeService: CustomerTypeService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(param => {
-      const code = param.get('customerCode');
-      this.customer = this.customerService.getById(code);
+      const id = parseInt(param.get('id'), 10);
+      this.customerService.getById(id).subscribe(next => {
+        this.customer = next;
+        this.customerTypeService.getAll().subscribe(item =>
+        this.customerTypes = item);
+        this.buildForm();
+      });
     });
-    this.buildForm();
   }
 
   save() {
@@ -41,7 +48,7 @@ export class EditCustomerComponent implements OnInit {
       idNumber: new FormControl(this.customer.idNumber, [Validators.required, Validators.pattern(/\d{9,11}/)]),
       phone: new FormControl(this.customer.phone, [Validators.required, Validators.pattern(/^(091|090|\+8490|\+8491)\d{7}$/)]),
       email: new FormControl(this.customer.email, [Validators.email]),
-      typeOfCustomer: new FormControl(this.customer.typeOfCustomer, [Validators.required]),
+      type: new FormControl(this.customer.type, [Validators.required]),
       address: new FormControl(this.customer.address, [Validators.required]),
     });
   }

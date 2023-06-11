@@ -6,7 +6,7 @@
       </td>
       <td>
         <input
-          type="text" [(ngModel)]="customer.id"
+          type="text"
           class="form-control col-md-10" id="customer-code" placeholder="Customer code" formControlName="customerCode">
         <p class="text-danger" *ngIf="customerForm.controls.customerCode.touched
   && customerForm.controls.customerCode?.errors?.required">Customer code is required</p>
@@ -20,7 +20,7 @@
       </td>
       <td>
         <input
-          type="text" [(ngModel)]="customer.customerName"
+          type="text"
           class="form-control" id="customer-name" placeholder="Customer name" formControlName="customerName">
         <p class="text-danger" *ngIf="customerForm.controls.customerName.touched
   && customerForm.controls.customerName?.errors?.required">Customer name is required</p>
@@ -32,7 +32,7 @@
       </td>
       <td>
         <input
-          type="date" [(ngModel)]="customer.birthday"
+          type="date"
           class="form-control" id="birthday" formControlName="birthday">
         <p class="text-danger" *ngIf="customerForm.controls.birthday.touched
   && customerForm.controls.birthday?.errors?.required">Birthday is required</p>
@@ -43,8 +43,8 @@
         <label>Gender:</label>
       </td>
       <td>
-        <input type="radio" name="gender" formControlName="gender" value="Male" [(ngModel)]="customer.gender">Male
-        <input type="radio" name="gender" formControlName="gender" value="Female" [(ngModel)]="customer.gender">Female
+        <input type="radio" name="gender" formControlName="gender" value="Male">Male
+        <input type="radio" name="gender" formControlName="gender" value="Female">Female
         <p class="text-danger" *ngIf="customerForm.controls.gender.untouched
   && customerForm.controls.gender?.errors?.required">Gender is required</p>
       </td>
@@ -54,7 +54,7 @@
         <label for="customer-code">Customer ID:</label>
       </td>
       <td>
-        <input [(ngModel)]="customer.idNumber"
+        <input
                type="text"
                class="form-control" id="idNumber" placeholder="ID number" formControlName="idNumber">
         <p class="text-danger" *ngIf="customerForm.controls.idNumber.touched
@@ -69,7 +69,7 @@
       </td>
       <td>
         <input
-          type="text" [(ngModel)]="customer.phone"
+          type="text"
           class="form-control" id="phone" placeholder="Phone number" formControlName="phone">
         <p class="text-danger" *ngIf="customerForm.controls.phone.touched
   && customerForm.controls.phone?.errors?.required">Phone is required</p>
@@ -83,7 +83,7 @@
       </td>
       <td>
         <input
-          type="email" [(ngModel)]="customer.email"
+          type="email"
           class="form-control" id="email" placeholder="Email" formControlName="email">
         <p class="text-danger" *ngIf="customerForm.controls.email.touched
   && customerForm.controls.email?.errors?.email">Email is not correct</p>
@@ -94,8 +94,8 @@
         <label for="customer-type">Customer Type:</label>
       </td>
       <td>
-        <select formControlName="typeOfCustomer" class="form-control" id="customer-type" [(ngModel)]="customer.typeOfCustomer">
-          <option *ngFor="let item of customerTypes" value="{{item}}">{{item}}</option>
+        <select formControlName="type" class="form-control" id="customer-type">
+          <option *ngFor="let item of customerTypes" value="{{item}}">{{item.customerType}}</option>
         </select>
         <p class="text-danger" *ngIf="customerForm.controls.typeOfCustomer.touched
   && customerForm.controls.typeOfCustomer?.errors?.required">Please choose customer type</p>
@@ -107,7 +107,7 @@
       </td>
       <td>
         <input
-          type="text" [(ngModel)]="customer.address"
+          type="text"
           class="form-control" id="address" placeholder="Address" formControlName="address">
         <p class="text-danger" *ngIf="customerForm.controls.email.touched
   && customerForm.controls.address?.errors?.required">Address is required</p>

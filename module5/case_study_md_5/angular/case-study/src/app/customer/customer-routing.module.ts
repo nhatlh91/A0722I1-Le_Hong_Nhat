@@ -7,15 +7,15 @@ import {EditCustomerComponent} from './edit-customer/edit-customer.component';
 
 const routes: Routes = [
   {
-    path: 'customer/list',
+    path: 'list',
     component: ListCustomerComponent
   },
   {
-    path: 'customer/create',
+    path: 'create',
     component: AddCustomerComponent
   },
   {
-    path: 'customer/edit/:customerCode',
+    path: 'edit/:id',
     component: EditCustomerComponent
   },
 ];
