@@ -1,0 +1,43 @@
+<h3 class="text-center">List of facility</h3>
+<table class="table table-responsive table-striped  table-bordered">
+  <thead>
+  <tr class="text-center">
+    <th>STT</th>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Area</th>
+    <th>Cost</th>
+    <th>Capacity</th>
+    <th>Rent type</th>
+    <th>Room standard</th>
+    <th>Other conveniences</th>
+    <th>Pool area</th>
+    <th>No. of floor</th>
+    <th>Extra Service</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="text-center" *ngFor="let facility of facilities | paginate: {itemsPerPage: pageSize, currentPage: p}, index as i">
+    <td>{{i+1}}</td>
+    <td>{{facility.id}}</td>
+    <td>{{facility.type}}</td>
+    <td>{{facility.name}}</td>
+    <td>{{facility.area}}</td>
+    <td>{{facility.cost | currency:'VND'}}</td>
+    <td>{{facility.capacity}}</td>
+    <td>{{facility.rentType}}</td>
+    <td>{{facility.roomStandard}}</td>
+    <td>{{facility.otherConvenience}}</td>
+    <td>{{facility.poolArea}}</td>
+    <td>{{facility.floor}}</td>
+    <td>{{facility.extraServices}}</td>
+    <td>
+      <button class="btn btn-outline-primary" routerLink="/facility/edit/{{facility.id}}">Edit</button>
+      <button class="btn btn-outline-primary" (click)="delete(facility.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="pageChanged($event)"> </pagination-controls>

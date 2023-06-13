@@ -7,15 +7,15 @@ import {CategoryDeleteComponent} from './category-delete/category-delete.compone
 
 const routes: Routes = [
   {
-    path: 'categories/list',
+    path: 'list',
     component: CategoryListComponent
   },
   {
-    path: 'categories/create',
+    path: 'create',
     component: CategoryCreateComponent
   },
   {
-    path: 'categories/delete/:id',
+    path: 'delete/:id',
     component: CategoryDeleteComponent
   }
 ];

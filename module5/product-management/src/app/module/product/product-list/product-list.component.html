@@ -22,14 +22,14 @@
     <td>{{product.price | currency : 'VND'}}</td>
     <td>{{product.description}}</td>
     <td>{{product.category.name | titlecase}}</td>
-    <td>{{product.purchasingDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{product.date | date: 'dd-MM-yyyy'}}</td>
     <td>
-      <a class="btn btn-outline-primary" routerLink="/product/edit/{{product.id}}">Edit</a>
-      <a class="btn btn-outline-danger" routerLink="/product/delete/{{product.id}}">Delete</a>
+      <a class="btn btn-outline-primary" routerLink="/products/edit/{{product.id}}">Edit</a>
+      <a class="btn btn-outline-danger" (click)="delete(product.id)">Delete</a>
     </td>
   </tr>
   </tbody>
 </table>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
-<button class="btn btn-outline-primary" routerLink="/product/create">Add new product</button>
+<button class="btn btn-outline-primary" routerLink="/products/create">Add new product</button>
 

@@ -1,20 +1,37 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs|pills" id="navId">
   <li class="nav-item">
-    <a href="#tab1Id" class="nav-link active">Active</a>
+    <a href="#tab1Id" class="nav-link active">Home</a>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-       aria-expanded="false">Dropdown</a>
+       aria-expanded="false">Facility</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#tab2Id">Action</a>
-      <a class="dropdown-item" href="#tab3Id">Another action</a>
+      <a class="dropdown-item" routerLink="/facility/list">List of facility</a>
+      <a class="dropdown-item" routerLink="/facility/create">Create a new facility</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#tabs5Id"></a>
+      <a class="dropdown-item" href="#tabs5Id">Under-developing</a>
     </div>
   </li>
-  <li class="nav-item">
-    <a href="#tab5Id" class="nav-link">Another link</a>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+       aria-expanded="false">Customer</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" routerLink="/facility/list">List of customer</a>
+      <a class="dropdown-item" routerLink="/facility/create">Create a new customer</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#tabs5Id">Under-developing</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+       aria-expanded="false">Contract</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" routerLink="/contract/list">List of contract</a>
+      <a class="dropdown-item" routerLink="/contract/create">Create a new contract</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#tabs5Id">Under-developing</a>
+    </div>
   </li>
   <li class="nav-item">
     <a href="#" class="nav-link disabled">Disabled</a>

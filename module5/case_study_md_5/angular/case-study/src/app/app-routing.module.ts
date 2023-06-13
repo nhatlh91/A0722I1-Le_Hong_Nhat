@@ -6,7 +6,19 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'customer',
-    loadChildren: () => import('./customer/customer.module').then(module => module.CustomerModule)
+    loadChildren: () => import('./component/customer/customer.module').then(module => module.CustomerModule)
+  },
+  {
+    path: 'facility',
+    loadChildren: () => import('./component/facility/facility.module').then(module => module.FacilityModule)
+  },
+  {
+    path: 'contract',
+    loadChildren: () => import('./component/contract/contract.module').then(module => module.ContractModule)
+  },
+  {
+    path: 'detail-contract',
+    loadChildren: () => import('./component/detail-contract/detail-contract.module').then(module => module.DetailContractModule)
   }
 ];
 

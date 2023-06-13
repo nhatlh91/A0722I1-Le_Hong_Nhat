@@ -1,0 +1,73 @@
+<div class="card" style="width: 20rem; margin: auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Contract information</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="rf" (ngSubmit)="save()" *ngIf="rf">
+        <div class="form-group mb-3">
+          <label>Employee:</label>
+          <select formControlName="employee" class="form-control">
+            <option disabled value="">- Employee -</option>
+            <option *ngFor="let employee of employees" [ngValue]="employee">{{employee.employeeName}}</option>
+          </select>
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.employee.touched && rf.controls.employee.errors?.required">Please
+          choose employee</p>
+
+        <div class="form-group mb-3">
+          <label>Customer:</label>
+          <select formControlName="customer" class="form-control">
+            <option disabled value="">- Customer -</option>
+            <option *ngFor="let customer of customers" [ngValue]="customer">{{customer.customerName}}</option>
+          </select>
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.customer.touched && rf.controls.customer.errors?.required">Please
+          choose customer</p>
+
+        <div class="form-group mb-3">
+          <label>Facility:</label>
+          <select formControlName="facility" class="form-control" (change)="calTheCost()">
+            <option disabled value="">- Facility -</option>
+            <option *ngFor="let facility of facilities" [ngValue]="facility">{{facility.name}}</option>
+          </select>
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.facility.touched && rf.controls.facility.errors?.required">Please
+          choose facility</p>
+
+        <div class="form-group mb-3">
+          <label>Begin date:</label>
+          <input type="date" formControlName="beginDate" placeholder="Begin date" class="form-control" (change)="checkEndDate($event)">
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.beginDate.touched && rf.controls.beginDate.errors?.required">Check-in is required</p>
+
+        <div class="form-group mb-3">
+          <label>End date:</label>
+          <input type="date" formControlName="endDate" placeholder="End date" class="form-control">
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.endDate.touched && rf.controls.endDate.errors?.required">Check-out is
+          required</p>
+        <p class="text-danger" *ngIf="rf.controls.endDate.touched && rf.controls.endDate.errors?.wrongTime">Check-out must be after check-in</p>
+
+        <div class="form-group mb-3">
+          <label>Deposit:</label>
+          <input type="number" formControlName="deposit" placeholder="Deposit" class="form-control">
+        </div>
+        <p class="text-danger" *ngIf="rf.controls.deposit.touched && rf.controls.deposit.errors?.required">Deposit is
+          required</p>
+        <p class="text-danger" *ngIf="rf.controls.deposit.touched && rf.controls.deposit.errors?.min">Deposit is
+          wrong</p>
+
+        <div class="form-group mb-3">
+          <label>Total amount:</label>
+          <input readonly type="number" formControlName="totalAmount" placeholder="Total amount" class="form-control">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-secondary">Reset</button>
+          <button type="submit" class="btn btn-success" [disabled]="this.rf.invalid">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<pre>{{rf.value | json}}</pre>

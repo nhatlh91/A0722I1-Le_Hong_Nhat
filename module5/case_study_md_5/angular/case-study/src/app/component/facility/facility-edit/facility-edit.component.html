@@ -1,0 +1,93 @@
+<div class="card" style="width: 25rem; margin: auto">
+  <div class="card-header text-center">
+    <h3>Facility information</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="rf" (ngSubmit)="save()" *ngIf="rf">
+      <div class="input-group mb-3">
+        <select formControlName="type" class="form-control">
+          <option value="" disabled>- Select type of facility -</option>
+          <option *ngFor="let facilityType of facilityTypes" [ngValue]="facilityType">{{facilityType}}</option>
+        </select>
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.type.touched && rf.controls.type.errors?.required">Facility type is
+        required</p>
+
+      <div class="input-group mb-3">
+        <input formControlName="name"
+               type="text" class="form-control" placeholder="Name of facility">
+      </div>
+
+      <p class="text-danger" *ngIf="rf.controls.name.touched && rf.controls.name.errors?.required">Facility name is
+        required</p>
+      <div class="input-group mb-3">
+        <input formControlName="area"
+               type="number" class="form-control" placeholder="Area">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.area.touched && rf.controls.area.errors?.required">Area is required</p>
+      <p class="text-danger" *ngIf="rf.controls.area.touched && rf.controls.area.errors?.min">Area is at least 50m2</p>
+
+      <div class="input-group mb-3">
+        <input formControlName="cost"
+               type="number" class="form-control" placeholder="Cost">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.cost.touched && rf.controls.cost.errors?.required">Cost is required</p>
+      <p class="text-danger" *ngIf="rf.controls.cost.touched && rf.controls.cost.errors?.min">Cost is at least
+        500.000VND</p>
+
+      <div class="input-group mb-3">
+        <input formControlName="capacity"
+               type="number" class="form-control" placeholder="Capacity">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.capacity.touched && rf.controls.capacity.errors?.required">Capacity is
+        required</p>
+      <p class="text-danger" *ngIf="rf.controls.capacity.touched && rf.controls.capacity.errors?.min">Can adapt at least
+        2 people</p>
+      <p class="text-danger" *ngIf="rf.controls.capacity.touched && rf.controls.capacity.errors?.max">Can adapt at max
+        10 people</p>
+
+      <div class="input-group mb-3">
+        <select formControlName="rentType" class="form-control">
+          <option value="" disabled>- Select rent type -</option>
+          <option *ngFor="let rentType of rentTypes" [ngValue]="rentType">{{rentType}}</option>
+        </select>
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.rentType.touched && rf.controls.rentType.errors?.required">Rent type is
+        required</p>
+
+      <div class="input-group mb-3" *ngIf="rf.value.type == 'Vila'|| rf.value.type == 'House'">
+        <input formControlName="roomStandard"
+               type="text" class="form-control" placeholder="Room standard">
+      </div>
+
+      <div class="input-group mb-3" *ngIf="rf.value.type == 'Vila'|| rf.value.type == 'House'">
+        <input formControlName="otherConvenience"
+               type="text" class="form-control" placeholder="Other conveniences">
+      </div>
+
+      <div class="input-group mb-3" *ngIf="rf.value.type == 'Vila'">
+        <input formControlName="poolArea"
+               type="text" class="form-control" placeholder="Pool area">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.poolArea.touched && rf.controls.poolArea.errors?.min">Can't less than 20m2</p>
+
+
+      <div class="input-group mb-3" *ngIf="rf.value.type == 'Vila'|| rf.value.type == 'House'">
+        <input formControlName="floor"
+               type="text" class="form-control" placeholder="Number of floors">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.floor.touched && rf.controls.floor.errors?.min">Can't less than 1</p>
+
+      <div class="input-group mb-3" *ngIf="rf.value.type == 'Room'">
+        <input formControlName="extraServices"
+               type="text" class="form-control" placeholder="Extra services">
+      </div>
+
+      <div class="btn-group">
+        <button type="reset" class="btn btn-secondary" routerLink="/facility/list">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="rf.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--<pre>{{rf.value | json}}</pre>-->

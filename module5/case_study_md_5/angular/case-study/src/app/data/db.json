@@ -1,4 +1,17 @@
 {
+  "employees": [
+    {
+      "employeeCode": "NV-0001",
+      "employeeName": "Thành",
+      "birthday": "2023-06-15",
+      "gender": "Female",
+      "idNumber": "6954847222",
+      "phone": "0908442864",
+      "email": "thanh@gmail.com",
+      "address": "Da Nang",
+      "id": 1
+    }
+  ],
   "customers": [
     {
       "customerCode": "KH-0001",
@@ -38,14 +51,173 @@
       "customerType": "Diamond"
     }
   ],
-  "comments": [
+  "facilities": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "type": "Vila",
+      "name": "Sunshine vila",
+      "area": 500,
+      "cost": 10000000,
+      "capacity": 8,
+      "rentType": "Day",
+      "roomStandard": "VIP",
+      "otherConvenience": "Free cable internet",
+      "poolArea": "200",
+      "floor": "2",
+      "extraServices": ""
+    },
+    {
+      "type": "Vila",
+      "name": "Vila 2",
+      "area": 170,
+      "cost": 20000000,
+      "capacity": 2,
+      "rentType": "Month",
+      "roomStandard": "Standard",
+      "otherConvenience": "Free golf",
+      "poolArea": "70",
+      "floor": "1",
+      "extraServices": "",
+      "id": 2
+    },
+    {
+      "type": "House",
+      "name": "Full House",
+      "area": 150,
+      "cost": 50000000,
+      "capacity": 5,
+      "rentType": "Year",
+      "roomStandard": "Standard",
+      "otherConvenience": "No",
+      "poolArea": "",
+      "floor": "2",
+      "extraServices": "",
+      "id": 3
+    },
+    {
+      "type": "Room",
+      "name": "eee",
+      "area": 200,
+      "cost": 7000000,
+      "capacity": 2,
+      "rentType": "Hour",
+      "roomStandard": "",
+      "otherConvenience": "",
+      "poolArea": "",
+      "floor": "",
+      "extraServices": "Free newspaper",
+      "id": 5
+    },
+    {
+      "type": "Room",
+      "name": "sasdasd",
+      "area": 225,
+      "cost": 2000000,
+      "capacity": 4,
+      "rentType": "Day",
+      "roomStandard": "",
+      "otherConvenience": "",
+      "poolArea": "",
+      "floor": "",
+      "extraServices": "",
+      "id": 6
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "detail-contracts": [],
+  "contracts": [
+    {
+      "employee": {
+        "employeeCode": "NV-0001",
+        "employeeName": "Thành",
+        "birthday": "2023-06-15",
+        "gender": "Female",
+        "idNumber": "6954847222",
+        "phone": "0908442864",
+        "email": "thanh@gmail.com",
+        "address": "Da Nang",
+        "id": 1
+      },
+      "customer": {
+        "customerCode": "KH-0001",
+        "customerName": "Nguyễn Lê Khánh",
+        "birthday": "2023-06-15",
+        "gender": "Female",
+        "idNumber": "6954847222",
+        "phone": "0908442864",
+        "email": "thanh@gmail.com",
+        "type": {
+          "id": 4,
+          "customerType": "Platinum"
+        },
+        "address": "Da Nang",
+        "id": 1
+      },
+      "facility": {
+        "type": "Vila",
+        "name": "Vila 2",
+        "area": 170,
+        "cost": 20000000,
+        "capacity": 2,
+        "rentType": "Month",
+        "roomStandard": "Standard",
+        "otherConvenience": "Free golf",
+        "poolArea": "70",
+        "floor": "1",
+        "extraServices": "",
+        "id": 2
+      },
+      "beginDate": "2023-06-08",
+      "endDate": "2023-06-14",
+      "deposit": 1000000,
+      "totalAmount": 7000000,
+      "id": 1
+    },
+    {
+      "employee": {
+        "employeeCode": "NV-0001",
+        "employeeName": "Thành",
+        "birthday": "2023-06-15",
+        "gender": "Female",
+        "idNumber": "6954847222",
+        "phone": "0908442864",
+        "email": "thanh@gmail.com",
+        "address": "Da Nang",
+        "id": 1
+      },
+      "customer": {
+        "customerCode": "KH-0001",
+        "customerName": "Nguyễn Lê Khánh",
+        "birthday": "2023-06-15",
+        "gender": "Female",
+        "idNumber": "6954847222",
+        "phone": "0908442864",
+        "email": "thanh@gmail.com",
+        "type": {
+          "id": 4,
+          "customerType": "Platinum"
+        },
+        "address": "Da Nang",
+        "id": 1
+      },
+      "facility": {
+        "type": "Room",
+        "name": "sasdasd",
+        "area": 225,
+        "cost": 2000000,
+        "capacity": 4,
+        "rentType": "Day",
+        "roomStandard": "",
+        "otherConvenience": "",
+        "poolArea": "",
+        "floor": "",
+        "extraServices": "",
+        "id": 6
+      },
+      "beginDate": "2023-06-09",
+      "endDate": "2023-06-29",
+      "deposit": 1000000,
+      "totalAmount": 2000000,
+      "id": 2
+    }
+  ]
 }

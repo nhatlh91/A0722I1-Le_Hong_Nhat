@@ -6,5 +6,5 @@ export interface Product {
   price?: number;
   description?: string;
   category?: Category;
-  purchasingDate?: string;
+  date?: string;
 }

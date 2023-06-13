@@ -7,6 +7,7 @@ import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {FooterComponent} from './footer/footer.component';
 import {SideBarComponent} from './side-bar/side-bar.component';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

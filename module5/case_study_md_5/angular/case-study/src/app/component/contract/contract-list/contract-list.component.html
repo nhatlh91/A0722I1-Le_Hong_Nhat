@@ -1,0 +1,32 @@
+<h3 class="text-center">List of detail contract</h3>
+<table class="table table-responsive table-striped  table-bordered">
+  <thead>
+  <tr class="text-center">
+    <th>No.</th>
+    <th>Staff</th>
+    <th>Customer</th>
+    <th>Facility</th>
+    <th>Check-in</th>
+    <th>Check-out</th>
+    <th>Deposit</th>
+    <th>Total amount</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="text-center" *ngFor="let contract of contracts | paginate: {itemsPerPage: pageSize, currentPage: p}, index as i">
+    <td>{{i+1}}</td>
+    <td>{{contract.employee.employeeName}}</td>
+    <td>{{contract.customer.customerName}}</td>
+    <td>{{contract.facility.name}}</td>
+    <td>{{contract.beginDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{contract.endDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{contract.deposit | currency:'VND'}}</td>
+    <td>{{contract.totalAmount | currency:'VND'}}</td>
+    <td>
+      <button class="btn btn-outline-danger" (click)="delete(contract.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="pageChanged($event)"> </pagination-controls>
