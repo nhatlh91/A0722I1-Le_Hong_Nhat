@@ -1,129 +1,138 @@
 {
-  "products": [
-    {
-      "id": 2,
-      "name": "Trúc Lâm Viên",
-      "price": 12000000,
-      "description": "Broken",
-      "category": {
-        "id": 1,
-        "name": "smartphone"
-      },
-      "date": "2017-05-03"
-    },
-    {
-      "id": 14,
-      "name": "Goliath",
-      "price": 500000,
-      "description": "New",
-      "category": {
-        "id": 2,
-        "name": "laptop"
-      },
-      "date": "2023-05-29"
-    },
-    {
-      "name": "Product Z",
-      "price": 7500000,
-      "description": "Used fullbox",
-      "category": {
-        "id": 1,
-        "name": "smartphone"
-      },
-      "date": "2023-06-07",
-      "id": 15
-    },
-    {
-      "id": 16,
-      "name": "Product C",
-      "price": 12000000,
-      "description": "New",
-      "category": {
-        "id": 4,
-        "name": "monitor"
-      },
-      "date": "2019-06-12"
-    },
-    {
-      "name": "Orico",
-      "price": 200000,
-      "description": "New",
-      "category": {
-        "id": 2,
-        "name": "laptop"
-      },
-      "date": "2022-02-12",
-      "id": 17
-    },
-    {
-      "name": "LG",
-      "price": 4000000,
-      "description": "New",
-      "category": {
-        "id": 4,
-        "name": "monitor"
-      },
-      "date": "2023-06-02",
-      "id": 18
-    },
-    {
-      "name": "jh",
-      "price": 43,
-      "description": "jj",
-      "category": {
-        "id": 4,
-        "name": "monitor"
-      },
-      "date": "2023-06-30",
-      "id": 19
-    },
-    {
-      "name": "Love story",
-      "price": 320,
-      "description": "key crack",
-      "category": {
-        "id": 4,
-        "name": "monitor"
-      },
-      "date": "2021-02-12",
-      "id": 20
-    },
-    {
-      "name": "PVD",
-      "price": 25000000,
-      "description": "Ping pong",
-      "category": {
-        "id": 3,
-        "name": "table"
-      },
-      "date": "2023-06-26",
-      "id": 21
-    }
-  ],
-  "categories": [
+  "patients": [
     {
       "id": 1,
-      "name": "smartphone"
+      "name": "Trần Quang Nhân"
     },
     {
       "id": 2,
-      "name": "laptop"
+      "name": "Nguyễn Hữu Huy"
     },
     {
       "id": 3,
-      "name": "table"
+      "name": "Nguyễn Lê Khánh"
     },
     {
       "id": 4,
-      "name": "monitor"
+      "name": "Nguyễn Mai Huyền Linh"
     },
     {
       "id": 5,
-      "name": "peripherals"
+      "name": "Võ Kim Thành"
     },
     {
-      "name": "Printer",
+      "name": "Mai Văn Thuận",
       "id": 6
+    }
+  ],
+  "records": [
+    {
+      "id": 1,
+      "patient": {
+        "id": 4,
+        "name": "Nguyễn Mai Huyền Linh"
+      },
+      "in": "2022-12-08",
+      "out": "2022-12-16",
+      "reason": "Sốt",
+      "solution": "dffgdfhfhfg",
+      "doctor": "Nguyen Van X"
+    },
+    {
+      "id": 4,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gay chan",
+      "solution": "Cưa",
+      "doctor": "Nguyễn Thanh Công"
+    },
+    {
+      "id": 5,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Mất trí nhớ",
+      "solution": "Đánh vào đầu",
+      "doctor": "Bác sĩ Trang"
+    },
+    {
+      "id": 7,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
+    },
+    {
+      "id": 9,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
+    },
+    {
+      "id": 10,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
+    },
+    {
+      "id": 13,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
+    },
+    {
+      "id": 14,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
+    },
+    {
+      "id": 16,
+      "patient": {
+        "id": 1,
+        "name": "Trần Quang Nhân"
+      },
+      "in": "2022-12-07",
+      "out": "2022-12-07",
+      "reason": "Gãy chân",
+      "solution": "Bó bột",
+      "doctor": "Đặng Chí Trung"
     }
   ]
 }

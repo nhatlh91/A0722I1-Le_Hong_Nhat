@@ -1,15 +1,17 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {RecordListComponent} from './component/record/record-list/record-list.component';
+import {RecordEditComponent} from './component/record/record-edit/record-edit.component';
 
 
 const routes: Routes = [
   {
-    path: 'categories',
-    loadChildren: () => import('./module/category/category.module').then(module => module.CategoryModule)
+    path: 'records/list',
+    component: RecordListComponent
   },
   {
-    path: 'products',
-    loadChildren: () => import('./module/product/product.module').then(module => module.ProductModule)
+    path: 'records/edit/:id',
+    component: RecordEditComponent
   }
 ];
 

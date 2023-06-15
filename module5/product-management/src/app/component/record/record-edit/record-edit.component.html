@@ -1,0 +1,72 @@
+<div class="card" style="width: 20rem; margin: auto">
+  <div class="card-header">
+    Chỉnh sửa thông tin bệnh án
+  </div>
+  <div class="card-body">
+    <form [formGroup]="rf" (ngSubmit)="update()" *ngIf="this.rf">
+      <div class="form-group mb-3">
+        <label for="patient">Bệnh nhân: </label>
+        <select
+          formControlName="patient" id="patient" class="form-control">
+          <option value="{{this.rf.value.patient}}" disabled>{{this.rf.value.patient.name}}</option>
+          <option *ngFor="let patient of patients" [ngValue]="patient">{{patient.name}}</option>
+        </select>
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.patient.touched && rf.controls.patient?.errors?.required">Xin chọn bệnh
+        nhân</p>
+
+      <div class="form-group mb-3">
+        <label for="in">Ngày nhập viện: </label>
+        <input (change)="checkEndDate($event)"
+          type="date"
+          formControlName="in" id="in" class="form-control">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.in.touched && rf.controls.in?.errors?.required">Điền ngày nhập viện</p>
+
+      <div class="form-group mb-3">
+        <label for="out">Ngày ra viện: </label>
+        <input
+          type="date"
+          formControlName="out" id="out" class="form-control">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.out.touched && rf.controls.out?.errors?.required">Điền ngày ra viện</p>
+      <p class="text-danger" *ngIf="rf.controls.out.touched && rf.controls.out.errors?.wrongTime">Ngày ra viện không thể trước ngày vào viện</p>
+
+      <div class="form-group mb-3">
+        <label for="reason">Nguyên nhân: </label>
+        <input
+          type="text"
+          formControlName="reason" id="reason" class="form-control" placeholder="Nguyên nhân vào viện">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.reason.touched && rf.controls.reason?.errors?.required">Bắt buộc nhập
+        nguyên nhân vào viện</p>
+
+      <div class="form-group mb-3">
+        <label for="solution">Phương pháp điều trị: </label>
+        <input
+          type="text"
+          formControlName="solution" id="solution" class="form-control" placeholder="Điền phương pháp điều trị">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.solution.touched && rf.controls.solution?.errors?.required">Bắt buộc
+        nhập phương pháp</p>
+
+      <div class="form-group mb-3">
+        <label for="doctor">Bác sĩ phụ trách: </label>
+        <input
+          type="text"
+          formControlName="doctor" id="doctor" class="form-control" placeholder="Điền tên bác sĩ phụ trách điều trị">
+      </div>
+      <p class="text-danger" *ngIf="rf.controls.doctor.touched && rf.controls.doctor?.errors?.required">Bắt buộc nhập
+        bác sĩ</p>
+      <p class="text-danger" *ngIf="rf.controls.doctor.touched && rf.controls.doctor?.errors?.pattern">Tên không đúng
+        định dạng</p>
+
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary" routerLink="/records/list">Huỷ</button>
+        <button class="btn btn-outline-success" type="submit" [disabled]="rf.invalid">Lưu</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+<pre *ngIf="this.rf">{{rf.value | json}}</pre>

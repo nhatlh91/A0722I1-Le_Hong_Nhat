@@ -6,10 +6,17 @@ import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
+import { RecordListComponent } from './component/record/record-list/record-list.component';
+import { RecordEditComponent } from './component/record/record-edit/record-edit.component';
+import Swal from 'sweetalert2';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent,
+    RecordListComponent,
+    RecordEditComponent
   ],
     imports: [
         BrowserModule,

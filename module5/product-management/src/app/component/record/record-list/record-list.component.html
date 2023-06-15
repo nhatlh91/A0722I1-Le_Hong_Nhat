@@ -1,0 +1,41 @@
+<table class="table table-bordered table-responsive table-striped">
+  <thead>
+  <tr>
+    <th colspan="10" class="text-center">DANH SÁCH BỆNH ÁN</th>
+  </tr>
+  <tr class="text-center">
+    <th>STT</th>
+    <th>Mã bệnh án</th>
+    <th>Mã bệnh nhân</th>
+    <th>Tên bệnh nhân</th>
+    <th>Ngày nhập viện</th>
+    <th>Ngày ra viện</th>
+    <th>Nguyên nhân</th>
+    <th>Phương pháp</th>
+    <th>Bác sĩ</th>
+    <th>Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="text-center" *ngFor="let recordz of records | paginate:{ itemsPerPage: 5, currentPage: p} index as i">
+    <td>{{i + 1}}</td>
+    <td>BA-{{recordz.id}}</td>
+    <td>BN-{{recordz.patient.id}}</td>
+    <td>{{recordz.patient.name}}</td>
+    <td>{{recordz.in | date: 'dd-MM-yyyy'}}</td>
+    <td>{{recordz.out | date: 'dd-MM-yyyy'}}</td>
+    <td>{{recordz.reason}}</td>
+    <td>{{recordz.solution}}</td>
+    <td>{{recordz.doctor}}</td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-outline-primary" routerLink="/records/edit/{{recordz.id}}">Sửa</button>
+        <button class="btn btn-outline-danger" (click)="delete(recordz.id)">Xoá</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
